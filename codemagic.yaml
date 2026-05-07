@@ -8,7 +8,7 @@ workflows:
         XCODE_WORKSPACE: "ios/Readyrental.xcworkspace"
         XCODE_SCHEME: "Readyrental"
         BUNDLE_ID: "com.readyrental"
-      node: 16.20.2
+      node: 18.20.4
       xcode: latest
       cocoapods: default
     cache:
@@ -16,20 +16,27 @@ workflows:
         - $HOME/Library/Caches/CocoaPods
         - $CM_BUILD_DIR/node_modules
     scripts:
+      - name: Force Yarn classic 1.22 (bypass corepack Yarn 4)
+        script: |
+          # Corepack on Codemagic auto-downloads Yarn 4 which breaks RN 0.70 projects.
+          # Disable corepack and install Yarn 1.22 globally.
+          corepack disable || true
+          npm install -g yarn@1.22.22
+          which yarn
+          yarn --version
       - name: Show env versions
         script: |
           node --version
           npm --version
-          yarn --version || true
+          yarn --version
           ruby --version
           pod --version
           xcodebuild -version
-      - name: Install JS dependencies (yarn)
+      - name: Install JS dependencies (yarn classic)
         script: |
           # Disable patch-package postinstall to avoid hard-failures on missing patches
           npm pkg delete scripts.postinstall || true
-          # Prefer yarn since yarn.lock is committed
-          yarn install --frozen-lockfile --network-timeout 600000 || yarn install --network-timeout 600000
+          yarn install --ignore-engines --network-timeout 600000
       - name: Apply patches if any (non-fatal)
         script: |
           if [ -d patches ] && ls patches/*.patch >/dev/null 2>&1; then
