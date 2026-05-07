@@ -73,27 +73,60 @@ workflows:
               sed -i '' -e 's/File\.exists?/File.exist?/g' "$f"
             done
           echo "Ruby 3.2 patches applied"
-      - name: Patch RN codegen for Ruby 3.2+ compat
+      - name: Neutralize use_react_native_codegen! calls (Ruby 4/PRISM compat)
         script: |
           set -e
-          # The use_react_native_codegen! call in FBReactNativeSpec.podspec triggers
-          # "wrong number of arguments" on newer Ruby. Patch the script_phases helper
-          # to make options handling Ruby 3 friendly + comment the FBReactNativeSpec call.
-          SCRIPT_PHASES="node_modules/react-native/scripts/react_native_pods_utils/script_phases.rb"
-          if [ -f "$SCRIPT_PHASES" ]; then
-            echo "--- Before ---"
-            grep -n "def use_react_native_codegen" "$SCRIPT_PHASES" || true
-            # Make signature accept any args defensively
-            sed -i '' -E 's/def use_react_native_codegen!\([^)]*\)/def use_react_native_codegen!(*args, **opts)/' "$SCRIPT_PHASES"
-            # Early-return to skip codegen entirely (DISABLE_CODEGEN behavior)
-            sed -i '' -E "/def use_react_native_codegen!\(\*args, \*\*opts\)/a\\
-            return\\
-            " "$SCRIPT_PHASES"
-            echo "--- After ---"
-            grep -n -A 2 "def use_react_native_codegen" "$SCRIPT_PHASES" | head -20
-          else
-            echo "script_phases.rb not found at $SCRIPT_PHASES"
-          fi
+          echo "Searching for use_react_native_codegen! in node_modules..."
+          # Remove the entire call block: from "use_react_native_codegen!(s, {" up to the matching "})"
+          # We do it with a Python helper to handle multi-line balanced parens correctly.
+          python3 <<'PYEOF'
+          import os, re, glob
+          patterns = [
+              "node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec",
+          ]
+          # Also scan all podspecs for the call
+          for p in glob.glob("node_modules/**/*.podspec", recursive=True):
+              patterns.append(p)
+          patterns = list(set(patterns))
+          for path in patterns:
+              if not os.path.isfile(path):
+                  continue
+              with open(path, "r") as f:
+                  src = f.read()
+              if "use_react_native_codegen!" not in src:
+                  continue
+              # Find each call and remove the balanced expression
+              out = []
+              i = 0
+              while i < len(src):
+                  m = re.search(r"use_react_native_codegen!\s*\(", src[i:])
+                  if not m:
+                      out.append(src[i:])
+                      break
+                  start = i + m.start()
+                  out.append(src[i:start])
+                  # walk to matching close paren
+                  depth = 0
+                  j = i + m.end() - 1  # at '('
+                  while j < len(src):
+                      c = src[j]
+                      if c == '(':
+                          depth += 1
+                      elif c == ')':
+                          depth -= 1
+                          if depth == 0:
+                              j += 1
+                              break
+                      j += 1
+                  out.append("# [PATCHED] use_react_native_codegen! call removed for Ruby 4/PRISM compat\nnil")
+                  i = j
+              new = "".join(out)
+              if new != src:
+                  with open(path, "w") as f:
+                      f.write(new)
+                  print(f"patched: {path}")
+          print("done")
+          PYEOF
       - name: Install CocoaPods
         script: |
           export DISABLE_CODEGEN=1
