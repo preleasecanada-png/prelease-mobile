@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '12.4'
+platform :ios, '13.0'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'Readyrental' do
@@ -12,32 +12,38 @@ target 'Readyrental' do
 
   use_react_native!(
     :path => config[:reactNativePath],
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    # Upcoming versions of React Native may rely on get_default_flags(), but
-    # we make it explicit here to aid in the React Native upgrade process.
     :hermes_enabled => false,
     :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => FlipperConfiguration.enabled,
-    # An absolute path to your application root.
+    # Flipper disabled: incompatible with Xcode 16+/Clang 17+ (C++ Folly build errors).
+    # Not needed for release/sideload builds anyway.
+    :flipper_configuration => FlipperConfiguration.disabled,
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
   target 'ReadyrentalTests' do
     inherit! :complete
-    # Pods for testing
   end
 
   post_install do |installer|
     react_native_post_install(
       installer,
-      # Set `mac_catalyst_enabled` to `true` in order to apply patches
-      # necessary for Mac Catalyst builds
       :mac_catalyst_enabled => false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    # Xcode 16/26 compatibility fixes for all pod targets
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        # Xcode 26 requires iOS 12.0+; bump all pods to 13.0 to match app
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        # Force C++17 for Yoga/Folly (Xcode 26 defaults to C++20 which breaks these)
+        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        config.build_settings['CLANG_CXX_LIBRARY'] = 'libc++'
+        # Silence non-fatal warnings that become errors on newer Clang
+        config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
+        # Fix for M1/arm64 builds
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'i386'
+      end
+    end
   end
 end
