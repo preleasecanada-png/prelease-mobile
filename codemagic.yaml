@@ -1,7 +1,7 @@
 workflows:
   ios-unsigned:
     name: iOS Unsigned IPA (sideload via AltStore/Sideloadly)
-    max_build_duration: 60
+    max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
       vars:
@@ -171,19 +171,63 @@ workflows:
           ruby --version
           pod --version
           cd ios && pod install --repo-update
+      - name: Neutralize Metro packager script phase (prevents CI hang)
+        script: |
+          # The 'Start Packager' RN script tries to open Metro on :8081 and can hang in CI.
+          # Replace its body with a no-op echo.
+          PBX="ios/Readyrental.xcodeproj/project.pbxproj"
+          if [ -f "$PBX" ]; then
+            python3 <<'PYEOF'
+          import re
+          path = "ios/Readyrental.xcodeproj/project.pbxproj"
+          with open(path) as f:
+              s = f.read()
+          # Find shell script blocks containing 'launchPackager' or metro-start and neutralize shellScript
+          def replace_shell(match):
+              block = match.group(0)
+              if 'launchPackager' in block or 'Start Packager' in block or 'Metro' in block.lower():
+                  # Replace the shellScript = "..."; with a no-op
+                  return re.sub(r'shellScript = "[^"]*";', 'shellScript = "echo Skipping Metro packager in CI";', block)
+              return block
+          # Match shell script build phase blocks
+          s2 = re.sub(r'/\* Begin PBXShellScriptBuildPhase section \*/.*?/\* End PBXShellScriptBuildPhase section \*/', replace_shell, s, flags=re.DOTALL)
+          if s != s2:
+              with open(path, 'w') as f:
+                  f.write(s2)
+              print("patched project.pbxproj")
+          else:
+              print("no changes needed")
+          PYEOF
+          fi
       - name: Build unsigned archive
         script: |
+          set -o pipefail
+          export RCT_NO_LAUNCH_PACKAGER=1
+          export FORCE_BUNDLING=1
+          # Pipe to xcpretty-like tail so CI logs stay readable and we see errors
           xcodebuild \
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
             -configuration Release \
             -sdk iphoneos \
             -archivePath "$CM_BUILD_DIR/build/Readyrental.xcarchive" \
+            -quiet \
+            -parallelizeTargets \
             archive \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            ONLY_ACTIVE_ARCH=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGN_IDENTITY="" \
-            PROVISIONING_PROFILE_SPECIFIER=""
+            PROVISIONING_PROFILE_SPECIFIER="" 2>&1 | tee /tmp/xcodebuild.log
+          RESULT=${PIPESTATUS[0]}
+          if [ $RESULT -ne 0 ]; then
+            echo "=== Last 200 lines of xcodebuild log (errors) ==="
+            grep -E '(error:|warning:|FAILED|failed)' /tmp/xcodebuild.log | tail -200 || true
+            echo "=== Tail 100 lines raw ==="
+            tail -100 /tmp/xcodebuild.log
+            exit $RESULT
+          fi
       - name: Package unsigned IPA
         script: |
           mkdir -p $CM_BUILD_DIR/build/Payload
