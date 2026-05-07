@@ -56,13 +56,23 @@ workflows:
           else
             echo "No patches to apply"
           fi
-      - name: Patch podspecs for Ruby 3.2+ (File.exists? removed)
+      - name: Patch podspecs + Ruby helpers for Ruby 3.2+ (File.exists? removed)
         script: |
-          # Ruby 3.2 removed File.exists?; older RN libs (gesture-handler 2.8, etc.)
-          # still use the old name. Replace across all node_modules podspecs.
-          find node_modules -name '*.podspec' -print0 | xargs -0 sed -i '' -e 's/File\.exists?/File.exist?/g' || true
-          find node_modules -name '*.podspec.json' -print0 | xargs -0 sed -i '' -e 's/File\.exists?/File.exist?/g' || true
-          echo "Podspecs patched"
+          # Ruby 3.2 removed File.exists?; patch ALL .podspec and .rb files
+          # across node_modules + ios (covers reanimated's find_config helper, etc.)
+          find node_modules -type f \( -name '*.podspec' -o -name '*.podspec.json' -o -name '*.rb' \) \
+            -exec grep -l 'File\.exists?' {} \; 2>/dev/null | \
+            while read f; do
+              echo "patching $f"
+              sed -i '' -e 's/File\.exists?/File.exist?/g' "$f"
+            done
+          # Also patch any helper rb inside ios/ folder
+          find ios -type f -name '*.rb' -exec grep -l 'File\.exists?' {} \; 2>/dev/null | \
+            while read f; do
+              echo "patching $f"
+              sed -i '' -e 's/File\.exists?/File.exist?/g' "$f"
+            done
+          echo "Ruby 3.2 patches applied"
       - name: Install CocoaPods
         script: |
           cd ios && pod install --repo-update
