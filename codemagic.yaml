@@ -73,9 +73,42 @@ workflows:
               sed -i '' -e 's/File\.exists?/File.exist?/g' "$f"
             done
           echo "Ruby 3.2 patches applied"
+      - name: Setup Ruby 2.7.5 and CocoaPods 1.11.3
+        script: |
+          set -e
+          # Codemagic mac runners have chruby pre-installed; use it to switch Ruby.
+          export RUBIES=(/Users/builder/.rubies/*)
+          if command -v chruby >/dev/null 2>&1; then
+            source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh 2>/dev/null || \
+              source /usr/local/share/chruby/chruby.sh 2>/dev/null || true
+            chruby 2.7 || chruby 2.7.5 || echo "chruby fallback to system ruby"
+          fi
+          ruby --version
+          # Force CocoaPods 1.11.3 (RN 0.70 compat) regardless of system version
+          sudo gem install cocoapods -v 1.11.3 --no-document || gem install --user-install cocoapods -v 1.11.3 --no-document
+          # Use the freshly installed pod 1.11.3
+          export PATH="$HOME/.gem/ruby/2.7.0/bin:$(gem env gemdir)/bin:$PATH"
+          which pod
+          pod --version
       - name: Install CocoaPods
         script: |
-          cd ios && pod install --repo-update
+          set -e
+          # Re-resolve PATH for pod 1.11.3 in this fresh shell
+          source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh 2>/dev/null || \
+            source /usr/local/share/chruby/chruby.sh 2>/dev/null || true
+          chruby 2.7 || chruby 2.7.5 || true
+          export PATH="$HOME/.gem/ruby/2.7.0/bin:$(gem env gemdir)/bin:$PATH"
+          ruby --version
+          pod --version
+          cd ios
+          # Try to find a 1.11.3 pod binary explicitly
+          POD_BIN="$(gem contents cocoapods --version 1.11.3 2>/dev/null | grep '/bin/pod$' | head -1)"
+          if [ -n "$POD_BIN" ] && [ -x "$POD_BIN" ]; then
+            echo "Using $POD_BIN"
+            "$POD_BIN" install --repo-update
+          else
+            pod _1.11.3_ install --repo-update
+          fi
       - name: Build unsigned archive
         script: |
           xcodebuild \
