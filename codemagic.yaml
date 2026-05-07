@@ -9,7 +9,7 @@ workflows:
         XCODE_SCHEME: "Readyrental"
         BUNDLE_ID: "com.readyrental"
       node: 18.20.4
-      xcode: 15.4
+      xcode: latest
       cocoapods: default
     cache:
       cache_paths:
@@ -69,7 +69,7 @@ workflows:
         XCODE_WORKSPACE: "ios/Readyrental.xcworkspace"
         XCODE_SCHEME: "Readyrental"
       node: 18.20.4
-      xcode: 15.4
+      xcode: latest
       cocoapods: default
     scripts:
       - name: Install dependencies
