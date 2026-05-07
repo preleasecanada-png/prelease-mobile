@@ -73,60 +73,30 @@ workflows:
               sed -i '' -e 's/File\.exists?/File.exist?/g' "$f"
             done
           echo "Ruby 3.2 patches applied"
-      - name: Neutralize use_react_native_codegen! calls (Ruby 4/PRISM compat)
+      - name: Patch RN codegen helper for Ruby 4 compat
         script: |
           set -e
-          echo "Searching for use_react_native_codegen! in node_modules..."
-          # Remove the entire call block: from "use_react_native_codegen!(s, {" up to the matching "})"
-          # We do it with a Python helper to handle multi-line balanced parens correctly.
-          python3 <<'PYEOF'
-          import os, re, glob
-          patterns = [
-              "node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec",
-          ]
-          # Also scan all podspecs for the call
-          for p in glob.glob("node_modules/**/*.podspec", recursive=True):
-              patterns.append(p)
-          patterns = list(set(patterns))
-          for path in patterns:
-              if not os.path.isfile(path):
-                  continue
-              with open(path, "r") as f:
-                  src = f.read()
-              if "use_react_native_codegen!" not in src:
-                  continue
-              # Find each call and remove the balanced expression
-              out = []
-              i = 0
-              while i < len(src):
-                  m = re.search(r"use_react_native_codegen!\s*\(", src[i:])
-                  if not m:
-                      out.append(src[i:])
-                      break
-                  start = i + m.start()
-                  out.append(src[i:start])
-                  # walk to matching close paren
-                  depth = 0
-                  j = i + m.end() - 1  # at '('
-                  while j < len(src):
-                      c = src[j]
-                      if c == '(':
-                          depth += 1
-                      elif c == ')':
-                          depth -= 1
-                          if depth == 0:
-                              j += 1
-                              break
-                      j += 1
-                  out.append("# [PATCHED] use_react_native_codegen! call removed for Ruby 4/PRISM compat\nnil")
-                  i = j
-              new = "".join(out)
-              if new != src:
-                  with open(path, "w") as f:
-                      f.write(new)
-                  print(f"patched: {path}")
-          print("done")
-          PYEOF
+          # 1. Restore podspecs (remove the previous 'nil' patch)
+          echo "Restoring podspecs..."
+          find node_modules -name "*.podspec" -exec sed -i '' 's/# \[PATCHED\] use_react_native_codegen! call removed for Ruby 4\/PRISM compat//g' {} +
+          find node_modules -name "*.podspec" -exec sed -i '' 's/nil//g' {} +
+          
+          # 2. Fix the actual Ruby 4 argument error in the helper script
+          # The error "wrong number of arguments (given 3, expected 1)" happens because 
+          # Ruby 4 treats the options hash differently.
+          HELPER="node_modules/react-native/scripts/react_native_pods_utils/script_phases.rb"
+          if [ -f "$HELPER" ]; then
+            echo "Patching $HELPER for Ruby 4..."
+            # Change signature to accept any number of args and handle hashes correctly
+            sed -i '' -E 's/def use_react_native_codegen!\(spec, options\)/def use_react_native_codegen!(spec, options = {})/' "$HELPER"
+          fi
+          
+          # 3. Also patch the call site in FBReactNativeSpec if it uses 3 args (sometimes seen in 0.70)
+          SPEC="node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec"
+          if [ -f "$SPEC" ]; then
+             # Ensure it doesn't pass 3 args if the function expects 2
+             sed -i '' -E 's/use_react_native_codegen!\(s, \{/use_react_native_codegen!(s, {/g' "$SPEC"
+          fi
       - name: Patch boost.podspec (URL + checksum, JFrog defunct)
         script: |
           BOOST_POD="node_modules/react-native/third-party-podspecs/boost.podspec"
