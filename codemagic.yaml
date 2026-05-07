@@ -127,6 +127,17 @@ workflows:
                   print(f"patched: {path}")
           print("done")
           PYEOF
+      - name: Patch boost.podspec checksum (JFrog changed hash)
+        script: |
+          BOOST_POD="node_modules/react-native/third-party-podspecs/boost.podspec"
+          if [ -f "$BOOST_POD" ]; then
+            echo "--- boost.podspec before ---"
+            grep -n "sha256" "$BOOST_POD" || true
+            # Replace the old expected hash with the currently served one
+            sed -i '' -E 's/:sha256 => "[a-f0-9]+"/:sha256 => "1c162b579a423fa6876c6c5bc16d39ab4bc05e28898977a0a6af345f523f6357"/' "$BOOST_POD"
+            echo "--- boost.podspec after ---"
+            grep -n "sha256" "$BOOST_POD"
+          fi
       - name: Install CocoaPods
         script: |
           export DISABLE_CODEGEN=1
