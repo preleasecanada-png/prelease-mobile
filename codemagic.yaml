@@ -1,0 +1,96 @@
+workflows:
+  ios-unsigned:
+    name: iOS Unsigned IPA (sideload via AltStore/Sideloadly)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      vars:
+        XCODE_WORKSPACE: "ios/Readyrental.xcworkspace"
+        XCODE_SCHEME: "Readyrental"
+        BUNDLE_ID: "com.readyrental"
+      node: 18.20.4
+      xcode: 15.4
+      cocoapods: default
+    cache:
+      cache_paths:
+        - $HOME/Library/Caches/CocoaPods
+        - $CM_BUILD_DIR/node_modules
+        - $HOME/.gradle/caches
+    scripts:
+      - name: Install npm dependencies
+        script: |
+          npm install --legacy-peer-deps
+      - name: Install CocoaPods
+        script: |
+          cd ios && pod install --repo-update
+      - name: Build unsigned archive
+        script: |
+          xcodebuild \
+            -workspace "$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath "$CM_BUILD_DIR/build/Readyrental.xcarchive" \
+            archive \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
+      - name: Package unsigned IPA
+        script: |
+          mkdir -p $CM_BUILD_DIR/build/Payload
+          cp -R $CM_BUILD_DIR/build/Readyrental.xcarchive/Products/Applications/Readyrental.app \
+             $CM_BUILD_DIR/build/Payload/
+          cd $CM_BUILD_DIR/build
+          zip -qr Readyrental-unsigned.ipa Payload
+          ls -la Readyrental-unsigned.ipa
+    artifacts:
+      - $CM_BUILD_DIR/build/*.ipa
+      - $CM_BUILD_DIR/build/Readyrental.xcarchive
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  ios-signed-testflight:
+    name: iOS Signed IPA (TestFlight via App Store Connect)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: codemagic-app-store
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.readyrental
+      vars:
+        XCODE_WORKSPACE: "ios/Readyrental.xcworkspace"
+        XCODE_SCHEME: "Readyrental"
+      node: 18.20.4
+      xcode: 15.4
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install --legacy-peer-deps
+          cd ios && pod install --repo-update
+      - name: Set up provisioning profiles
+        script: xcode-project use-profiles
+      - name: Increment build number
+        script: |
+          cd ios
+          agvtool new-version -all $(($BUILD_NUMBER + 1))
+      - name: Build IPA
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true

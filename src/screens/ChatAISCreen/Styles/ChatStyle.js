@@ -1,0 +1,426 @@
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { Colors, Fonts } from '../../../theme';
+import { isIphoneX } from '../../../libs/Utils';
+import { alignSelf, backgroundColor, borderRadius, borderWidth, justifyContent, marginBottom, marginLeft, marginRight, padding, paddingTop, position, right, width } from 'styled-system';
+import { color } from 'react-native-reanimated';
+import { WINDOW_WIDTH } from '@gorhom/bottom-sheet';
+
+const styles = EStyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    paddingBottom: '15rem',
+    // backgroundColor: Colors.primaryLight,
+  },
+  tabsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 20,
+    paddingHorizontal: '15rem',
+    // borderBottomWidth: '2rem',
+    // borderColor: Colors.gray,
+  },
+  commanHeadingTextStyle:{
+    fontSize: Fonts.size.h3,
+
+  },
+  tabButton: {
+    // flex: 1,
+    // paddingHorizontal: '20rem',
+    borderWidth: isIphoneX ? 1 : 0,
+    borderColor: Colors.opacityBlack_50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    // padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginRight: 5,
+
+
+  },
+  activedtabButton:{
+    backgroundColor: Colors.primary,
+
+
+  },
+  activetabButtonText:{
+    color: Colors.white,
+
+  },
+  searchButton:{
+    paddingHorizontal: '20rem',
+    borderWidth: isIphoneX ? 1 : 0,
+    borderColor: Colors.opacityBlack_50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    // marginRight: 5,
+    marginLeft: 'auto',
+
+  },
+  tabButtonText: {
+    fontSize: Fonts.size.medium,
+    fontWeight: 'bold',
+    '@media ios': {
+      ...Fonts.style.textInputText
+    },
+    '@media android': {
+      ...Fonts.style.textInputText
+    },
+    color: Colors.opacityBlackText
+
+  },
+  onlineStatus: {
+    position: 'absolute',
+    bottom: '3rem',
+    right: '3rem',
+    backgroundColor: Colors.green,
+    color: Colors.white,
+    paddingHorizontal: '5rem',
+    paddingVertical: '5rem',
+    borderRadius: '10rem',
+    fontSize: Fonts.size.tiny,
+    fontWeight: 'bold',
+    '@media ios': {
+      ...Fonts.style.textInputText
+    },
+    '@media android': {
+      ...Fonts.style.textInputText
+    },
+
+  },
+  searchInputStyle: {
+    width: '100% - 40rem',
+    marginBottom: '23rem'
+  },
+  chatListLink: {
+    paddingHorizontal: '20rem',
+    paddingTop: '14rem',
+    paddingBottom: '14rem',
+    // marginTop: '17rem',
+    // borderBottomWidth: '2rem',
+    // borderColor: Colors.gray,
+    flexDirection: 'row'
+  },
+  unReadChatItem: {
+    backgroundColor: 'rgba(217,217,217,0.3)'
+
+  },
+  chatListDateText: {
+    position: 'absolute',
+    right: 0,
+    lineHeight: '18rem',
+    color: 'rgba(0,0,0,0.5)',
+    fontSize: Fonts.size.tiny,
+    '@media ios': {
+      ...Fonts.style.textInputText
+    },
+    '@media android': {
+      ...Fonts.style.textInputText
+    },
+    marginLeft: 'auto',
+
+  },
+  unreadChatListDateText: {
+    color: Colors.primary
+
+  },
+  chatText: {
+    lineHeight: '15rem',
+    color: Colors.black,
+    marginBottom: '4rem',
+    fontSize: Fonts.size.medium,
+    ...Fonts.style.normalText
+
+  },
+  chatListUserImg: {
+    width: '54rem',
+    height: '54rem',
+    borderRadius: '50rem'
+  },
+  chatListLinkText: {
+    paddingLeft: '19rem',
+    width: '100%',
+    flex: 1
+  },
+  chatListLinkNameText: {
+    lineHeight: '21rem',
+    color: Colors.black,
+    marginBottom: '4rem',
+    fontSize: Fonts.size.medium,
+    ...Fonts.style.boldText
+  },
+  chatListLinkLastSeenText: {
+    lineHeight: '18rem',
+    color: Colors.darkGray,
+    fontSize: Fonts.size.tiny,
+    '@media ios': {
+      ...Fonts.style.normalText
+    },
+    '@media android': {
+      ...Fonts.style.normalText
+    }
+  },
+  pageContent: {
+    paddingVertical: '10rem',
+    paddingHorizontal: '6rem',
+    flex: 1,
+    width: '100%'
+  },
+  chatDetailContent: {
+    backgroundColor: Colors.white,
+    marginTop: '-10rem',
+    borderRadius: '6rem',
+    padding: '10rem',
+    paddingTop: '6rem',
+    marginBottom: '10rem'
+  },
+  chatDetailText: {
+    flexDirection: 'row',
+    paddingTop: '4rem'
+  },
+  msgBg: {
+    backgroundColor: Colors.white,
+    borderTopStartRadius: '12rem',
+    borderTopEndRadius: '12rem',
+    borderBottomEndRadius: '12rem',
+    borderBottomStartRadius: 0,
+    borderWidth: '1rem',
+    borderColor: Colors.lightGray,
+    overflow: 'hidden',
+    maxWidth: '335rem',
+    width: '100%',
+    padding: '10rem'
+  },
+  replayMsgBg: {
+    backgroundColor: Colors.lighterGray,
+    borderLeftWidth: '4rem',
+    borderColor: Colors.primary,
+    padding: '8rem',
+    borderTopLeftRadius: '4rem',
+    borderTopEndRadius: '12rem',
+    borderBottomLeftRadius: '4rem',
+    borderBottomEndRadius: '12rem'
+  },
+  replayMsgUserName: {
+    fontSize: '10rem',
+    lineHeight: '15rem',
+    color: Colors.primary,
+    '@media ios': {
+      ...Fonts.style.textInputText
+    },
+    '@media android': {
+      ...Fonts.style.buttonText
+    }
+  },
+  replayMsgUserText: {
+    lineHeight: '21rem',
+    color: Colors.black,
+    marginTop: '4rem',
+    fontSize: Fonts.size.medium,
+    ...Fonts.style.normalText
+  },
+  messageText: {
+    marginVertical: '4rem',
+    color: Colors.black,
+    lineHeight: '21rem',
+    fontSize: Fonts.size.medium,
+    ...Fonts.style.normalText
+  },
+  messageTimeText: {
+    fontSize: '10rem',
+    lineHeight: '15rem',
+    color: Colors.darkerGray,
+    ...Fonts.style.normalText
+  },
+  msgSeenText: {
+    color: Colors.white,
+    fontSize: '10rem',
+    lineHeight: '15rem',
+    paddingRight: '10rem',
+    ...Fonts.style.normalText
+  },
+  chatInputContainerStyle: {
+    // borderWidth: 0,
+    // borderTopWidth: 0,
+    // position: 'relative',
+    // borderRadius: '25rem',
+    // paddingLeft: '0rem',
+    // lineHeight: '15rem',
+    // paddingRight: '80rem',
+    // backgroundColor: Colors.black,
+    // fontSize: Fonts.size.medium,
+    // ...Fonts.style.normalText,
+    // borderWidth: '1rem',
+    // borderColor: Colors.lightGray,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: "100%",
+    alignSelf: 'flex-start',
+    borderRadius: 50,
+    backgroundColor: Colors.lightGray,
+    borderTopWidth: 0,
+    // marginLeft: 'auto',
+    // marginRight: 'auto',
+  },
+  inputBorderView: {
+    // borderWidth: '1rem',
+    // borderColor: Colors.lightGray,
+    height: '100%',
+    position: 'absolute',
+    // width: '100% - 95rem',
+    // top: '22rem',
+    // left: '15rem',
+    borderRadius: '25rem'
+  },
+  chatInputBgContainerStyle: {
+    backgroundColor: Colors.lightGray,
+    // backgroundColor: Colors.black,
+    width: '90%',
+    position: 'absolute',
+    // top: '0rem',
+    // left: '0rem',
+    // right: '0rem',
+    bottom: '0rem',
+    borderRadius: 50,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    // marginBottom: 'auto',
+    // marginHorizontal: 10
+    // paddingTop: '22rem',
+    // paddingBottom: '200rem',
+    // borderTopLeftRadius: '40rem',
+    // borderTopRightRadius: '40rem',
+    // // paddingLeft: '17rem',
+    // // paddingRight: '35rem',
+    // shadowOffset: {
+    //   width: '1rem',
+    //   height: '1rem'
+    // },
+    // shadowOpacity: '1rem',
+    // shadowRadius: '40rem',
+    // elevation: '40rem',
+    // shadowColor: Colors.boxShadowLighterBlack
+  },
+  chatSendBtnContainer: {
+    width: '40rem',
+    height: '40rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginRight: '-85rem',
+    // marginLeft: '20rem',
+    // top: '-3rem',
+    left: '-3rem',
+    borderRadius: '50rem',
+    backgroundColor: Colors.primary,
+  },
+  chatSendBtnImg: {
+    width: '18rem',
+    height: '18rem',
+    tintColor: Colors.white,
+  },
+  chatContainer: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: Colors.blurPink,
+    '@media ios': {
+      marginBottom: isIphoneX() ? 90 : 72
+    },
+    '@media android': {
+      marginBottom: isIphoneX() ? 90 : 72
+    }
+  },
+  dateRowStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: '5rem',
+    marginBottom: '10rem'
+  },
+  dateRowLins: {
+    height: '1rem',
+    width: '100%',
+    flex: 1,
+    backgroundColor: Colors.gray
+  },
+  dateRowLeftLine: {
+    marginLeft: '20rem'
+  },
+  dateRowRightLine: {
+    marginRight: '20rem'
+  },
+  dateTextStyle: {
+    color: Colors.darkerGray,
+    lineHeight: '18rem',
+    fontSize: Fonts.size.tiny,
+    ...Fonts.style.lightText
+  },
+  dateTextContainerStyle: {
+    marginTop: 0,
+    marginBottom: 0,
+    paddingHorizontal: '16rem'
+  },
+  chatMsgTimeText: {
+    fontSize: '10rem',
+    lineHeight: '15rem',
+    ...Fonts.style.normalText
+  },
+  bubbleTextStyle: {
+    padding: '10rem',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    fontSize: Fonts.size.medium,
+    ...Fonts.style.normalText
+  },
+  textInputStyle: {
+    color: Colors.black,
+    paddingTop: '8rem',
+    ...Fonts.style.normalText,
+  },
+  chatEmptyView:{
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // backgroundColor: Colors.black,
+    // paddingTop: '100rem'
+  },
+  chatEmptyText:{
+    fontSize: Fonts.size.small,
+    lineHeight: '21rem',
+    color: Colors.black,
+    textAlign: 'center',
+  },
+  logo:{
+    width: WINDOW_WIDTH*0.25,
+    height: WINDOW_WIDTH*0.25,
+    resizeMode: 'contain'
+  },
+  suggestionItem:{
+    padding: '10rem',
+    fontSize: Fonts.size.medium,
+    lineHeight: '21rem',
+    color: Colors.black,
+    // borderBottomWidth: 1,
+    backgroundColor: Colors.lightGray,
+    // marginBottom: '10rem',
+    marginHorizontal: '5rem',
+    borderRadius: '10rem',
+    height: '40rem',
+    justifyContent: 'center',
+   
+  },
+  suggestionText:{
+    fontSize: Fonts.size.tiny,
+    lineHeight: '21rem',
+    color: Colors.opacityBlackText,
+    textAlign: 'center',
+  },
+
+});
+
+export default styles;
