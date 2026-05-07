@@ -16,39 +16,39 @@ workflows:
         - $HOME/Library/Caches/CocoaPods
         - $CM_BUILD_DIR/node_modules
     scripts:
-      - name: Force Yarn classic 1.22 (bypass corepack Yarn 4)
+      - name: Enable Corepack + show env
         script: |
           set -e
-          # Codemagic auto-activates Corepack which pulls Yarn 4 (requires fetch/Node18+).
-          # This project (RN 0.70) needs Yarn 1 classic. Fully disable corepack.
-          corepack disable || true
-          # Remove corepack shims so `yarn` does NOT resolve to Node's bundled corepack.
-          rm -f "$(dirname "$(which node)")/yarn" "$(dirname "$(which node)")/yarnpkg" || true
-          rm -f /usr/local/bin/yarn /usr/local/bin/yarnpkg || true
-          # Install classic yarn globally
-          npm install -g yarn@1.22.22
-          hash -r
-          which yarn
-          yarn --version
-      - name: Strip packageManager field and postinstall
-        script: |
-          # Some toolchains add "packageManager": "yarn@4.x" which forces corepack.
-          npm pkg delete packageManager || true
-          npm pkg delete scripts.postinstall || true
-          grep -E "packageManager|postinstall" package.json || echo "fields removed OK"
-      - name: Show env versions
-        script: |
+          corepack enable
           node --version
           npm --version
-          yarn --version
+          yarn --version || true
           ruby --version
           pod --version
           xcodebuild -version
-      - name: Install JS dependencies (yarn classic)
+      - name: Configure Yarn for node_modules (RN compat)
         script: |
+          # Force legacy node_modules linker (not PnP) for React Native
+          cat > .yarnrc.yml <<'EOF'
+          nodeLinker: node-modules
+          enableImmutableInstalls: false
+          enableTelemetry: false
+          EOF
           # Disable patch-package postinstall to avoid hard-failures on missing patches
           npm pkg delete scripts.postinstall || true
-          yarn install --ignore-engines --network-timeout 600000
+          cat package.json | head -20
+      - name: Install JS dependencies via npm (fallback-safe)
+        script: |
+          set -e
+          # Try Yarn 4 first; if it fails, fall back to npm
+          if yarn install --mode=skip-build 2>&1; then
+            echo "yarn install OK"
+          else
+            echo "yarn failed, falling back to npm"
+            rm -rf node_modules .yarn
+            npm pkg delete packageManager || true
+            npm install --legacy-peer-deps --no-audit --no-fund
+          fi
       - name: Apply patches if any (non-fatal)
         script: |
           if [ -d patches ] && ls patches/*.patch >/dev/null 2>&1; then
