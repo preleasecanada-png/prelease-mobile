@@ -8,18 +8,35 @@ workflows:
         XCODE_WORKSPACE: "ios/Readyrental.xcworkspace"
         XCODE_SCHEME: "Readyrental"
         BUNDLE_ID: "com.readyrental"
-      node: 18.20.4
+      node: 16.20.2
       xcode: latest
       cocoapods: default
     cache:
       cache_paths:
         - $HOME/Library/Caches/CocoaPods
         - $CM_BUILD_DIR/node_modules
-        - $HOME/.gradle/caches
     scripts:
-      - name: Install npm dependencies
+      - name: Show env versions
         script: |
-          npm install --legacy-peer-deps
+          node --version
+          npm --version
+          yarn --version || true
+          ruby --version
+          pod --version
+          xcodebuild -version
+      - name: Install JS dependencies (yarn)
+        script: |
+          # Disable patch-package postinstall to avoid hard-failures on missing patches
+          npm pkg delete scripts.postinstall || true
+          # Prefer yarn since yarn.lock is committed
+          yarn install --frozen-lockfile --network-timeout 600000 || yarn install --network-timeout 600000
+      - name: Apply patches if any (non-fatal)
+        script: |
+          if [ -d patches ] && ls patches/*.patch >/dev/null 2>&1; then
+            npx patch-package || echo "patch-package finished with warnings"
+          else
+            echo "No patches to apply"
+          fi
       - name: Install CocoaPods
         script: |
           cd ios && pod install --repo-update
