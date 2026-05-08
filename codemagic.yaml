@@ -167,8 +167,8 @@ workflows:
         script: |
           set -e
           python3 <<'PYEOF'
-          import glob
           import os
+          import re
 
           targets = [
               "node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec",
@@ -183,13 +183,34 @@ workflows:
               with open(path, "r", encoding="utf-8") as f:
                   src = f.read()
 
-              # Replace bare call with explicit dispatch to the helper defined in react_native_pods.rb
-              needle = "use_react_native_codegen!(s, {"
-              repl = "Object.send(:use_react_native_codegen!, s, {"
-              if needle in src:
-                  src2 = src.replace(needle, repl)
-              else:
-                  src2 = src
+              # Ruby 4 keyword-arg separation: some environments expose use_react_native_codegen!
+              # as (spec, **kwargs). Convert the legacy options hash call to keyword args.
+              # Handles both:
+              #   use_react_native_codegen!(s, { :k => v, ... })
+              #   Object.send(:use_react_native_codegen!, s, { :k => v, ... })
+              def convert(match):
+                  body = match.group(1)
+                  # Convert :key => value to key: value (best-effort)
+                  body = re.sub(r":([a-zA-Z0-9_]+)\s*=>", r"\1:", body)
+                  # Drop braces
+                  body = body.strip()
+                  if body.startswith("{") and body.endswith("}"):
+                      body = body[1:-1].strip()
+                  return f"use_react_native_codegen!(s, {body})"
+
+              # Multi-line match: grab the hash literal including braces.
+              src2 = re.sub(
+                  r"Object\.send\(\s*:use_react_native_codegen!\s*,\s*s\s*,\s*(\{.*?\})\s*\)",
+                  convert,
+                  src,
+                  flags=re.S,
+              )
+              src2 = re.sub(
+                  r"use_react_native_codegen!\(\s*s\s*,\s*(\{.*?\})\s*\)",
+                  convert,
+                  src2,
+                  flags=re.S,
+              )
 
               if src2 != src:
                   with open(path, "w", encoding="utf-8") as f:
