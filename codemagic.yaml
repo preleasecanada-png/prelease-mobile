@@ -198,12 +198,13 @@ workflows:
                   continue
 
               src2 = src
-              # Remove FBReactNativeSpec header import
-              src2 = re.sub(r"^\s*#import <FBReactNativeSpec/FBReactNativeSpec\\.h>\r?\n", "", src2, flags=re.M)
+              # Remove FBReactNativeSpec header import (LF or CRLF)
+              src2 = src2.replace("#import <FBReactNativeSpec/FBReactNativeSpec.h>\r\n", "")
+              src2 = src2.replace("#import <FBReactNativeSpec/FBReactNativeSpec.h>\n", "")
 
               # Replace '@interface X() <NativeFooSpec>' blocks with plain '@interface X()'
               src2 = re.sub(
-                  r"@interface(\\s+\\w+\\(\\))\\s*<\\s*Native\\w+Spec\\s*>\\s*\\n@end\\s*\\n",
+                  r"@interface(\s+\w+\(\))\s*<[^>]*Native\w+Spec[^>]*>\s*\r?\n@end\s*\r?\n",
                   r"@interface\1\n@end\n",
                   src2,
                   flags=re.M,
@@ -211,7 +212,7 @@ workflows:
 
               # Remove getTurboModule method implementations that return Native*SpecJSI
               src2 = re.sub(
-                  r"\n- \\(std::shared_ptr<facebook::react::TurboModule>\\)getTurboModule:.*?\n\}\n",
+                  r"\r?\n- \(std::shared_ptr<facebook::react::TurboModule>\)getTurboModule:.*?\r?\n\}\r?\n",
                   "\n",
                   src2,
                   flags=re.S,
