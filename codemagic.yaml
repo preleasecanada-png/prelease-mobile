@@ -132,10 +132,19 @@ workflows:
               "  options = args[1] || {}\n"
           )
 
+          # Debug: show any existing def lines for this method
+          defs = re.findall(r"^def(?:\s+self\.)?\s*use_react_native_codegen!.*$", src, flags=re.M)
+          if defs:
+              print("FOUND DEFINITIONS:")
+              for d in defs[:10]:
+                  print(d)
+          else:
+              print("FOUND DEFINITIONS: none")
+
           before = src
-          # Handle LF or CRLF line endings and signatures without parentheses.
+          # Handle LF or CRLF line endings and any signature; patch instance or module method forms.
           src = re.sub(
-              r"^def use_react_native_codegen!\b.*?\r?$",
+              r"^def(?:\s+self\.)?\s*use_react_native_codegen!.*$",
               replacement.rstrip("\n"),
               src,
               count=1,
@@ -150,7 +159,7 @@ workflows:
           print(f"patched: {path}")
 
           # Verify in logs
-          m = re.search(r"^def use_react_native_codegen!.*$", src, flags=re.M)
+          m = re.search(r"^def(?:\s+self\.)?\s*use_react_native_codegen!.*$", src, flags=re.M)
           print("VERIFY:", m.group(0) if m else "NOT FOUND")
           PYEOF
       - name: Install CocoaPods
