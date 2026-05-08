@@ -111,6 +111,42 @@ workflows:
           rm -rf "$HOME/Library/Caches/CocoaPods/Pods/External Sources/boost" 2>/dev/null || true
           rm -rf "$HOME/Library/Caches/CocoaPods/Pods/Release/boost" 2>/dev/null || true
           rm -rf "$HOME/.cocoapods/repos.source/boost"* 2>/dev/null || true
+
+      - name: Patch RN codegen helper for Ruby 4 (use_react_native_codegen! arity)
+        script: |
+          set -e
+          python3 <<'PYEOF'
+          import os, re
+          path = "node_modules/react-native/scripts/react_native_pods.rb"
+          if not os.path.isfile(path):
+              print(f"NOT FOUND: {path}")
+              raise SystemExit(0)
+          with open(path, "r", encoding="utf-8") as f:
+              src = f.read()
+
+          # Make the legacy helper accept variable arguments (Ruby 4 + CocoaPods DSL changes can alter arity)
+          # Original: def use_react_native_codegen!(spec, options={})
+          if "def use_react_native_codegen!(spec, options={})" in src:
+              src = src.replace(
+                  "def use_react_native_codegen!(spec, options={})\n",
+                  "def use_react_native_codegen!(*args)\n" +
+                  "  spec = args[0]\n" +
+                  "  options = args[1] || {}\n" +
+                  "\n",
+              )
+          else:
+              # More generic replacement just in case the signature differs
+              src = re.sub(
+                  r"^def use_react_native_codegen!\([^\)]*\)\s*$",
+                  "def use_react_native_codegen!(*args)\n  spec = args[0]\n  options = args[1] || {}\n",
+                  src,
+                  flags=re.M,
+              )
+
+          with open(path, "w", encoding="utf-8") as f:
+              f.write(src)
+          print(f"patched: {path}")
+          PYEOF
       - name: Install CocoaPods
         script: |
           ruby --version
