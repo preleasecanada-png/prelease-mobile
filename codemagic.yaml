@@ -126,26 +126,32 @@ workflows:
 
           # Make the legacy helper accept variable arguments (Ruby 4 + CocoaPods DSL changes can alter arity)
           # Original: def use_react_native_codegen!(spec, options={})
-          if "def use_react_native_codegen!(spec, options={})" in src:
-              src = src.replace(
-                  "def use_react_native_codegen!(spec, options={})\n",
-                  "def use_react_native_codegen!(*args)\n" +
-                  "  spec = args[0]\n" +
-                  "  options = args[1] || {}\n" +
-                  "\n",
-              )
-          else:
-              # More generic replacement just in case the signature differs
-              src = re.sub(
-                  r"^def use_react_native_codegen!\([^\)]*\)\s*$",
-                  "def use_react_native_codegen!(*args)\n  spec = args[0]\n  options = args[1] || {}\n",
-                  src,
-                  flags=re.M,
-              )
+          replacement = (
+              "def use_react_native_codegen!(*args)\n"
+              "  spec = args[0]\n"
+              "  options = args[1] || {}\n"
+          )
+
+          before = src
+          # Handle LF or CRLF line endings and signatures without parentheses.
+          src = re.sub(
+              r"^def use_react_native_codegen!\b.*?\r?$",
+              replacement.rstrip("\n"),
+              src,
+              count=1,
+              flags=re.M,
+          )
+
+          if src == before:
+              raise SystemExit("ERROR: could not patch use_react_native_codegen! definition")
 
           with open(path, "w", encoding="utf-8") as f:
               f.write(src)
           print(f"patched: {path}")
+
+          # Verify in logs
+          m = re.search(r"^def use_react_native_codegen!.*$", src, flags=re.M)
+          print("VERIFY:", m.group(0) if m else "NOT FOUND")
           PYEOF
       - name: Install CocoaPods
         script: |
