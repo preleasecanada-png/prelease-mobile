@@ -199,7 +199,7 @@ workflows:
 
               src2 = src
               # Remove FBReactNativeSpec header import
-              src2 = re.sub(r"^#import <FBReactNativeSpec/FBReactNativeSpec\\.h>\\n", "", src2, flags=re.M)
+              src2 = re.sub(r"^\s*#import <FBReactNativeSpec/FBReactNativeSpec\\.h>\r?\n", "", src2, flags=re.M)
 
               # Replace '@interface X() <NativeFooSpec>' blocks with plain '@interface X()'
               src2 = re.sub(
@@ -223,7 +223,19 @@ workflows:
                   print(f"patched: {path}")
                   changed += 1
 
+          # Verify patch removed all remaining imports
+          remaining = []
+          for path in paths:
+              with open(path, "r", encoding="utf-8") as f:
+                  if "FBReactNativeSpec/FBReactNativeSpec.h" in f.read():
+                      remaining.append(path)
+
           print(f"done. patched {changed} file(s)")
+          if remaining:
+              print("ERROR: FBReactNativeSpec imports still present after patch:")
+              for p in remaining[:50]:
+                  print(p)
+              raise SystemExit(1)
           PYEOF
       - name: Neutralize Metro packager script phase (prevents CI hang)
         script: |
