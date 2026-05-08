@@ -162,6 +162,42 @@ workflows:
           m = re.search(r"^def(?:\s+self\.)?\s*use_react_native_codegen!.*$", src, flags=re.M)
           print("VERIFY:", m.group(0) if m else "NOT FOUND")
           PYEOF
+
+      - name: Patch RN podspec codegen calls for Ruby 4 (dispatch via Object.send)
+        script: |
+          set -e
+          python3 <<'PYEOF'
+          import glob
+          import os
+
+          targets = [
+              "node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec",
+              "node_modules/react-native/ReactCommon/React-rncore.podspec",
+          ]
+
+          for path in targets:
+              if not os.path.isfile(path):
+                  print(f"NOT FOUND: {path}")
+                  continue
+
+              with open(path, "r", encoding="utf-8") as f:
+                  src = f.read()
+
+              # Replace bare call with explicit dispatch to the helper defined in react_native_pods.rb
+              needle = "use_react_native_codegen!(s, {"
+              repl = "Object.send(:use_react_native_codegen!, s, {"
+              if needle in src:
+                  src2 = src.replace(needle, repl)
+              else:
+                  src2 = src
+
+              if src2 != src:
+                  with open(path, "w", encoding="utf-8") as f:
+                      f.write(src2)
+                  print(f"patched: {path}")
+              else:
+                  print(f"no changes needed: {path}")
+          PYEOF
       - name: Install CocoaPods
         script: |
           ruby --version
