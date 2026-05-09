@@ -15,23 +15,6 @@ workflows:
       cache_paths:
         - $HOME/Library/Caches/CocoaPods
     scripts:
-      - name: Switch to Ruby 3.1 (avoid Ruby 4 keyword-arg strictness)
-        script: |
-          set -e
-          # RN 0.70 codegen scripts (react_native_pods.rb) are not compatible with
-          # Ruby 4's strict keyword separation. Force Ruby 3.1 via asdf.
-          if command -v asdf >/dev/null 2>&1; then
-            asdf plugin add ruby 2>/dev/null || true
-            asdf install ruby 3.1.4 || true
-            asdf global ruby 3.1.4 || true
-            asdf reshim ruby || true
-          fi
-          ruby --version
-          # Reinstall CocoaPods on this Ruby so `pod` resolves correctly
-          gem install cocoapods -v 1.11.3 --no-document || true
-          gem install activesupport -v 6.1.7.10 --no-document || true
-          which pod
-          pod --version || true
       - name: Enable Corepack + show env
         script: |
           set -e
@@ -272,16 +255,41 @@ workflows:
               else:
                   print(f"no changes needed: {path}")
           PYEOF
-      - name: Verify RN codegen helper patch state
+      - name: Install Ruby 3.1 + CocoaPods + pod install (single shell)
         script: |
-          echo "=== react_native_pods.rb (around use_react_native_codegen!) ==="
-          sed -n '170,275p' node_modules/react-native/scripts/react_native_pods.rb || true
+          set -e
+          echo "=== System Ruby (default) ==="
+          ruby --version || true
+
+          # Install Ruby 3.1 via Homebrew (already preinstalled on Codemagic mac mini m2)
+          brew install ruby@3.1 || brew upgrade ruby@3.1 || true
+          BREW_PREFIX="$(brew --prefix ruby@3.1)"
+          echo "BREW_PREFIX=$BREW_PREFIX"
+          export PATH="$BREW_PREFIX/bin:$PATH"
+          export GEM_HOME="$HOME/.gem-ruby31"
+          export GEM_PATH="$GEM_HOME"
+          export PATH="$GEM_HOME/bin:$PATH"
+          mkdir -p "$GEM_HOME"
+
+          echo "=== Active Ruby ==="
+          which ruby
+          ruby --version
+
+          # Install CocoaPods 1.11.3 + compatible activesupport on Ruby 3.1
+          gem install activesupport -v 6.1.7.10 --no-document
+          gem install cocoapods -v 1.11.3 --no-document
+
+          echo "=== Active pod ==="
+          which pod
+          pod --version
+
+          # Verify patches before running pod install
+          echo "=== react_native_pods.rb (lines 170-280) ==="
+          sed -n '170,280p' node_modules/react-native/scripts/react_native_pods.rb || true
           echo "=== FBReactNativeSpec.podspec ==="
           cat node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec || true
-      - name: Install CocoaPods
-        script: |
-          ruby --version
-          pod --version
+
+          # Run pod install with Ruby 3.1
           cd ios && pod install --repo-update
       - name: Neutralize Metro packager script phase (prevents CI hang)
         script: |
