@@ -219,15 +219,30 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            // Picks up env vars CM_KEYSTORE_PATH/CM_KEYSTORE_PASSWORD/CM_KEY_ALIAS/CM_KEY_PASSWORD
+            // when building on Codemagic. Falls back to debug keystore when those vars are missing
+            // (e.g. local dev) so the build doesn't crash.
+            def envKeystore = System.getenv("CM_KEYSTORE_PATH")
+            if (envKeystore != null && file(envKeystore).exists()) {
+                storeFile file(envKeystore)
+                storePassword System.getenv("CM_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("CM_KEY_ALIAS")
+                keyPassword System.getenv("CM_KEY_PASSWORD")
+            } else {
+                storeFile file('debug.keystore')
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

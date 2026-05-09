@@ -434,3 +434,72 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+
+  android-playstore:
+    name: Android AAB (Play Store ready)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      groups:
+        - android_signing  # Provides CM_KEYSTORE, CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD
+        # - google_play   # Uncomment when GCLOUD_SERVICE_ACCOUNT_CREDENTIALS is set up
+      vars:
+        PACKAGE_NAME: "com.ninetysevensolutions.prelease_canada"
+      node: 18.20.4
+      java: 17
+    cache:
+      cache_paths:
+        - $HOME/.gradle/caches
+        - $CM_BUILD_DIR/node_modules
+    scripts:
+      - name: Show env
+        script: |
+          set -e
+          node --version
+          java -version
+          which gradle || true
+      - name: Install JS dependencies
+        script: |
+          set -e
+          # Disable RN postinstall patch-package failures
+          npm pkg delete scripts.postinstall || true
+          npm install --legacy-peer-deps --no-audit --no-fund
+      - name: Decode keystore from CM_KEYSTORE base64 var
+        script: |
+          set -e
+          if [ -z "$CM_KEYSTORE" ]; then
+            echo "ERROR: CM_KEYSTORE env var not set. Configure the 'android_signing' group in Codemagic."
+            exit 1
+          fi
+          mkdir -p "$CM_BUILD_DIR/keystore"
+          echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/keystore/release.keystore"
+          export CM_KEYSTORE_PATH="$CM_BUILD_DIR/keystore/release.keystore"
+          echo "CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH" >> $CM_ENV
+          ls -la "$CM_KEYSTORE_PATH"
+      - name: Build AAB (release, signed)
+        script: |
+          set -e
+          cd android
+          chmod +x ./gradlew
+          ./gradlew clean bundleRelease --no-daemon --stacktrace
+      - name: Locate artifacts
+        script: |
+          set -e
+          find android/app/build/outputs -name "*.aab" -o -name "*.apk" | tee $CM_BUILD_DIR/android-artifacts.txt
+    artifacts:
+      - android/app/build/outputs/**/*.aab
+      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/mapping/**/mapping.txt
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+      # Uncomment + configure 'google_play' group with GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      # to enable automatic upload to Play Console internal track.
+      # google_play:
+      #   credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+      #   track: internal
+      #   submit_as_draft: false
