@@ -14,8 +14,24 @@ workflows:
     cache:
       cache_paths:
         - $HOME/Library/Caches/CocoaPods
-        - $CM_BUILD_DIR/node_modules
     scripts:
+      - name: Switch to Ruby 3.1 (avoid Ruby 4 keyword-arg strictness)
+        script: |
+          set -e
+          # RN 0.70 codegen scripts (react_native_pods.rb) are not compatible with
+          # Ruby 4's strict keyword separation. Force Ruby 3.1 via asdf.
+          if command -v asdf >/dev/null 2>&1; then
+            asdf plugin add ruby 2>/dev/null || true
+            asdf install ruby 3.1.4 || true
+            asdf global ruby 3.1.4 || true
+            asdf reshim ruby || true
+          fi
+          ruby --version
+          # Reinstall CocoaPods on this Ruby so `pod` resolves correctly
+          gem install cocoapods -v 1.11.3 --no-document || true
+          gem install activesupport -v 6.1.7.10 --no-document || true
+          which pod
+          pod --version || true
       - name: Enable Corepack + show env
         script: |
           set -e
@@ -256,6 +272,12 @@ workflows:
               else:
                   print(f"no changes needed: {path}")
           PYEOF
+      - name: Verify RN codegen helper patch state
+        script: |
+          echo "=== react_native_pods.rb (around use_react_native_codegen!) ==="
+          sed -n '170,275p' node_modules/react-native/scripts/react_native_pods.rb || true
+          echo "=== FBReactNativeSpec.podspec ==="
+          cat node_modules/react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec || true
       - name: Install CocoaPods
         script: |
           ruby --version
