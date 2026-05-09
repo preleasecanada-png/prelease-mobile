@@ -291,6 +291,34 @@ workflows:
 
           # Run pod install with Ruby 3.1
           cd ios && pod install --repo-update
+          cd ..
+
+          # Patch boost hash.hpp: std::unary_function was removed in C++17 (Xcode 26 SDK).
+          # Boost 1.76's container_hash/hash.hpp still inherits from it -> compile error.
+          BOOST_HASH="ios/Pods/boost/boost/container_hash/hash.hpp"
+          if [ -f "$BOOST_HASH" ]; then
+            echo "=== Patching $BOOST_HASH for C++17 (remove std::unary_function) ==="
+            python3 <<'PYEOF'
+          import re
+          path = "ios/Pods/boost/boost/container_hash/hash.hpp"
+          with open(path, "r", encoding="utf-8", errors="replace") as f:
+              src = f.read()
+          # Remove 'std::unary_function<T, std::size_t>' base class from hash_base
+          new = re.sub(
+              r"struct\s+hash_base\s*:\s*std::unary_function<[^>]*>\s*\{\};",
+              "struct hash_base {};",
+              src,
+          )
+          if new != src:
+              with open(path, "w", encoding="utf-8") as f:
+                  f.write(new)
+              print("patched: hash_base no longer inherits std::unary_function")
+          else:
+              print("hash_base already patched or signature differs")
+          PYEOF
+          else
+            echo "WARNING: $BOOST_HASH not found"
+          fi
       - name: Neutralize Metro packager script phase (prevents CI hang)
         script: |
           # The 'Start Packager' RN script tries to open Metro on :8081 and can hang in CI.
