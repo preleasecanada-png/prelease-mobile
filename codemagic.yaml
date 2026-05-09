@@ -127,9 +127,13 @@ workflows:
           # Make the legacy helper accept variable arguments (Ruby 4 + CocoaPods DSL changes can alter arity)
           # Original: def use_react_native_codegen!(spec, options={})
           replacement = (
-              "def use_react_native_codegen!(*args)\n"
+              "def use_react_native_codegen!(*args, **kwargs)\n"
               "  spec = args[0]\n"
-              "  options = args[1] || {}\n"
+              "  options = args[1]\n"
+              "  if options.nil? || (options.is_a?(Hash) && options.empty?)\n"
+              "    options = kwargs\n"
+              "  end\n"
+              "  options ||= {}\n"
           )
 
           # Debug: show any existing def lines for this method
@@ -161,6 +165,39 @@ workflows:
           # Verify in logs
           m = re.search(r"^def(?:\s+self\.)?\s*use_react_native_codegen!.*$", src, flags=re.M)
           print("VERIFY:", m.group(0) if m else "NOT FOUND")
+
+          # Fix internal keyword-arg call: get_script_phases_no_codegen_discovery(react_native_path: ..., ...)
+          # This method is defined as `def get_script_phases_no_codegen_discovery(options)` (1 positional).
+          # Under Ruby 4 strict keyword separation, the keyword form crashes with
+          # 'wrong number of arguments (given N, expected 1)'. Wrap the keywords in an explicit hash.
+          idx = src.find("get_script_phases_no_codegen_discovery(")
+          if idx != -1:
+              open_paren = src.find("(", idx)
+              depth = 0
+              k = open_paren
+              while k < len(src):
+                  c = src[k]
+                  if c == "(":
+                      depth += 1
+                  elif c == ")":
+                      depth -= 1
+                      if depth == 0:
+                          break
+                  k += 1
+              if k < len(src) and depth == 0:
+                  inner = src[open_paren+1:k]
+                  # Only wrap if it isn't already wrapped in braces
+                  stripped = inner.strip()
+                  if not (stripped.startswith("{") and stripped.endswith("}")):
+                      new_call = "({" + inner + "})"
+                      src = src[:open_paren] + new_call + src[k+1:]
+                      with open(path, "w", encoding="utf-8") as f:
+                          f.write(src)
+                      print("patched internal get_script_phases_no_codegen_discovery call")
+                  else:
+                      print("internal call already wrapped in hash")
+          else:
+              print("internal call not found")
           PYEOF
 
       - name: Patch RN podspec codegen calls for Ruby 4 (dispatch via Object.send)
