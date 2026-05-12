@@ -5,6 +5,7 @@ import { navigate } from '../../navigation/ReduxNavigation';
 import { Colors, Images } from '../../theme';
 import styles from './Styles/MyRentalPropertyStyle';
 import { PropertyService } from '../../services';
+import { imageUrl } from '../../services/api';
 import Icon from 'react-native-vector-icons/Feather';
 
 const MyRentalPropertyScreen = ({ navigation }) => {
@@ -25,8 +26,9 @@ const MyRentalPropertyScreen = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => {
-    const imageSource = item.images?.[0]?.image_url
-      ? { uri: item.images[0].image_url }
+    const imgPath = item?.property_images?.[0]?.original;
+    const imageSource = imgPath
+      ? { uri: imageUrl(imgPath) }
       : Images.SliderHomeHouseImageOne;
 
     return (

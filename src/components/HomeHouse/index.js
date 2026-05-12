@@ -7,6 +7,7 @@ import CommanText from '../SignUpLogIn/CommanText';
 import { View, ActivityIndicator, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { PropertyService } from '../../services';
+import { propertyImageUrl } from '../../services/api';
 import { Colors } from '../../theme';
 
 function HomeHouse({ onMoreBtnPress }) {
@@ -29,8 +30,8 @@ function HomeHouse({ onMoreBtnPress }) {
         date: p.available_from ? `Available: ${p.available_from}` : '',
         noOfGuestPrice: p.price ? `$${Number(p.price).toLocaleString()} / month` : '',
         ratingText: p.avg_rating || '—',
-        image: p.images?.[0]?.image_url
-          ? { uri: p.images[0].image_url }
+        image: propertyImageUrl(p)
+          ? { uri: propertyImageUrl(p) }
           : require('../../assets/images/HouseImageOne.png'),
         raw: p,
       }));

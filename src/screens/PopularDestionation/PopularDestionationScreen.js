@@ -11,6 +11,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import { Images, Colors } from '../../theme';
 import MapView, { Marker } from 'react-native-maps';
 import { PropertyService } from '../../services';
+import { propertyImageUrl } from '../../services/api';
 
 function PopularDestionationScreen({ navigation }) {
   const bottomSheetRef = useRef(null);
@@ -44,8 +45,8 @@ function PopularDestionationScreen({ navigation }) {
         bedText: p.bedrooms ? `${p.bedrooms} Bed` : '',
         bathText: p.bathrooms ? `${p.bathrooms} Bath` : '',
         sqftText: p.area ? `${p.area} sqft` : '',
-        proprtyImg: p.images?.[0]?.image_url
-          ? { uri: p.images[0].image_url }
+        proprtyImg: propertyImageUrl(p)
+          ? { uri: propertyImageUrl(p) }
           : Images.SliderHomeHouseImageOne,
         proprtyLocationImg: Images.LocationImage,
         proprtyRatingStarImg: Images.StarActive,

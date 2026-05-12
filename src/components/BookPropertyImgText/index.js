@@ -11,6 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import CommanHeading from '../CommanHeading';
 import { facilitiesList, ratingStarImgData } from '../../assets/data';
 import { Colors, Images } from '../../theme';
+import { imageUrl } from '../../services/api';
 import { navigate } from '../../navigation/ReduxNavigation';
 import styles from './Styles/Index';
 import Raiting from '../Rating';
@@ -40,8 +41,9 @@ function BookPropertyImgText(props) {
       style={styles.propertyDetaileImage}
     />
   );
-  const imageSource = item?.images?.[0]?.image_url
-    ? { uri: item.images[0].image_url }
+  const imgPath = item?.property_images?.[0]?.original;
+  const imageSource = imgPath
+    ? { uri: imageUrl(imgPath) }
     : item?.image || Images.SliderHomeHouseImageOne;
 
   const hostName = item?.user?.name || item?.host_name || 'Host';

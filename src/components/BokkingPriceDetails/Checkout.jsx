@@ -3,6 +3,7 @@ import React from 'react'
 import Container from '../Container'
 import HeaderMain from '../HeaderMain'
 import { Colors, Images } from '../../theme'
+import { imageUrl } from '../../services/api'
 import { FeatherIcon } from '../../theme/icons'
 import Content from '../Content'
 import CommanHeadingScreen from '../CommanHeading'
@@ -13,8 +14,9 @@ import SummaryList from '../SummaryList'
 const Checkout = ({ navigation, route }) => {
     const { item } = route?.params || {};
     const property = item || {};
-    const imageSource = property.images?.[0]?.image_url
-        ? { uri: property.images[0].image_url }
+    const imgPath = property?.property_images?.[0]?.original;
+    const imageSource = imgPath
+        ? { uri: imageUrl(imgPath) }
         : Images.SliderHomeHouseImageOne;
 
     return (

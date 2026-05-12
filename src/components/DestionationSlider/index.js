@@ -5,6 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Images } from '../../theme';
 import styles from './Styles/index';
 import { PropertyService } from '../../services';
+import { propertyImageUrl } from '../../services/api';
 import { Colors } from '../../theme';
 
 const fallbackSlides = [
@@ -35,8 +36,8 @@ function DestionationSlider(props) {
           id: p.id,
           title: p.city || p.title || 'Property',
           text: p.address || p.title || '',
-          image: p.images?.[0]?.image_url
-            ? { uri: p.images[0].image_url }
+          image: propertyImageUrl(p)
+            ? { uri: propertyImageUrl(p) }
             : Images.SliderHomeHouseImageOne,
           raw: p,
         }));

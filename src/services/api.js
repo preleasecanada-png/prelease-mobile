@@ -1,4 +1,16 @@
 const BASE_URL = 'https://xa2g46fwr6.execute-api.us-east-1.amazonaws.com/api';
+export const IMAGE_BASE_URL = 'https://prelease-storage-production.s3.us-east-1.amazonaws.com';
+
+export const imageUrl = (path) => {
+  if (!path) return null;
+  if (path.startsWith('http')) return path;
+  return `${IMAGE_BASE_URL}/${path}`;
+};
+
+export const propertyImageUrl = (property) => {
+  const path = property?.property_images?.[0]?.original;
+  return imageUrl(path);
+};
 
 let _token = null;
 

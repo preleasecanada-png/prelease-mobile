@@ -8,6 +8,7 @@ import { Colors, Images } from '../../theme';
 import CommanHeading from '../../components/CommanHeading';
 import { Text, View, FlatList, TouchableOpacity, ActivityIndicator, ImageBackground, RefreshControl } from 'react-native';
 import { PropertyService } from '../../services';
+import { imageUrl } from '../../services/api';
 
 const WishlistScreen = ({ navigation }) => {
   const [wishlist, setWishlist] = React.useState([]);
@@ -32,8 +33,9 @@ const WishlistScreen = ({ navigation }) => {
 
   const renderItem = ({ item }) => {
     const property = item.property || item;
-    const imageSource = property?.images?.[0]?.image_url
-      ? { uri: property.images[0].image_url }
+    const imgPath = property?.property_images?.[0]?.original;
+    const imageSource = imgPath
+      ? { uri: imageUrl(imgPath) }
       : Images.SliderHomeHouseImageOne;
 
     return (
