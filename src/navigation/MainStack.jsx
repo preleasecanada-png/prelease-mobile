@@ -25,7 +25,7 @@ import ChatDetailsScreen from '../screens/Chat/ChatDetailsScreen';
 import ChatScreen from '../screens/Chat/ChatScreen';
 import CameraScreen from '../screens/Camera/CameraScreen';
 import BookScreen from '../screens/Book/BookScreen';
-import SearchNavigator from './SearchNavigator';
+import SearchScreenMain from '../screens/Search/SearchScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import DrawerNavigation from './DrawerNavigation';
 import ApplicationsScreen from '../screens/Applications/ApplicationsScreen';
@@ -168,7 +168,7 @@ const routes = [
   },
   {
     name: "Search",
-    component: SearchNavigator,
+    component: SearchScreenMain,
   },
   {
     name: 'ChatScreen',
