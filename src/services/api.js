@@ -8,6 +8,10 @@ export const imageUrl = (path) => {
 };
 
 export const propertyImageUrl = (property) => {
+  // Backend now returns full S3 URLs via image_url accessor
+  const directUrl = property?.property_images?.[0]?.image_url;
+  if (directUrl) return directUrl;
+  // Fallback to old method for backward compatibility
   const path = property?.property_images?.[0]?.original;
   return imageUrl(path);
 };
