@@ -1,102 +1,150 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
-import { Container, Header, Content } from '../../components';
-import SearchInput from '../../components/SearchInput/Index';
+import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet, PermissionsAndroid, Platform } from 'react-native';
+import { Container } from '../../components';
 import MapView, { Marker } from 'react-native-maps';
 import CommanHeading from '../../components/CommanHeading';
 import styles from './Styles/CurrentLocationStyle';
 import { Colors, Images } from '../../theme';
 import { navigate } from '../../navigation/ReduxNavigation';
-import CommonSearchInput from '../../components/CommonSearchInput/Index';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { alignItems, backgroundColor, justifyContent } from 'styled-system';
-import CurrentLocation from '.';
 import CommanBtnScreen from '../../components/CommanBtn';
-import HeaderMain from '../../components/HeaderMain';
-import Icon from 'react-native-vector-icons/Entypo'
-import SearchLocation from '../SearchLocation';
+import Icon from 'react-native-vector-icons/Entypo';
 
-const CurrentLocationScreen = ({ navigation }) => {  // ref
+const DEFAULT_REGION = {
+  latitude: 45.5017,
+  longitude: -73.5673,
+  latitudeDelta: 0.05,
+  longitudeDelta: 0.05,
+};
+
+const CurrentLocationScreen = ({ navigation }) => {
   const bottomSheetRef = React.useRef(null);
-  const [coordinates, setCordinates] = React.useState({
-    latitude: 21.187090218083345,
-    longitude: 72.79023272212653,
-    latitudeDelta: 0.0043,
-    longitudeDelta: 0.0034
-  })
+  const [coordinates, setCoordinates] = React.useState(DEFAULT_REGION);
+  const [address, setAddress] = React.useState('');
+  const [loading, setLoading] = React.useState(true);
 
-  // callbacks
-  const handleSheetChanges = React.useCallback((index) => {
-    console.log('handleSheetChanges', index);
+  const handleSheetChanges = React.useCallback(() => {}, []);
+
+  React.useEffect(() => {
+    requestLocationPermission();
   }, []);
 
-  const [input, setInput] = useState('');
+  const requestLocationPermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          { title: 'Location Permission', message: 'This app needs access to your location.' }
+        );
+        if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+          setLoading(false);
+          return;
+        }
+      } catch (e) {
+        setLoading(false);
+        return;
+      }
+    }
+    getCurrentPosition();
+  };
+
+  const getCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setCoordinates({
+          latitude,
+          longitude,
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        });
+        fetchAddress(latitude, longitude);
+        setLoading(false);
+      },
+      (error) => {
+        console.warn('Geolocation error:', error.message);
+        setLoading(false);
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+    );
+  };
+
+  const fetchAddress = async (lat, lng) => {
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`,
+        { headers: { 'Accept-Language': 'en' } }
+      );
+      const data = await res.json();
+      const addr = data?.display_name || `${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+      setAddress(addr);
+    } catch (e) {
+      setAddress(`${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+    }
+  };
 
   return (
     <Container>
-
       <TouchableOpacity
-        style={{
-          position: 'absolute', top: 10, left: 10, zIndex: 999,
-          backgroundColor: Colors.opacityBlack, padding: 10, borderRadius: 50
-        }}
+        style={localStyles.backBtn}
         onPress={() => navigation.goBack()}
       >
         <Icon name="chevron-thin-left" size={20} color={Colors.white} />
       </TouchableOpacity>
-      <View style={{
-        backgroundColor: 'transparent',
-        // position: 'absolute',
-        width: '80%',
-        marginLeft: 35,
-        // top: 0,
-        zIndex: 999
-      }}>
-        <SearchLocation
-          placeholderText={"Search Location"}
-          showCard={false}
-        />
-      </View>
-      <MapView
-        style={styles.mapStyle}
-        initialRegion={{ ...coordinates }}>
-        <Marker
-          draggable
-          coordinate={{
-            latitude: coordinates.latitude,
-            longitude: coordinates.longitude
-          }}
-          title={'Zluck Solutions'}
-          description={'This is an IT Compnay'}
-          image={Images.CurrentLocation}
-          onDragEnd={(e) => alert(JSON.stringify(e.nativeEvent.coordinate))}
-        />
-      </MapView>
+
+      {loading ? (
+        <View style={localStyles.loadingCenter}>
+          <ActivityIndicator size="large" color={Colors.primary} />
+          <Text style={localStyles.loadingText}>Getting your location…</Text>
+        </View>
+      ) : (
+        <MapView style={styles.mapStyle} region={coordinates}>
+          <Marker
+            draggable
+            coordinate={{ latitude: coordinates.latitude, longitude: coordinates.longitude }}
+            title="My Location"
+            description={address}
+            image={Images.CurrentLocation}
+            onDragEnd={(e) => {
+              const { latitude, longitude } = e.nativeEvent.coordinate;
+              setCoordinates(prev => ({ ...prev, latitude, longitude }));
+              fetchAddress(latitude, longitude);
+            }}
+          />
+        </MapView>
+      )}
 
       <BottomSheet
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
-        snapPoints={[250, 250]}
+        snapPoints={[200, 200]}
       >
         <BottomSheetView style={styles.bottomSheetContent}>
-          <View style={{ height: 250 - 100 }}>
-            <CommanHeading
-              headingText
-              heading="My Location"
-              navigation={navigate}
-            />
-            <CurrentLocation />
+          <View style={{ paddingHorizontal: 16, flex: 1 }}>
+            <CommanHeading headingText heading="My Location" navigation={navigate} />
+            <Text style={localStyles.addressText} numberOfLines={3}>
+              {address || 'Fetching address…'}
+            </Text>
           </View>
           <CommanBtnScreen
-            btnText={'Confirm location'}
+            btnText="Confirm location"
             commanBtnStyle={styles.btnStyle}
-
+            onBtnPress={() => navigation.goBack()}
           />
-
         </BottomSheetView>
       </BottomSheet>
     </Container>
   );
 };
+
+const localStyles = StyleSheet.create({
+  backBtn: {
+    position: 'absolute', top: 50, left: 16, zIndex: 999,
+    backgroundColor: Colors.primary, padding: 10, borderRadius: 50,
+  },
+  loadingCenter: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  loadingText: { marginTop: 12, fontSize: 14, color: '#666' },
+  addressText: { fontSize: 14, color: '#444', marginTop: 4, lineHeight: 20 },
+});
+
 export default CurrentLocationScreen;
