@@ -73,6 +73,8 @@ function CustomDrawerContent({ closeDrawer, state, descriptors }) {
         )
     }
 
+    const isHost = user?.role === 'host';
+
     return (
         <>
             <View style={styles.container}>
@@ -96,27 +98,54 @@ function CustomDrawerContent({ closeDrawer, state, descriptors }) {
                             />
                         </View>
 
-                        <LineSeperator />
-                        <View style={{ marginTop: 20 }}></View>
+                        {isLoggedIn && (
+                            <View style={styles.roleBadge}>
+                                <FeatherIcon name={isHost ? 'home' : 'user'} size={12} color={Colors.white} />
+                                <Text style={styles.roleBadgeText}>{isHost ? 'Host / Landlord' : 'Renter'}</Text>
+                            </View>
+                        )}
 
+                        <LineSeperator />
+                        <View style={{ marginTop: 10 }}></View>
+
+                        {/* Common — Home & Dashboard */}
                         <ListItem title={'Home'} icon={Icons.home_outlined3x} activeIcon={Icons.home_filled3x} active={active} route={"DashboardMain"} onPress={() => navigateTo("DashboardMain")} />
                         <VectorListItem title="Dashboard" iconName="bar-chart-2" route="DashboardStats" />
-                        <ListItem title={'Wishlist'} icon={Icons.heart_outlined3x} activeIcon={Icons.heart_filled3x} active={active} route={"Wishlist"} onPress={() => navigateTo("Wishlist")} />
-                        <ListItem title={'Message'} icon={Icons.chat_outlined3x} activeIcon={Icons.chat_filled3x} active={active} route={"Message"} onPress={() => navigateTo("Message")} />
+
+                        {/* Host-only */}
+                        {isHost && (
+                            <VectorListItem title="My Properties" iconName="home" route="MyRentalProperty" />
+                        )}
+
+                        {/* Renter-only */}
+                        {!isHost && (
+                            <>
+                                <ListItem title={'Wishlist'} icon={Icons.heart_outlined3x} activeIcon={Icons.heart_filled3x} active={active} route={"Wishlist"} onPress={() => navigateTo("Wishlist")} />
+                                <ListItem title={'Message'} icon={Icons.chat_outlined3x} activeIcon={Icons.chat_filled3x} active={active} route={"Message"} onPress={() => navigateTo("Message")} />
+                            </>
+                        )}
 
                         <LineSeperator />
 
+                        {/* Common */}
                         <VectorListItem title="Notifications" iconName="bell" route="Notification" />
                         <VectorListItem title="Applications" iconName="file-text" route="ApplicationsList" />
                         <VectorListItem title="Leases" iconName="file" route="LeasesList" />
                         <VectorListItem title="Payments" iconName="credit-card" route="PaymentsList" />
                         <VectorListItem title="Reviews" iconName="star" route="ReviewsList" />
+                        <VectorListItem title="Maintenance" iconName="tool" route="MaintenanceList" />
 
                         <LineSeperator />
 
-                        <VectorListItem title="Preferences" iconName="sliders" route="PreferencesScreen" />
-                        <VectorListItem title="Insurance" iconName="shield" route="InsuranceList" />
-                        <VectorListItem title="Maintenance" iconName="tool" route="MaintenanceList" />
+                        {/* Renter-only */}
+                        {!isHost && (
+                            <>
+                                <VectorListItem title="Preferences" iconName="sliders" route="PreferencesScreen" />
+                                <VectorListItem title="Insurance" iconName="shield" route="InsuranceList" />
+                            </>
+                        )}
+
+                        {/* Common */}
                         <VectorListItem title="Referrals" iconName="gift" route="ReferralsList" />
                         <VectorListItem title="Support" iconName="help-circle" route="SupportList" />
                         <VectorListItem title="Verification" iconName="check-circle" route="VerificationScreen" />
@@ -211,6 +240,19 @@ const styles = StyleSheet.create({
         fontSize: 10,
         textAlign: 'center',
         // fontFamily: fontFamilyBold,
+    },
+    roleBadge: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 30,
+        paddingVertical: 6,
+        gap: 6,
+    },
+    roleBadgeText: {
+        color: 'rgba(255,255,255,0.75)',
+        fontSize: 12,
+        letterSpacing: 0.5,
+        marginLeft: 6,
     },
     activeListItem: {
         backgroundColor: Colors.boxShadowLighterBlack,

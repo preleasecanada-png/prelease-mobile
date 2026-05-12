@@ -6,6 +6,7 @@ import {
 import { Colors } from '../../theme';
 import { LeaseService } from '../../services';
 import Icon from 'react-native-vector-icons/Feather';
+import { useSelector } from 'react-redux';
 
 const statusColors = {
   draft: '#6c757d',
@@ -19,12 +20,14 @@ const LeasesScreen = ({ navigation }) => {
   const [leases, setLeases] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const user = useSelector(s => s.app?.user);
+  const role = user?.role === 'host' ? 'host' : 'renter';
 
   useEffect(() => { fetchLeases(); }, []);
 
   const fetchLeases = async () => {
     try {
-      const res = await LeaseService.list('renter');
+      const res = await LeaseService.list(role);
       if (res?.data) setLeases(Array.isArray(res.data) ? res.data : res.data.data || []);
     } catch (e) { console.error(e); }
     setLoading(false);

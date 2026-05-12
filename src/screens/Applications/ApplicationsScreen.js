@@ -6,6 +6,7 @@ import {
 import { Colors } from '../../theme';
 import { ApplicationService } from '../../services';
 import Icon from 'react-native-vector-icons/Feather';
+import { useSelector } from 'react-redux';
 
 const statusColors = {
   submitted: '#0d6efd',
@@ -19,6 +20,8 @@ const ApplicationsScreen = ({ navigation }) => {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const user = useSelector(s => s.app?.user);
+  const role = user?.role === 'host' ? 'host' : 'renter';
 
   useEffect(() => {
     fetchApps();
@@ -26,7 +29,7 @@ const ApplicationsScreen = ({ navigation }) => {
 
   const fetchApps = async () => {
     try {
-      const res = await ApplicationService.list('renter');
+      const res = await ApplicationService.list(role);
       if (res?.status === 200) {
         setApps(res?.data?.data || res?.data || []);
       }
@@ -84,7 +87,7 @@ const ApplicationsScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Icon name="arrow-left" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>My Applications</Text>
+        <Text style={styles.headerTitle}>{role === 'host' ? 'Received Applications' : 'My Applications'}</Text>
         <View style={{ width: 40 }} />
       </View>
       <FlatList
@@ -96,7 +99,7 @@ const ApplicationsScreen = ({ navigation }) => {
         ListEmptyComponent={
           <View style={styles.empty}>
             <Icon name="file-text" size={48} color="#ccc" />
-            <Text style={styles.emptyText}>No applications yet</Text>
+            <Text style={styles.emptyText}>{role === 'host' ? 'No applications received yet' : 'No applications yet'}</Text>
           </View>
         }
       />
