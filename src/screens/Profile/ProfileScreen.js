@@ -37,8 +37,9 @@ function ProfileScreen({ navigation }) {
     navigation.dispatch(CommonActions.reset({ index: 0, routes: [{ name: 'Auth' }] }));
   };
 
-  const avatarSource = user?.profile_picture
-    ? { uri: user.profile_picture.startsWith('http') ? user.profile_picture : imageUrl(user.profile_picture) }
+  const rawPic = user?.picture || user?.profile_picture;
+  const avatarSource = rawPic
+    ? { uri: rawPic.startsWith('http') ? rawPic : imageUrl(rawPic) }
     : Images.UserImage;
 
   return (
@@ -72,9 +73,9 @@ function ProfileScreen({ navigation }) {
             <Image source={avatarSource} resizeMode="cover" style={styles.profileImage} />
           </View>
           <View style={styles.userNameEmailText}>
-            <Text style={styles.userNameText}>{user?.name || 'Guest'}</Text>
+            <Text style={styles.userNameText}>{user?.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : (user?.name || 'Guest')}</Text>
             <Text style={styles.designation}>
-              {user?.role === 'host' ? 'Host / Landlord' : 'Renter'}
+              {(user?.role === 'host' || user?.role === 'landlord') ? 'Host / Landlord' : 'Renter'}
             </Text>
           </View>
         </View>

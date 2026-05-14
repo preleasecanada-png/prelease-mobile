@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Colors, Images } from '../../theme'
+import { imageUrl } from '../../services/api'
 import Icon from 'react-native-vector-icons/Feather'
 import styles from './Style'
 import { useSelector } from 'react-redux'
@@ -9,10 +10,11 @@ import { useSelector } from 'react-redux'
 const ProfileInformation = ({ customContatinerStyle, customUsernameStyle, customEmailStyle }) => {
     const navigation = useNavigation()
     const user = useSelector(state => state.app?.user)
-    const userName = user?.name || 'Guest'
+    const userName = user?.name || (user?.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : 'Guest')
     const userEmail = user?.email || ''
-    const profilePic = user?.profile_picture
-        ? { uri: user.profile_picture }
+    const rawPic = user?.picture || user?.profile_picture
+    const profilePic = rawPic
+        ? { uri: rawPic.startsWith('http') ? rawPic : imageUrl(rawPic) }
         : Images.UserImage
 
     return (

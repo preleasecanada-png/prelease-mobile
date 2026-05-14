@@ -14,8 +14,6 @@ const LeaseService = {
   sign: (id) => api.post(`/leases/${id}/sign`),
 
   terminate: (id) => api.post(`/leases/${id}/terminate`),
-
-  generateTerms: (data) => api.post('/leases/generate-terms', data),
 };
 
 export default LeaseService;

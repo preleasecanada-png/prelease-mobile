@@ -85,7 +85,6 @@ const tabs = (props) => {
       },
       icon: {
         component: () => {
-          console.log("Message", Object.keys(props))
           return (
             <Image source={Icons.chat}
               style={{ width: 24, height: 24, tintColor: props.active ? Colors.white : Colors.darkGray }}
@@ -193,7 +192,7 @@ const AppNavigation = () => {
         }}
         initialRouteName={getInitialRouteName()}
       >
-        <Stack.Screen name="WelCome" component={WelcomeScreen} />
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Dashboard" component={MainStack} />
       </Stack.Navigator>

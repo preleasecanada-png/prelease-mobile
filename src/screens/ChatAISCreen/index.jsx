@@ -81,14 +81,41 @@ export const renderBubble = (props) => {
 
 function ChatDetailsScreen({ navigation }) {
   const [messages, setMessages] = useState([]);
-  const [text, setText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [conversation, setConversation] = useState([]);
-  const {  keyboardVisibilityControl } = useKeyboardStatus();
+  const { keyboardVisibilityControl } = useKeyboardStatus();
 
   useEffect(() => {
-    setMessages([]);
+    loadHistory();
   }, []);
+
+  const loadHistory = async () => {
+    try {
+      const res = await AIAssistantService.history();
+      const rows = res?.data || [];
+      if (rows.length > 0) {
+        const loaded = rows.slice().reverse().map((h, idx) => ({
+          _id: h.id || idx,
+          text: h.content,
+          createdAt: new Date(h.created_at),
+          user: h.role === 'user'
+            ? { _id: 1 }
+            : { _id: 2, name: 'Pre-AI', avatar: Icons.app_icon },
+        }));
+        setMessages(loaded);
+      }
+    } catch (e) {
+      console.error('Failed to load AI history:', e);
+    }
+  };
+
+  const clearHistory = async () => {
+    try {
+      await AIAssistantService.clearHistory();
+      setMessages([]);
+    } catch (e) {
+      console.error('Failed to clear AI history:', e);
+    }
+  };
 
   const onSend = useCallback(async (newMessages = []) => {
     const userMsg = Array.isArray(newMessages) ? newMessages[0] : newMessages;
@@ -99,14 +126,11 @@ function ChatDetailsScreen({ navigation }) {
       user: { _id: 1 },
     };
     setMessages((prev) => GiftedChat.append(prev, [formatted]));
-
-    const newConv = [...conversation, { role: 'user', content: userMsg.text }];
-    setConversation(newConv);
     setIsTyping(true);
 
     try {
-      const res = await AIAssistantService.chat(userMsg.text, newConv);
-      const aiText = res?.data?.response || res?.response || res?.message || 'Sorry, I could not process your request.';
+      const res = await AIAssistantService.chat(userMsg.text);
+      const aiText = res?.reply || 'Sorry, I could not process your request.';
       const aiMsg = {
         _id: Math.random().toString(36).substr(2, 9),
         text: aiText,
@@ -114,19 +138,17 @@ function ChatDetailsScreen({ navigation }) {
         user: { _id: 2, name: 'Pre-AI', avatar: Icons.app_icon },
       };
       setMessages((prev) => GiftedChat.append(prev, [aiMsg]));
-      setConversation((prev) => [...prev, { role: 'assistant', content: aiText }]);
     } catch (e) {
       console.error('AI chat error:', e);
-      const errMsg = {
+      setMessages((prev) => GiftedChat.append(prev, [{
         _id: Math.random().toString(36).substr(2, 9),
         text: 'Sorry, something went wrong. Please try again.',
         createdAt: new Date(),
         user: { _id: 2, name: 'Pre-AI' },
-      };
-      setMessages((prev) => GiftedChat.append(prev, [errMsg]));
+      }]));
     }
     setIsTyping(false);
-  }, [conversation]);
+  }, []);
 
   const renderTicks = () => {
     return (

@@ -12,10 +12,13 @@ import { Image } from 'react-native';
 import { AuthService } from '../../services';
 
 function SignupScreen({ navigation, route }) {
-  const [name, setName] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordConfirm, setPasswordConfirm] = React.useState('');
+  const [dateOfBirth, setDateOfBirth] = React.useState('');
+  const [role, setRole] = React.useState('renter');
   const [referralCode, setReferralCode] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
@@ -34,8 +37,12 @@ function SignupScreen({ navigation, route }) {
   }, [])
 
   const handleSignup = async () => {
-    if (!name.trim() || !email.trim() || !password.trim() || !passwordConfirm.trim()) {
-      Alert.alert('Error', 'Please fill in all fields.');
+    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim() || !passwordConfirm.trim() || !dateOfBirth.trim()) {
+      Alert.alert('Error', 'Please fill in all required fields (including date of birth, format YYYY-MM-DD).');
+      return;
+    }
+    if (password.length < 8) {
+      Alert.alert('Error', 'Password must be at least 8 characters.');
       return;
     }
     if (password !== passwordConfirm) {
@@ -45,10 +52,13 @@ function SignupScreen({ navigation, route }) {
     setLoading(true);
     try {
       const res = await AuthService.register({
-        name: name.trim(),
+        first_name: firstName.trim(),
+        last_name: lastName.trim(),
         email: email.trim(),
+        date_of_birth: dateOfBirth.trim(),
         password,
-        password_confirmation: passwordConfirm,
+        confirm_password: passwordConfirm,
+        role,
         ...(referralCode.trim() ? { referral_code: referralCode.trim() } : {}),
       });
       if (res?.user || res?.token) {
@@ -77,16 +87,51 @@ function SignupScreen({ navigation, route }) {
       bottomTextEnabled={true}
       renderHeaderImage={renderHeaderLogo}
     >
-      <CommanText commanText="Full name" commanTextstyle={styles.labelStyle} />
+      <CommanText commanText="First name" commanTextstyle={styles.labelStyle} />
       <TextInput
         defaultInput
-        placeholder="Full name"
+        placeholder="First name"
         type="default"
         navigation={navigation}
         inputStyle={[styles.inputStyle, { marginBottom: 10 }]}
-        onChangeText={setName}
-        value={name}
+        onChangeText={setFirstName}
+        value={firstName}
       />
+      <CommanText commanText="Last name" commanTextstyle={styles.labelStyle} />
+      <TextInput
+        defaultInput
+        placeholder="Last name"
+        type="default"
+        navigation={navigation}
+        inputStyle={[styles.inputStyle, { marginBottom: 10 }]}
+        onChangeText={setLastName}
+        value={lastName}
+      />
+      <CommanText commanText="Date of birth (YYYY-MM-DD)" commanTextstyle={styles.labelStyle} />
+      <TextInput
+        defaultInput
+        placeholder="1990-01-15"
+        type="default"
+        navigation={navigation}
+        inputStyle={[styles.inputStyle, { marginBottom: 10 }]}
+        onChangeText={setDateOfBirth}
+        value={dateOfBirth}
+      />
+      <CommanText commanText="I am a..." commanTextstyle={styles.labelStyle} />
+      <View style={{ flexDirection: 'row', marginBottom: 14, marginTop: 4 }}>
+        <TouchableOpacity
+          onPress={() => setRole('renter')}
+          style={{ flex: 1, padding: 12, marginRight: 6, borderRadius: 8, borderWidth: 1, borderColor: role === 'renter' ? Colors.primary : '#ccc', backgroundColor: role === 'renter' ? Colors.primary : 'transparent' }}
+        >
+          <Text style={{ textAlign: 'center', color: role === 'renter' ? '#fff' : '#333', fontWeight: '600' }}>Tenant</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setRole('landlord')}
+          style={{ flex: 1, padding: 12, marginLeft: 6, borderRadius: 8, borderWidth: 1, borderColor: role === 'landlord' ? Colors.primary : '#ccc', backgroundColor: role === 'landlord' ? Colors.primary : 'transparent' }}
+        >
+          <Text style={{ textAlign: 'center', color: role === 'landlord' ? '#fff' : '#333', fontWeight: '600' }}>Landlord</Text>
+        </TouchableOpacity>
+      </View>
       <CommanText commanText="Enter your email" commanTextstyle={styles.labelStyle} />
       <TextInput
         defaultInput

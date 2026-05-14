@@ -17,9 +17,9 @@ import api from '../../services/api';
 function ProfileEditScreen({ navigation }) {
   const dispatch = useDispatch();
   const user = useSelector(s => s.app?.user);
-  const [name, setName] = React.useState(user?.name || '');
+  const [name, setName] = React.useState(user?.name || (user?.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : ''));
   const [email, setEmail] = React.useState(user?.email || '');
-  const [phone, setPhone] = React.useState(user?.phone || '');
+  const [phone, setPhone] = React.useState(user?.phone_no || user?.phone || '');
   const [saving, setSaving] = React.useState(false);
 
   const handleUpdate = async () => {

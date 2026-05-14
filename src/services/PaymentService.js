@@ -12,8 +12,7 @@ const PaymentService = {
     }),
 
   confirm: (paymentId, transactionId) =>
-    api.post('/payments/confirm', {
-      payment_id: paymentId,
+    api.post(`/payments/${paymentId}/confirm`, {
       transaction_id: transactionId,
     }),
 

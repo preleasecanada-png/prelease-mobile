@@ -50,8 +50,8 @@ const DashboardStatsScreen = ({ navigation }) => {
         contentContainerStyle={styles.content}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchStats(); }} tintColor={Colors.primary} />}
       >
-        <Text style={styles.welcome}>Welcome, {user?.name || 'User'}</Text>
-        <Text style={styles.role}>{user?.role === 'host' ? 'Landlord' : 'Renter'} Dashboard</Text>
+        <Text style={styles.welcome}>Welcome, {user?.first_name ? `${user.first_name} ${user.last_name || ''}`.trim() : (user?.name || 'User')}</Text>
+        <Text style={styles.role}>{(user?.role === 'host' || user?.role === 'landlord') ? 'Landlord' : 'Renter'} Dashboard</Text>
 
         <View style={styles.grid}>
           <StatCard icon="home" label="Properties" value={stats?.properties_count} color="#0d6efd" />

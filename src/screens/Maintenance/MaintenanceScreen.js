@@ -24,9 +24,9 @@ const MaintenanceScreen = ({ navigation }) => {
   const [description, setDescription] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => { fetch(); }, []);
+  useEffect(() => { fetchRequests(); }, []);
 
-  const fetch = async () => {
+  const fetchRequests = async () => {
     try {
       const res = await MaintenanceService.list();
       if (res?.data) setRequests(Array.isArray(res.data) ? res.data : res.data.data || []);
@@ -48,7 +48,9 @@ const MaintenanceScreen = ({ navigation }) => {
         setShowForm(false);
         setTitle('');
         setDescription('');
-        fetch();
+        fetchRequests();
+      } else {
+        Alert.alert('Error', 'Failed to create request.');
       }
     } catch (e) {
       Alert.alert('Error', 'Failed to create request.');
@@ -103,7 +105,7 @@ const MaintenanceScreen = ({ navigation }) => {
         renderItem={renderItem}
         keyExtractor={(item) => String(item.id)}
         contentContainerStyle={styles.list}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetch(); }} tintColor={Colors.primary} />}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => { setRefreshing(true); fetchRequests(); }} tintColor={Colors.primary} />}
         ListEmptyComponent={
           <View style={styles.empty}>
             <Icon name="tool" size={48} color="#ccc" />

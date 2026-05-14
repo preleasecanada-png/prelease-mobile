@@ -8,7 +8,6 @@ import HomeHouse from '../../components/HomeHouse';
 import styles from './Styles/HomeStyle';
 import { navigate } from '../../navigation/ReduxNavigation';
 import CustomDrawer from '../../components/CustomDrawer';
-import { borderRadius } from 'styled-system';
 import Animated from 'react-native-reanimated';
 import Carousel from 'react-native-snap-carousel';
 import { WINDOW_WIDTH } from '@gorhom/bottom-sheet';

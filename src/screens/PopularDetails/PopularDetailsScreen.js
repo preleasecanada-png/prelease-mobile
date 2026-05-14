@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { Image, View, FlatList, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useState, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { Image, View, FlatList, Text, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { Container, Header, Content } from '../../components';
 import { navigate } from '../../navigation/ReduxNavigation';
 import BookPropertyImgText from '../../components/BookPropertyImgText';
@@ -30,6 +31,9 @@ function PopularDetailsScreen({ navigation, route }) {
   const [textShown, settextShown] = useState(-1);
   const [reviews, setReviews] = useState([]);
   const [loadingReviews, setLoadingReviews] = useState(true);
+  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [wishlistLoading, setWishlistLoading] = useState(false);
+  const token = useSelector(state => state.app?.token || null);
 
   const lat = item?.latitude ? parseFloat(item.latitude) : 43.6532;
   const lng = item?.longitude ? parseFloat(item.longitude) : -79.3832;
@@ -37,7 +41,38 @@ function PopularDetailsScreen({ navigation, route }) {
 
   useEffect(() => {
     fetchReviews();
-  }, []);
+    if (token) checkWishlistStatus();
+  }, []);  
+
+  const checkWishlistStatus = async () => {
+    try {
+      const res = await PropertyService.wishLists();
+      const list = res?.data?.data || res?.data || [];
+      const found = list.some(w => (w.property?.id || w.property_id) === item?.id);
+      setIsWishlisted(found);
+    } catch (e) { /* silent */ }
+  };
+
+  const toggleWishlist = async () => {
+    if (!token) {
+      Alert.alert('Sign in required', 'Please log in to save properties to your wishlist.');
+      return;
+    }
+    if (wishlistLoading) return;
+    setWishlistLoading(true);
+    try {
+      if (isWishlisted) {
+        await PropertyService.wishListDelete(item?.id);
+        setIsWishlisted(false);
+      } else {
+        await PropertyService.wishListCreate(item?.id);
+        setIsWishlisted(true);
+      }
+    } catch (e) {
+      Alert.alert('Error', 'Could not update wishlist. Please try again.');
+    }
+    setWishlistLoading(false);
+  };
 
   const fetchReviews = async () => {
     try {
@@ -142,8 +177,8 @@ function PopularDetailsScreen({ navigation, route }) {
           centerImage={false}
           leftIcon="chevron-thin-left"
           leftIconPress={() => navigation.goBack()}
-          rightIcon="heart-outlined"
-          rightIconPress={() => { }}
+          rightIcon={isWishlisted ? 'heart' : 'heart-outlined'}
+          rightIconPress={toggleWishlist}
           
           isBlur={true}
           containerStyle={{

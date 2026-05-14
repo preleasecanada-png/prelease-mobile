@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, FlatList, TouchableOpacity,
+  View, Text, FlatList, TouchableOpacity, Alert,
   ActivityIndicator, StyleSheet, RefreshControl,
 } from 'react-native';
 import { Colors } from '../../theme';
@@ -21,7 +21,7 @@ const LeasesScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const user = useSelector(s => s.app?.user);
-  const role = user?.role === 'host' ? 'host' : 'renter';
+  const role = (user?.role === 'host' || user?.role === 'landlord') ? 'host' : 'renter';
 
   useEffect(() => { fetchLeases(); }, []);
 
@@ -35,7 +35,10 @@ const LeasesScreen = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => Alert.alert(
+      item.property?.title || 'Lease Details',
+      `Status: ${item.status?.replace('_',' ').toUpperCase() || '—'}\nStart: ${item.start_date ? new Date(item.start_date).toLocaleDateString() : '—'}\nEnd: ${item.end_date ? new Date(item.end_date).toLocaleDateString() : '—'}\nRent: $${Number(item.monthly_rent || 0).toLocaleString()}/mo`
+    )}>
       <View style={styles.cardHeader}>
         <Text style={styles.title} numberOfLines={1}>{item.property?.title || 'Lease'}</Text>
         <View style={[styles.badge, { backgroundColor: statusColors[item.status] || '#6c757d' }]}>

@@ -73,7 +73,7 @@ function CustomDrawerContent({ closeDrawer, state, descriptors }) {
         )
     }
 
-    const isHost = user?.role === 'host';
+    const isHost = user?.role === 'host' || user?.role === 'landlord';
 
     return (
         <>

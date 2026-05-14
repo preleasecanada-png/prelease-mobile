@@ -26,10 +26,10 @@ function HomeHouse({ onMoreBtnPress }) {
       const mapped = list.map(p => ({
         id: String(p.id),
         title: p.title || 'Property',
-        text: p.city || p.address || '',
-        date: p.available_from ? `Available: ${p.available_from}` : '',
-        noOfGuestPrice: p.price ? `$${Number(p.price).toLocaleString()} / month` : '',
-        ratingText: p.avg_rating || '—',
+        text: [p.city, p.state, p.country].filter(Boolean).join(', '),
+        date: p.set_your_price ? `$${Number(p.set_your_price).toLocaleString()} / month` : '',
+        noOfGuestPrice: p.set_your_price ? `$${Number(p.set_your_price).toLocaleString()} / month` : '',
+        ratingText: p.avg_rating ? String(p.avg_rating) : '—',
         image: propertyImageUrl(p)
           ? { uri: propertyImageUrl(p) }
           : require('../../assets/images/HouseImageOne.png'),

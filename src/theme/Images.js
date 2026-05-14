@@ -111,6 +111,12 @@ const PopularDetailSubImg4 = require('../assets/images/PopularDetailSubImg4.png'
 const PopularDetailSubImg5 = require('../assets/images/PopularDetailSubImg5.png');
 const PopularDetailSubImg6 = require('../assets/images/PopularDetailSubImg6.png');
 const PopularDetailSubImg7 = require('../assets/images/PopularDetailSubImg7.png');
+const DestToronto = require('../assets/images/dest_toronto.jpg');
+const DestMontreal = require('../assets/images/dest_montreal.jpg');
+const DestVancouver = require('../assets/images/dest_vancouver.jpg');
+const DestEdmonton = require('../assets/images/dest_edmonton.jpg');
+const DestOttawa = require('../assets/images/dest_ottawa.jpg');
+const DestQuebec = require('../assets/images/dest_quebec.jpg');
 const CurrentLocation = require('../assets/images/CurrentLocation.png');
 const location = require('../assets/images/location.png');
 const rightWhiteArrow = require('../assets/images/rightWhiteArrow.png');
@@ -241,6 +247,12 @@ export {
   PopularDetailSubImg5,
   PopularDetailSubImg6,
   PopularDetailSubImg7,
+  DestToronto,
+  DestMontreal,
+  DestVancouver,
+  DestEdmonton,
+  DestOttawa,
+  DestQuebec,
   CurrentLocation,
   location,
   rightWhiteArrow,

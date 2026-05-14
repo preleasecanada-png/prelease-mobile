@@ -20,7 +20,7 @@ const PaymentsScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const user = useSelector(s => s.app?.user);
-  const role = user?.role === 'host' ? 'host' : 'renter';
+  const role = (user?.role === 'host' || user?.role === 'landlord') ? 'host' : 'renter';
 
   useEffect(() => { fetchPayments(); }, []);
 

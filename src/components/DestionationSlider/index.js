@@ -1,51 +1,25 @@
 import * as React from 'react';
-import { View, Text, Dimensions, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import LinearGradient from 'react-native-linear-gradient';
 import { Images } from '../../theme';
 import styles from './Styles/index';
-import { PropertyService } from '../../services';
-import { propertyImageUrl } from '../../services/api';
 import { Colors } from '../../theme';
 
-const fallbackSlides = [
-  { id: 1, title: 'Toronto', text: 'Vibrant communities and multicultural environment.', image: Images.SliderHomeHouseImageOne },
-  { id: 2, title: 'Vancouver', text: 'Beautiful mountains and ocean views.', image: Images.SliderHouseImageTwo },
-  { id: 3, title: 'Montreal', text: 'Rich culture and European charm.', image: Images.SliderHomeHouseImageOne },
-  { id: 4, title: 'Ottawa', text: 'Canada\'s capital city.', image: Images.SliderHouseImageTwo },
+const STATIC_DESTINATIONS = [
+  { id: 1, title: 'Toronto',      text: 'Known for its vibrant communities and multicultural environment.', image: Images.DestToronto },
+  { id: 2, title: 'Montreal',     text: 'A blend of European charm and North American dynamism.',           image: Images.DestMontreal },
+  { id: 3, title: 'Vancouver',    text: 'Stunning mountains meet the Pacific in this coastal gem.',         image: Images.DestVancouver },
+  { id: 4, title: 'Edmonton',     text: 'Gateway to the Rockies with a booming urban lifestyle.',           image: Images.DestEdmonton },
+  { id: 5, title: 'Ottawa',       text: "Canada's capital city, rich in history and culture.",              image: Images.DestOttawa },
+  { id: 6, title: 'Quebec City',  text: 'Old-world charm with cobblestone streets and French heritage.',    image: Images.DestQuebec },
 ];
 
 function DestionationSlider(props) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [index, setIndex] = React.useState(0);
-  const [slides, setSlides] = React.useState(fallbackSlides);
-  const [loading, setLoading] = React.useState(true);
   const isCarousel = React.useRef(null);
-
-  React.useEffect(() => {
-    fetchDestinations();
-  }, []);
-
-  const fetchDestinations = async () => {
-    try {
-      const res = await PropertyService.list();
-      const list = res?.data?.data || res?.data || [];
-      if (list.length > 0) {
-        const mapped = list.slice(0, 6).map(p => ({
-          id: p.id,
-          title: p.city || p.title || 'Property',
-          text: p.address || p.title || '',
-          image: propertyImageUrl(p)
-            ? { uri: propertyImageUrl(p) }
-            : Images.SliderHomeHouseImageOne,
-          raw: p,
-        }));
-        setSlides(mapped);
-      }
-    } catch (e) { console.error(e); }
-    setLoading(false);
-  };
   let renderItem = ({ item }) => (
     <>
       <TouchableOpacity
@@ -105,7 +79,7 @@ function DestionationSlider(props) {
           props.carouselSliderContainerStyle
         ]}>
         <Carousel
-          data={slides}
+          data={STATIC_DESTINATIONS}
           renderItem={renderItem}
           sliderWidth={props.fullSliderWidth ? windowWidth : windowWidth}
           itemWidth={
@@ -121,7 +95,7 @@ function DestionationSlider(props) {
           <Pagination
             dotContainerStyle={[styles.dotContainerStyle]}
             carouselRef={isCarousel}
-            dotsLength={slides.length}
+            dotsLength={STATIC_DESTINATIONS.length}
             activeDotIndex={index}
             dotStyle={styles.paginationActiveDot}
             inactiveDotStyle={styles.paginationInActiveDot}

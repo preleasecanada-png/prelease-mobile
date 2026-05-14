@@ -9,6 +9,7 @@ import { Colors, Images } from '../../theme';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import HeaderMain from '../../components/HeaderMain';
 import { ChatService } from '../../services';
+import { imageUrl } from '../../services/api';
 import { useSelector } from 'react-redux';
 
 function ChatScreen({ navigation }) {
@@ -48,8 +49,9 @@ function ChatScreen({ navigation }) {
   const renderItem = ({ item }) => {
     const other = getOtherUser(item);
     const userName = other?.name || (other?.first_name ? `${other.first_name} ${other.last_name || ''}`.trim() : 'User');
-    const profilePic = other?.profile_picture || other?.picture
-      ? { uri: other.profile_picture || other.picture }
+    const rawPic = other?.picture || other?.profile_picture;
+    const profilePic = rawPic
+      ? { uri: rawPic.startsWith('http') ? rawPic : imageUrl(rawPic) }
       : Images.UserImage;
     
     const lastMsgObj = item.last_message;
