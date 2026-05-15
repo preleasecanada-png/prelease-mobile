@@ -4,7 +4,7 @@ const messages = [
     text: 'Look at how chocho sleep in my arms!',
     createdAt: new Date(),
     sent: true,
-    received: true
+    received: true,
   },
   {
     _id: 2,
@@ -13,8 +13,8 @@ const messages = [
     sent: true,
     received: true,
     user: {
-      _id: 2
-    }
+      _id: 2,
+    },
   },
   {
     _id: 3,
@@ -23,8 +23,8 @@ const messages = [
     sent: true,
     received: true,
     user: {
-      _id: 1
-    }
+      _id: 1,
+    },
   },
   {
     _id: 4,
@@ -33,8 +33,8 @@ const messages = [
     sent: true,
     received: true,
     user: {
-      _id: 1
-    }
+      _id: 1,
+    },
   },
   {
     _id: 5,
@@ -43,16 +43,16 @@ const messages = [
     sent: true,
     received: true,
     user: {
-      _id: 1
-    }
+      _id: 1,
+    },
   },
   {
     _id: 6,
     text: 'Good morning, did you sleep well?',
     createdAt: new Date(),
     sent: true,
-    received: true
-  }
+    received: true,
+  },
 ];
 
 export default messages;

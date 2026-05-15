@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { View, Text, Image, FlatList } from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
 import CommanHeading from '../CommanHeading';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/Index';
 
 function FacilitiesRules(props) {
-  const renderItem = ({ item }) => (
+  const renderItem = ({item}) => (
     <View style={styles.facilitiListCol} key={item.id}>
       <Image
         source={item.image}
@@ -18,22 +18,24 @@ function FacilitiesRules(props) {
   return (
     <>
       <View style={props.facilitiListContentStyle}>
-       {props.FacilitiesRulesHeading && <CommanHeading
-          headingText
-          heading={props.FacilitiesRulesHeading}
-          commanHeadingContainerStyle={[
-            styles.facilitiesHeadingStyle,
-            props.facilitiesHeadingStyle
-          ]}
-          navigation={navigate}
-        />}
+        {props.FacilitiesRulesHeading && (
+          <CommanHeading
+            headingText
+            heading={props.FacilitiesRulesHeading}
+            commanHeadingContainerStyle={[
+              styles.facilitiesHeadingStyle,
+              props.facilitiesHeadingStyle,
+            ]}
+            navigation={navigate}
+          />
+        )}
         <View style={styles.facilitiListContent}>
           <FlatList
             bounces={false}
             data={props.facilitiesListData}
             renderItem={renderItem}
             numColumns={props?.numColumns || 3}
-            keyExtractor={(item) => item.id}
+            keyExtractor={item => item.id}
             contentContainerStyle={styles.facilitiListContainer}
           />
         </View>

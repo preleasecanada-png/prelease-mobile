@@ -1,21 +1,21 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   container: {
     paddingBottom: '15rem',
-    paddingHorizontal: '20rem'
+    paddingHorizontal: '20rem',
   },
   termsServiceText: {
     lineHeight: '21rem',
     color: Colors.darkGray,
     marginBottom: '8rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   termsServiceTextLink: {
-    color: Colors.primary
-  }
+    color: Colors.primary,
+  },
 });
 
 export default styles;

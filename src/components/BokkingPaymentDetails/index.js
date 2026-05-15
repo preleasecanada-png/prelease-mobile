@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import CommanHeading from '../CommanHeading';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 import styles from './Styles/Index';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 
 function BokkingPaymentDetailsScreen({
   BokkingPaymentDetailsHeading,
   BokkingPaymentDetailsHeadingStyle,
-  BokkingPaymentDetailsContentStyle
+  BokkingPaymentDetailsContentStyle,
 }) {
   return (
     <>

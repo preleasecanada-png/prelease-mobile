@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import CommanBtnScreen from '../../components/CommanBtn/index';
 import CommanText from '../../components/SignUpLogIn/CommanText';
 import styles from './Styles/IdentityVerificationStyle';
 
-function IdentityVerificationScreen({ navigation }) {
+function IdentityVerificationScreen({navigation}) {
   return (
     <Container>
       <Header

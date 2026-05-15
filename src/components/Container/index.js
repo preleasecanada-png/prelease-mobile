@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, View } from 'react-native';
+import {SafeAreaView, StatusBar, View} from 'react-native';
 // import { colors } from '../../theme';
 import Colors from '../../theme/Colors';
 import styles from './Styles';
@@ -13,20 +13,20 @@ export default class Container extends React.Component {
       lightContent,
       safeAreaView,
       safeAreaViewHeader,
-      conatinerStyle
+      conatinerStyle,
     } = this.props;
     const style = {
       flex: 0,
       alignItems: 'center',
       backgroundColor: !transparentStatusBar
         ? statusBarColor || Colors.lighterGray
-        : Colors.transparent
+        : Colors.transparent,
     };
     return (
       <>
         <StatusBar
-        hidden
-        translucent={true}
+          hidden
+          translucent={true}
           backgroundColor={
             lightContent
               ? Colors.darkGray
@@ -44,7 +44,7 @@ export default class Container extends React.Component {
           <View
             style={[
               styles.container,
-              safeAreaViewHeader === false && styles.statusBarMarginTop
+              safeAreaViewHeader === false && styles.statusBarMarginTop,
             ]}>
             {children}
           </View>

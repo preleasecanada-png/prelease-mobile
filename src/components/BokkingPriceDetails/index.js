@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { Text, View, Image } from 'react-native';
+import {Text, View, Image} from 'react-native';
 import CommanHeading from '../CommanHeading';
 import CommanText from '../SignUpLogIn/CommanText';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 import styles from './Styles/Index';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 
 function BokkingPriceDetailsScreen({
   BokkingPriceDetailsHeading,
   BokkingDetailsHeadingStyle,
-  BokkingPriceDetailsContentStyle
+  BokkingPriceDetailsContentStyle,
 }) {
   return (
     <>
       <View
         style={[
           styles.BokkingPriceDetailsContent,
-          BokkingPriceDetailsContentStyle
+          BokkingPriceDetailsContentStyle,
         ]}>
         <CommanHeading
           headingText

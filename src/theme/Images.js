@@ -261,5 +261,5 @@ export {
   ChatSendBtn,
   ReviewsUserImg1,
   ReviewsUserImg2,
-  ReviewsUserImg3
+  ReviewsUserImg3,
 };

@@ -1,10 +1,16 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors } from '../../../theme';
-import { backgroundColor, borderRadius, borderWidth, padding, zIndex } from 'styled-system';
+import {Colors} from '../../../theme';
+import {
+  backgroundColor,
+  borderRadius,
+  borderWidth,
+  padding,
+  zIndex,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
-  bottomSheetContent:{
-    zIndex: 999
+  bottomSheetContent: {
+    zIndex: 999,
   },
   profileEditContent: {
     width: '110rem',
@@ -19,7 +25,7 @@ const styles = EStyleSheet.create({
     borderWidth: 0.5,
     borderColor: Colors.lighterBlack,
     backgroundColor: Colors.white,
-    borderRadius: 50
+    borderRadius: 50,
   },
   profileImage: {
     width: '110rem',
@@ -27,7 +33,6 @@ const styles = EStyleSheet.create({
     borderRadius: '110rem',
     borderWidth: 0.5,
     borderColor: Colors.lighterBlack,
-    
   },
   profileInputStyle: {
     borderBottomWidth: '2rem',
@@ -36,12 +41,12 @@ const styles = EStyleSheet.create({
     borderRadius: 0,
     paddingHorizontal: 0,
     paddingTop: '8rem',
-    paddingBottom: '15rem'
+    paddingBottom: '15rem',
   },
   userEditImage: {
     width: '15rem',
-    height: '15rem'
-  }
+    height: '15rem',
+  },
 });
 
 export default styles;

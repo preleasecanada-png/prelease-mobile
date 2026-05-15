@@ -1,5 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   radioBtnBoxStyle: {
@@ -8,14 +8,14 @@ const styles = EStyleSheet.create({
     borderBottomWidth: '2rem',
     borderColor: Colors.gray,
     borderRadius: 0,
-    flexDirection: 'row-reverse'
+    flexDirection: 'row-reverse',
   },
   radioBtnTextStyle: {
     color: Colors.black,
     lineHeight: '24rem',
     fontSize: Fonts.size.regular,
-    ...Fonts.style.normalText
-  }
+    ...Fonts.style.normalText,
+  },
 });
 
 export default styles;

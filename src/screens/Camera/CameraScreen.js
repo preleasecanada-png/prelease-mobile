@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useState, useRef } from 'react';
-import { Header, Container } from '../../components';
-import { Text, TouchableOpacity, View, Image } from 'react-native';
-import { RNCamera } from 'react-native-camera';
-import { Colors, Images } from '../../theme';
+import {useState, useRef} from 'react';
+import {Header, Container} from '../../components';
+import {Text, TouchableOpacity, View, Image} from 'react-native';
+import {RNCamera} from 'react-native-camera';
+import {Colors, Images} from '../../theme';
 
 import styles from './Styles/CameraStyle';
 
@@ -13,7 +13,7 @@ import styles from './Styles/CameraStyle';
 //   </View>
 // );
 
-function CameraScreen({ navigation }) {
+function CameraScreen({navigation}) {
   const [flashModeOn, setFlashModeOn] = useState(true);
   // const [cameraFrontBack, setCameraFrontBack] = useState(true);
   // const takePicture = async function (camera: RNCamera) {
@@ -24,7 +24,7 @@ function CameraScreen({ navigation }) {
   const cameraRef = useRef(null);
   const takePicture = async () => {
     if (cameraRef) {
-      const options = { quality: 0.5, base64: true };
+      const options = {quality: 0.5, base64: true};
       const data = await cameraRef.current.takePictureAsync(options);
       // console.log(data.uri);
     }
@@ -47,13 +47,13 @@ function CameraScreen({ navigation }) {
               title: 'Permission to use camera',
               message: 'We need your permission to use your camera',
               buttonPositive: 'Ok',
-              buttonNegative: 'Cancel'
+              buttonNegative: 'Cancel',
             }}
             androidRecordAudioPermissionOptions={{
               title: 'Permission to use audio recording',
               message: 'We need your permission to use your audio',
               buttonPositive: 'Ok',
-              buttonNegative: 'Cancel'
+              buttonNegative: 'Cancel',
             }}
           />
           <Image

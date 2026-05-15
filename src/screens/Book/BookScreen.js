@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Container, Header } from '../../components';
+import {Container, Header} from '../../components';
 import BookPage from '../../components/BookPage';
 
-function BookScreen({ navigation }) {
+function BookScreen({navigation}) {
   return (
     <>
       <Container>

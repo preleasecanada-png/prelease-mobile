@@ -1,8 +1,19 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { isIphoneX } from '../../../libs/Utils';
-import { backgroundColor, borderRadius, borderWidth, marginBottom, marginLeft, marginRight, padding, paddingTop, position, right } from 'styled-system';
-import { color } from 'react-native-reanimated';
+import {Colors, Fonts} from '../../../theme';
+import {isIphoneX} from '../../../libs/Utils';
+import {
+  backgroundColor,
+  borderRadius,
+  borderWidth,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  padding,
+  paddingTop,
+  position,
+  right,
+} from 'styled-system';
+import {color} from 'react-native-reanimated';
 
 const styles = EStyleSheet.create({
   container: {
@@ -18,9 +29,8 @@ const styles = EStyleSheet.create({
     // borderBottomWidth: '2rem',
     // borderColor: Colors.gray,
   },
-  commanHeadingTextStyle:{
+  commanHeadingTextStyle: {
     fontSize: Fonts.size.h3,
-
   },
   tabButton: {
     // flex: 1,
@@ -34,19 +44,14 @@ const styles = EStyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     marginRight: 5,
-
-
   },
-  activedtabButton:{
+  activedtabButton: {
     backgroundColor: Colors.primary,
-
-
   },
-  activetabButtonText:{
+  activetabButtonText: {
     color: Colors.white,
-
   },
-  searchButton:{
+  searchButton: {
     paddingHorizontal: '20rem',
     borderWidth: isIphoneX ? 1 : 0,
     borderColor: Colors.opacityBlack_50,
@@ -57,19 +62,17 @@ const styles = EStyleSheet.create({
     paddingHorizontal: 12,
     // marginRight: 5,
     marginLeft: 'auto',
-
   },
   tabButtonText: {
     fontSize: Fonts.size.medium,
     fontWeight: 'bold',
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
-    color: Colors.opacityBlackText
-
+    color: Colors.opacityBlackText,
   },
   onlineStatus: {
     position: 'absolute',
@@ -83,16 +86,15 @@ const styles = EStyleSheet.create({
     fontSize: Fonts.size.tiny,
     fontWeight: 'bold',
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
-
   },
   searchInputStyle: {
     width: '100% - 40rem',
-    marginBottom: '23rem'
+    marginBottom: '23rem',
   },
   chatListLink: {
     paddingHorizontal: '20rem',
@@ -102,58 +104,56 @@ const styles = EStyleSheet.create({
     // borderBottomWidth: '2rem',
     // borderColor: Colors.gray,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   unReadChatItem: {
-    backgroundColor: 'rgba(217,217,217,0.3)'
-
+    backgroundColor: 'rgba(217,217,217,0.3)',
   },
   chatListDateText: {
     color: '#999',
     fontSize: 12,
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   unreadChatListDateText: {
-    color: Colors.primary
-
+    color: Colors.primary,
   },
   chatText: {
     color: '#666',
     fontSize: 14,
-    marginTop: 2
+    marginTop: 2,
   },
   chatListUserImg: {
     width: 54,
     height: 54,
-    borderRadius: 27
+    borderRadius: 27,
   },
   chatListLinkText: {
     paddingLeft: 15,
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   chatListLinkNameText: {
     color: Colors.black,
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 2
+    marginBottom: 2,
   },
   chatListLinkLastSeenText: {
     lineHeight: '18rem',
     color: Colors.darkGray,
     fontSize: Fonts.size.tiny,
     '@media ios': {
-      ...Fonts.style.normalText
+      ...Fonts.style.normalText,
     },
     '@media android': {
-      ...Fonts.style.normalText
-    }
+      ...Fonts.style.normalText,
+    },
   },
   pageContent: {
     paddingVertical: '10rem',
     paddingHorizontal: '6rem',
     flex: 1,
-    width: '100%'
+    width: '100%',
   },
   chatDetailContent: {
     backgroundColor: Colors.white,
@@ -161,11 +161,11 @@ const styles = EStyleSheet.create({
     borderRadius: '6rem',
     padding: '10rem',
     paddingTop: '6rem',
-    marginBottom: '10rem'
+    marginBottom: '10rem',
   },
   chatDetailText: {
     flexDirection: 'row',
-    paddingTop: '4rem'
+    paddingTop: '4rem',
   },
   msgBg: {
     backgroundColor: Colors.white,
@@ -178,7 +178,7 @@ const styles = EStyleSheet.create({
     overflow: 'hidden',
     maxWidth: '335rem',
     width: '100%',
-    padding: '10rem'
+    padding: '10rem',
   },
   replayMsgBg: {
     backgroundColor: Colors.lighterGray,
@@ -188,45 +188,45 @@ const styles = EStyleSheet.create({
     borderTopLeftRadius: '4rem',
     borderTopEndRadius: '12rem',
     borderBottomLeftRadius: '4rem',
-    borderBottomEndRadius: '12rem'
+    borderBottomEndRadius: '12rem',
   },
   replayMsgUserName: {
     fontSize: '10rem',
     lineHeight: '15rem',
     color: Colors.primary,
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.buttonText
-    }
+      ...Fonts.style.buttonText,
+    },
   },
   replayMsgUserText: {
     lineHeight: '21rem',
     color: Colors.black,
     marginTop: '4rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   messageText: {
     marginVertical: '4rem',
     color: Colors.black,
     lineHeight: '21rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   messageTimeText: {
     fontSize: '10rem',
     lineHeight: '15rem',
     color: Colors.darkerGray,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   msgSeenText: {
     color: Colors.white,
     fontSize: '10rem',
     lineHeight: '15rem',
     paddingRight: '10rem',
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   chatInputContainerStyle: {
     borderWidth: 0,
@@ -238,7 +238,7 @@ const styles = EStyleSheet.create({
     paddingRight: '80rem',
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   inputBorderView: {
     borderWidth: '1rem',
@@ -248,7 +248,7 @@ const styles = EStyleSheet.create({
     width: '100% - 95rem',
     top: '22rem',
     left: '15rem',
-    borderRadius: '25rem'
+    borderRadius: '25rem',
   },
   chatInputBgContainerStyle: {
     backgroundColor: Colors.white,
@@ -261,12 +261,12 @@ const styles = EStyleSheet.create({
     paddingRight: 10,
     shadowOffset: {
       width: 1,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 4,
-    shadowColor: Colors.boxShadowLighterBlack
+    shadowColor: Colors.boxShadowLighterBlack,
   },
   chatSendBtnContainer: {
     width: 40,
@@ -276,49 +276,49 @@ const styles = EStyleSheet.create({
     marginRight: -85,
     marginLeft: 20,
     top: -3,
-    borderRadius: 20
+    borderRadius: 20,
   },
   chatSendBtnImg: {
     width: 18,
-    height: 18
+    height: 18,
   },
   chatContainer: {
     flex: 1,
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   dateRowStyle: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 5,
-    marginBottom: 10
+    marginBottom: 10,
   },
   dateRowLins: {
     height: 1,
     width: '100%',
     flex: 1,
-    backgroundColor: Colors.gray
+    backgroundColor: Colors.gray,
   },
   dateRowLeftLine: {
-    marginLeft: 20
+    marginLeft: 20,
   },
   dateRowRightLine: {
-    marginRight: 20
+    marginRight: 20,
   },
   dateTextStyle: {
     color: Colors.darkerGray,
     lineHeight: '18rem',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.lightText
+    ...Fonts.style.lightText,
   },
   dateTextContainerStyle: {
     marginTop: 0,
     marginBottom: 0,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
   },
   chatMsgTimeText: {
     fontSize: 10,
     lineHeight: 15,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   bubbleTextStyle: {
     padding: 10,
@@ -327,13 +327,13 @@ const styles = EStyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     fontSize: 16,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   textInputStyle: {
     color: Colors.black,
     paddingTop: '8rem',
-    ...Fonts.style.normalText
-  }
+    ...Fonts.style.normalText,
+  },
 });
 
 export default styles;

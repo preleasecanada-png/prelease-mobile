@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import {useState} from 'react';
+import {View, TouchableOpacity} from 'react-native';
 import styles from './Styles/Index';
 
 function CancellationPolicySwitch() {

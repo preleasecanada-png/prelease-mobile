@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
-import { isIphoneX } from '../../../libs/Utils';
-import { Colors, Fonts } from '../../../theme';
+import {Dimensions} from 'react-native';
+import {isIphoneX} from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
 
 const windowWidth = Dimensions.get('window').width;
 const styles = EStyleSheet.create({
@@ -13,13 +13,13 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     width: windowWidth,
     bottom: isIphoneX() ? '30rem' : 0,
-    left: 0
+    left: 0,
   },
   bookNowBtn: {
-    width: '200rem'
+    width: '200rem',
   },
   bookNowBtnPriceTexts: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   bookNowBtnPriceText: {
     color: Colors.primary,
@@ -27,20 +27,20 @@ const styles = EStyleSheet.create({
     textAlign: 'right',
     marginBottom: '6rem',
     ...Fonts.style.buttonText,
-    fontSize: Fonts.size.regular
+    fontSize: Fonts.size.regular,
   },
   bookNowBtnPricePerText: {
     color: Colors.darkGray,
     lineHeight: '21rem',
     textAlign: 'right',
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
   confirmPayBtn: {
     width: '196rem',
     marginLeft: 'auto',
-    marginRight: 'auto'
-  }
+    marginRight: 'auto',
+  },
 });
 
 export default styles;

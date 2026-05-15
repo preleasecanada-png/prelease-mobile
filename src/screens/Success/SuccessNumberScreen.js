@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Text, Image, View } from 'react-native';
-import { Container, Content } from '../../components';
-import { Images } from '../../theme';
+import {Text, Image, View} from 'react-native';
+import {Container, Content} from '../../components';
+import {Images} from '../../theme';
 import styles from './Styles/SuccessStyle';
 
-function SuccessNumberScreen({ navigation }) {
+function SuccessNumberScreen({navigation}) {
   setTimeout(() => {
     navigation.navigate('Login');
   }, 2000);

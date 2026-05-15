@@ -1,28 +1,32 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {View} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import ResetPassword from '../../components/SignUpLogIn/ResetPassword';
 import CommanBtnScreen from '../../components/CommanBtn/index';
 import CommanText from '../../components/SignUpLogIn/CommanText';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import AuthLayout from '../../layouts/AuthLayout';
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@gorhom/bottom-sheet';
-import { Images } from '../../theme';
-import { Image } from 'react-native';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@gorhom/bottom-sheet';
+import {Images} from '../../theme';
+import {Image} from 'react-native';
 import LogoHeading from '../../components/SignUpLogIn/LogoHeading';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 import styles from '../Signup/Styles/SignupStyle';
 import TextInput from '../../components/SignUpLogIn/TextInput';
-import { marginTop } from 'styled-system';
+import {marginTop} from 'styled-system';
 
-function ResetPasswordScreen({ navigation }) {
-
+function ResetPasswordScreen({navigation}) {
   const renderHeaderImage = React.useCallback(() => {
     return (
-      <View style={[{ alignItems: "center", paddingVertical: WINDOW_HEIGHT * 0.02 }]}>
-        <Image source={Images.ResetPassword} resizeMode="center" style={{ width: WINDOW_WIDTH * 0.55, height: WINDOW_HEIGHT * 0.25 }} />
+      <View
+        style={[{alignItems: 'center', paddingVertical: WINDOW_HEIGHT * 0.02}]}>
+        <Image
+          source={Images.ResetPassword}
+          resizeMode="center"
+          style={{width: WINDOW_WIDTH * 0.55, height: WINDOW_HEIGHT * 0.25}}
+        />
       </View>
-    )
+    );
   }, []);
 
   //   <Header
@@ -34,18 +38,14 @@ function ResetPasswordScreen({ navigation }) {
   return (
     <AuthLayout
       backButton
-      heading={"Reset"}
-      renderHeaderImage={renderHeaderImage}
-    >
-      <View style={{  alignItems: 'center' }}>
-        <Text style={styles.heading}>{"Reset your password"}</Text>
+      heading={'Reset'}
+      renderHeaderImage={renderHeaderImage}>
+      <View style={{alignItems: 'center'}}>
+        <Text style={styles.heading}>{'Reset your password'}</Text>
       </View>
       <CommanText
         commanText="Now you can reset your old password"
-        commanTextstyle={[
-          styles.forgotPasswordPageText,
-          styles.resetPageText
-        ]}
+        commanTextstyle={[styles.forgotPasswordPageText, styles.resetPageText]}
       />
       <CommanText
         commanText="Enter a New Password"
@@ -71,7 +71,7 @@ function ResetPasswordScreen({ navigation }) {
       />
       <CommanBtnScreen
         btnText="Submit"
-        commanBtnStyle={[styles.signUpLogInBtn,  {marginTop: 20}]}
+        commanBtnStyle={[styles.signUpLogInBtn, {marginTop: 20}]}
         onBtnPress={() => navigation.navigate('SuccessPassword')}
       />
     </AuthLayout>

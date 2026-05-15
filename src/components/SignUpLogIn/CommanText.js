@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 import styles from './Styles/index';
 
 function CommanText({commanText, commanTextstyle}) {
   return (
     <>
-      <Text style={[styles.commanText, commanTextstyle]}>
-        {commanText}
-      </Text>
+      <Text style={[styles.commanText, commanTextstyle]}>{commanText}</Text>
     </>
   );
 }

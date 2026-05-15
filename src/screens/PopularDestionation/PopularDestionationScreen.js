@@ -1,25 +1,31 @@
 import * as React from 'react';
-import { useRef, useMemo } from 'react';
-import { TouchableOpacity, Image, Text, View, ActivityIndicator } from 'react-native';
-import { Container, Header, Content } from '../../components';
+import {useRef, useMemo} from 'react';
+import {
+  TouchableOpacity,
+  Image,
+  Text,
+  View,
+  ActivityIndicator,
+} from 'react-native';
+import {Container, Header, Content} from '../../components';
 import PopularDestionationProparty from '../../components/PopularDestionationProparty';
 import DestionationSlider from '../../components/DestionationSlider';
 import CommanHeading from '../../components/CommanHeading';
 import styles from './Styles/PopularDestionationStyle';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import BottomSheet from '@gorhom/bottom-sheet';
-import { Images, Colors } from '../../theme';
-import MapView, { Marker } from 'react-native-maps';
-import { PropertyService } from '../../services';
-import { propertyImageUrl } from '../../services/api';
+import {Images, Colors} from '../../theme';
+import MapView, {Marker} from 'react-native-maps';
+import {PropertyService} from '../../services';
+import {propertyImageUrl} from '../../services/api';
 
-function PopularDestionationScreen({ navigation }) {
+function PopularDestionationScreen({navigation}) {
   const bottomSheetRef = useRef(null);
   const [scrollEnabled, setScrollEnabled] = React.useState(false);
   const [properties, setProperties] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const snapPoints = useMemo(() => ['18%', '50%', '100%']);
-  const handleSheetChanges = React.useCallback((index) => {
+  const handleSheetChanges = React.useCallback(index => {
     if (index === 2) {
       setScrollEnabled(true);
     } else {
@@ -39,14 +45,18 @@ function PopularDestionationScreen({ navigation }) {
         ...p,
         id: String(p.id),
         proprtyName: p.title || 'Property',
-        proceMonthYear: p.price ? `$${Number(p.price).toLocaleString()} / month` : '',
-        popularDestionationLocationText: [p.address, p.city].filter(Boolean).join(', '),
+        proceMonthYear: p.price
+          ? `$${Number(p.price).toLocaleString()} / month`
+          : '',
+        popularDestionationLocationText: [p.address, p.city]
+          .filter(Boolean)
+          .join(', '),
         proprtyRatingText: p.avg_rating || '—',
         bedText: p.bedrooms ? `${p.bedrooms} Bed` : '',
         bathText: p.bathrooms ? `${p.bathrooms} Bath` : '',
         sqftText: p.area ? `${p.area} sqft` : '',
         proprtyImg: propertyImageUrl(p)
-          ? { uri: propertyImageUrl(p) }
+          ? {uri: propertyImageUrl(p)}
           : Images.SliderHomeHouseImageOne,
         proprtyLocationImg: Images.LocationImage,
         proprtyRatingStarImg: Images.StarActive,
@@ -59,7 +69,9 @@ function PopularDestionationScreen({ navigation }) {
         raw: p,
       }));
       setProperties(mapped);
-    } catch (e) { console.error(e); }
+    } catch (e) {
+      console.error(e);
+    }
     setLoading(false);
   };
 
@@ -94,12 +106,12 @@ function PopularDestionationScreen({ navigation }) {
                 latitude: defaultLat,
                 longitude: defaultLng,
                 latitudeDelta: 0.1,
-                longitudeDelta: 0.1
+                longitudeDelta: 0.1,
               }}>
               {markers.map(m => (
                 <Marker
                   key={m.id}
-                  coordinate={{ latitude: m.lat, longitude: m.lng }}
+                  coordinate={{latitude: m.lat, longitude: m.lng}}
                   title={m.title}
                   image={Images.CurrentLocation}
                 />
@@ -119,13 +131,19 @@ function PopularDestionationScreen({ navigation }) {
               contentContainerStyle={styles.contentContainer}
               scrollEnabled={scrollEnabled}>
               {loading ? (
-                <ActivityIndicator size="large" color={Colors.primary} style={{ marginTop: 20 }} />
+                <ActivityIndicator
+                  size="large"
+                  color={Colors.primary}
+                  style={{marginTop: 20}}
+                />
               ) : (
                 <>
                   <PopularDestionationProparty
                     data={properties.slice(0, 3)}
-                    onDestionationPress={(item) => {
-                      navigation.navigate('PopularDetails', { item: item?.raw || item });
+                    onDestionationPress={item => {
+                      navigation.navigate('PopularDetails', {
+                        item: item?.raw || item,
+                      });
                     }}
                     onLikePress={() => navigation.navigate('Wishlist')}
                     onSendMsgPress={() => navigation.navigate('chatDetails')}
@@ -134,7 +152,9 @@ function PopularDestionationScreen({ navigation }) {
                     headingBtn
                     heading="Featured Properties"
                     moreBtn="View all"
-                    commanHeadingContainerStyle={styles.firstBookingHeadingStyle}
+                    commanHeadingContainerStyle={
+                      styles.firstBookingHeadingStyle
+                    }
                     navigation={navigate}
                   />
                   <DestionationSlider
@@ -149,8 +169,10 @@ function PopularDestionationScreen({ navigation }) {
                   {properties.length > 3 && (
                     <PopularDestionationProparty
                       data={properties.slice(3, 6)}
-                      onDestionationPress={(item) => {
-                        navigation.navigate('PopularDetails', { item: item?.raw || item });
+                      onDestionationPress={item => {
+                        navigation.navigate('PopularDetails', {
+                          item: item?.raw || item,
+                        });
                       }}
                     />
                   )}

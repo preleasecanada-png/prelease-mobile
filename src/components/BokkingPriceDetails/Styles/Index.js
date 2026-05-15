@@ -1,57 +1,55 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     paddingBottom: '15rem',
     paddingHorizontal: '20rem',
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   BokkingPriceDetailsContent: {
     paddingBottom: '15rem',
     borderBottomWidth: '2rem',
-    borderColor: Colors.gray
+    borderColor: Colors.gray,
   },
   bokkingPriceTexts: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '6rem'
+    marginBottom: '6rem',
   },
   bokkingPriceLeftText: {
     lineHeight: '18rem',
     color: Colors.darkGray,
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.tiny
+    fontSize: Fonts.size.tiny,
   },
   bokkingPriceRightText: {
     marginLeft: 'auto',
     lineHeight: '18rem',
     color: Colors.darkGray,
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.tiny
+    fontSize: Fonts.size.tiny,
   },
   bokkingTotalPriceText: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '4rem'
+    marginTop: '4rem',
   },
   bokkingTotalPriceLeftText: {
     lineHeight: '24rem',
     color: Colors.black,
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.regular
+    fontSize: Fonts.size.regular,
   },
   bokkingTotalPriceRightText: {
     marginLeft: 'auto',
     lineHeight: '24rem',
     color: Colors.black,
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.regular
+    fontSize: Fonts.size.regular,
   },
-  commanHeadingContainerStyle:{
-    
-  }
+  commanHeadingContainerStyle: {},
 });
 
 export default styles;

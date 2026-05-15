@@ -1,30 +1,30 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { isIphoneX } from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
+import {isIphoneX} from '../../../libs/Utils';
 
 const styles = EStyleSheet.create({
   contentContainer: {
     paddingHorizontal: '20rem',
     '@media ios': {
-      paddingBottom: isIphoneX() ? '20rem' : '80rem'
+      paddingBottom: isIphoneX() ? '20rem' : '80rem',
     },
     '@media android': {
-      paddingBottom: '80rem'
-    }
+      paddingBottom: '80rem',
+    },
   },
   fullScreenSliderContainer: {
     height: '200rem',
     borderRadius: '20rem',
-    width: '100% - 40rem'
+    width: '100% - 40rem',
   },
   sliderBgImagestyle: {
-    height: '200rem'
+    height: '200rem',
   },
   carouselSliderContainerStyle: {
-    height: '252rem'
+    height: '252rem',
   },
   firstBookingHeadingStyle: {
-    marginTop: '44rem'
+    marginTop: '44rem',
   },
   papperMapIconBtn: {
     backgroundColor: Colors.opacityBlack,
@@ -38,11 +38,11 @@ const styles = EStyleSheet.create({
     bottom: '33rem',
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: '10rem'
+    borderRadius: '10rem',
   },
   papperMapIcon: {
     width: '15rem',
-    height: '13.33rem'
+    height: '13.33rem',
   },
   papperMapIconBtnText: {
     color: Colors.white,
@@ -50,24 +50,24 @@ const styles = EStyleSheet.create({
     lineHeight: '15rem',
     letterSpacing: '-0.02rem',
     ...Fonts.style.buttonText,
-    fontSize: Fonts.size.tiny
+    fontSize: Fonts.size.tiny,
   },
   mapStyle: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   handleIndicatorStyle: {
     width: '50rem',
     height: '3rem',
-    backgroundColor: Colors.lightBlack
+    backgroundColor: Colors.lightBlack,
   },
   backgroundStyle: {
     backgroundColor: Colors.lighterGray,
-    borderRadius: 0
+    borderRadius: 0,
   },
   handleStyle: {
-    paddingVertical: '23rem'
-  }
+    paddingVertical: '23rem',
+  },
 });
 
 export default styles;

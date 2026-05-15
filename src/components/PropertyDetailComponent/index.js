@@ -5,9 +5,9 @@ import BokkingDetails from '../BokkingDetails';
 import BokkingPriceDetails from '../BokkingPriceDetails';
 import BokkingPaymentDetails from '../BokkingPaymentDetails';
 import CancellationPolicy from '../CancellationPolicy';
-import { facilitiesList } from '../../assets/data';
+import {facilitiesList} from '../../assets/data';
 import styles from './Styles/index';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 
 function PropertyDetailComponent(props) {
   return (

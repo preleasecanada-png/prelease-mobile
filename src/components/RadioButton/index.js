@@ -1,6 +1,6 @@
 import * as React from 'react';
 import RadioButtonRN from 'radio-buttons-react-native';
-import { Colors } from '../../theme';
+import {Colors} from '../../theme';
 import styles from './Styles/Index';
 
 function RadioButton(props) {

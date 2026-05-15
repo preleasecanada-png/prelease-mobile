@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { TextInput, Image, View, TouchableOpacity } from 'react-native';
+import {useState} from 'react';
+import {TextInput, Image, View, TouchableOpacity} from 'react-native';
 import dayjs from 'dayjs';
-import { Images, Colors } from '../../theme';
+import {Images, Colors} from '../../theme';
 import styles from './Styles/index';
 import PhoneInput from 'react-native-phone-number-input';
 
@@ -18,7 +18,7 @@ function TextInputScreen({
   style,
   onPress,
   onChangeText,
-  value
+  value,
 }) {
   // const phoneInput = React.useRef(null);
   const [showPassword, setShowPassword] = useState(true);
@@ -27,13 +27,12 @@ function TextInputScreen({
 
   const handleBlur = () => {
     setIsFocused(false);
-  }
+  };
 
   const handleFocus = () => {
     setIsFocused(true);
-  }
+  };
   const inputRef = React.useRef(null);
-
 
   return (
     <>
@@ -46,7 +45,7 @@ function TextInputScreen({
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChangeText={onChangeText}
-          value={value||''}
+          value={value || ''}
         />
       )}
       {passwordInput && (
@@ -60,7 +59,7 @@ function TextInputScreen({
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChangeText={onChangeText}
-            value={value||''}
+            value={value || ''}
           />
           <TouchableOpacity
             style={styles.passwordEyeImgBtn}
@@ -97,8 +96,8 @@ function TextInputScreen({
           disableArrowIcon={false}
           placeholder={placeholder}
           // ref={phoneInput}
-          containerStyle={[styles.phoneInputContatinerStyle,style, inputStyle]}
-          textContainerStyle={[styles.phoneInputStyle,]}
+          containerStyle={[styles.phoneInputContatinerStyle, style, inputStyle]}
+          textContainerStyle={[styles.phoneInputStyle]}
           textInputStyle={[styles.phoneTextInputStyle]}
           codeTextStyle={[styles.phoneTextInputStyle, styles.phoneCodeStyle]}
           flagButtonStyle={[styles.phoneFlagButtonStyle]}
@@ -106,16 +105,16 @@ function TextInputScreen({
           // defaultValue={value}
           defaultCode="CA"
           layout="first"
-          onChangeText={(text) => {
+          onChangeText={text => {
             // setValue(text);
           }}
-          onChangeFormattedText={(text) => {
+          onChangeFormattedText={text => {
             // setFormattedValue(text);
           }}
           withDarkTheme
-        // withDarkTheme
-        // withShadow
-        // autoFocus
+          // withDarkTheme
+          // withShadow
+          // autoFocus
         />
       )}
     </>

@@ -1,15 +1,20 @@
 import * as React from 'react';
-import { View, Image, TouchableOpacity, ImageProps, PermissionsAndroid } from 'react-native';
-import ImagePicker, { ImageOrVideo } from 'react-native-image-crop-picker';
-import { Images } from '../../theme';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  ImageProps,
+  PermissionsAndroid,
+} from 'react-native';
+import ImagePicker, {ImageOrVideo} from 'react-native-image-crop-picker';
+import {Images} from '../../theme';
 import styles from './Styles/index';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 function ProfilePhoto(props) {
   const [uri, setUri] = React.useState(props.source?.uri || undefined);
   const bottomSheetRef = React.useRef(null);
-
 
   const requestCameraPermission = async () => {
     try {
@@ -39,39 +44,37 @@ function ProfilePhoto(props) {
   };
 
   const pickPicture = () => {
-
-    requestCameraPermission().then((response) => {
-      response && ImagePicker.openPicker({
-        width: 110,
-        height: 110,
-        cropping: true
-      }).then((image) => {
-        setUri(image.path);
-        props.onChange?.(image);
-      });
+    requestCameraPermission().then(response => {
+      response &&
+        ImagePicker.openPicker({
+          width: 110,
+          height: 110,
+          cropping: true,
+        }).then(image => {
+          setUri(image.path);
+          props.onChange?.(image);
+        });
     });
-
   };
   return (
     <View style={{flex: 1}}>
       <View style={styles.profileEditContent}>
         <Image
-          source={uri ? { uri } : Images.UserImage}
+          source={uri ? {uri} : Images.UserImage}
           resizeMode="cover"
           style={styles.profileImage}
         />
-        <TouchableOpacity style={styles.userEditImageBtn} onPress={()=>props.handleSheetChanges(250, 250)}>
-          <Icon name='camera' size={14} />
+        <TouchableOpacity
+          style={styles.userEditImageBtn}
+          onPress={() => props.handleSheetChanges(250, 250)}>
+          <Icon name="camera" size={14} />
           {/* <Image
             source={Images.EditIcon}
             resizeMode="contain"
             style={styles.userEditImage}
           /> */}
         </TouchableOpacity>
-
       </View>
-
-      
     </View>
   );
 }

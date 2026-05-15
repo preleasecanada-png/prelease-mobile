@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.INIT_APP:
     case types.GO_TO_DETAILS:
-      return { ...state, ...action.payload };
+      return {...state, ...action.payload};
     case types.LOGIN_SUCCESS:
       return {
         ...state,
@@ -25,16 +25,16 @@ const reducer = (state = initialState, action) => {
         isLoggedIn: true,
       };
     case types.SET_USER:
-      return { ...state, user: action.payload };
+      return {...state, user: action.payload};
     case types.SET_TOKEN:
-      return { ...state, token: action.payload };
+      return {...state, token: action.payload};
     case types.LOGOUT:
-      return { ...initialState, intro: false };
+      return {...initialState, intro: false};
     default:
       return state;
   }
 };
 
-export const orderSelector = (state) => state.app;
+export const orderSelector = state => state.app;
 
 export default reducer;

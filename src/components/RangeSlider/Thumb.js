@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Image } from 'react-native';
-import { Images } from '../../theme';
+import {View, Image} from 'react-native';
+import {Images} from '../../theme';
 import styles from './Styles/Index';
 
-const Thumb = (props) => {
+const Thumb = props => {
   return (
     <View style={styles.thumbContainer}>
       {/* <Image

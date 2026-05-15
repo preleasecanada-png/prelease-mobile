@@ -5,17 +5,17 @@ import {
   Text,
   Image,
   Linking,
-  Platform
+  Platform,
 } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {Container, Content, Header} from '../../components';
 import CommanHeading from '../../components/CommanHeading';
 import CommanText from '../../components/SignUpLogIn/CommanText';
 import styles from './Styles';
-import { Images } from '../../theme';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {Images} from '../../theme';
+import {navigate} from '../../navigation/ReduxNavigation';
 
-function CallEmergencyServicesScreen({ navigation }) {
-  const dialCall = (number) => {
+function CallEmergencyServicesScreen({navigation}) {
+  const dialCall = number => {
     let phoneNumber = '';
     if (Platform.OS === 'android') {
       phoneNumber = `tel:${number}`;

@@ -1,6 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { isIphoneX } from '../../../libs/Utils';
-import { Colors, Fonts } from '../../../theme';
+import {isIphoneX} from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   container: {
@@ -8,21 +8,21 @@ const styles = EStyleSheet.create({
     paddingBottom: '15rem',
     '@media ios': {
       flex: isIphoneX() ? 1 : 0,
-      paddingTop: '81rem'
+      paddingTop: '81rem',
     },
     '@media android': {
-      paddingTop: '20rem'
+      paddingTop: '20rem',
     },
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   signupLoginInputGroup: {
     paddingHorizontal: '10rem',
-    paddingVertical: '25rem'
+    paddingVertical: '25rem',
   },
   lastInputStyle: {
-    marginBottom: '32rem'
+    marginBottom: '32rem',
   },
-  
+
   heading: {
     // marginBottom: '18rem',
     textAlign: 'center',
@@ -30,23 +30,23 @@ const styles = EStyleSheet.create({
     color: Colors.black,
     lineHeight: '28rem',
     fontSize: Fonts.size.h3,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   logoHeadingStyle: {
     marginHorizontal: '-25rem',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   passwordInputStyle: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   signUpLogInBtn: {
-    marginBottom: '37rem'
+    marginBottom: '37rem',
   },
   googleFaceBookBtnRow: {
     flexDirection: 'row',
     marginHorizontal: '-4%',
     marginTop: '37rem',
-    marginBottom: '32rem'
+    marginBottom: '32rem',
   },
   bottomAccountText: {
     lineHeight: '18rem',
@@ -54,7 +54,7 @@ const styles = EStyleSheet.create({
     alignSelf: 'center',
     marginTop: 'auto',
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.tiny
+    fontSize: Fonts.size.tiny,
   },
   loginSignupBtnText: {
     lineHeight: '18rem',
@@ -63,45 +63,45 @@ const styles = EStyleSheet.create({
     textDecorationStyle: 'solid',
     textDecorationColor: Colors.primary,
     ...Fonts.style.textInputText,
-    fontSize: Fonts.size.tiny
+    fontSize: Fonts.size.tiny,
   },
   forgotPasswordLink: {
     marginBottom: '32rem',
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   forgotPasswordText: {
     textAlign: 'right',
     fontSize: '10rem',
     lineHeight: '15rem',
     color: Colors.darkGray,
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
   forgotPasswordInput: {
-    marginBottom: '37rem'
+    marginBottom: '37rem',
   },
   resetPasswordInput: {
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   forgotPasswordPageText: {
     lineHeight: '21rem',
     marginBottom: '20rem',
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
   resetPageText: {
     marginBottom: '33rem',
-    letterSpacing: '-0.24rem'
+    letterSpacing: '-0.24rem',
   },
   resetPasswordContainer: {
     paddingHorizontal: '15rem',
-    paddingTop: '23rem'
+    paddingTop: '23rem',
   },
   inputLabelText: {
     textAlign: 'left',
     color: Colors.lighterBlack,
     ...Fonts.style.textInputText,
-    fontSize: Fonts.size.tiny
-  }
+    fontSize: Fonts.size.tiny,
+  },
 });
 
 export default styles;

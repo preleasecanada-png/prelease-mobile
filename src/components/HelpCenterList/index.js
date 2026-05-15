@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Text, Image, View, TouchableOpacity, FlatList } from 'react-native';
-import { Images } from '../../theme';
+import {useState} from 'react';
+import {Text, Image, View, TouchableOpacity, FlatList} from 'react-native';
+import {Images} from '../../theme';
 import styles from './Styles/index';
 
 function HelpCenterList({
@@ -9,9 +9,9 @@ function HelpCenterList({
   helpCenterTopicList,
   helpCenterList,
   helpCenterArticleTextImg,
-  helpCenterTopicTextImg
+  helpCenterTopicTextImg,
 }) {
-  const renderItem = ({ item }) => (
+  const renderItem = ({item}) => (
     <TouchableOpacity style={styles.recommendedArticalLinks}>
       {helpCenterArticleTextImg && (
         <>

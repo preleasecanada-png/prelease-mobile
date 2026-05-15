@@ -3,9 +3,9 @@ import api from './api';
 const ApplicationService = {
   list: (role = 'renter') => api.get(`/applications?role=${role}`),
 
-  get: (id) => api.get(`/applications/${id}`),
+  get: id => api.get(`/applications/${id}`),
 
-  create: (data) => api.post('/applications', data),
+  create: data => api.post('/applications', data),
 
   updateStatus: (id, status, notes = '') =>
     api.post(`/applications/${id}/status`, {
@@ -13,7 +13,7 @@ const ApplicationService = {
       landlord_notes: notes,
     }),
 
-  withdraw: (id) => api.post(`/applications/${id}/withdraw`),
+  withdraw: id => api.post(`/applications/${id}/withdraw`),
 
   uploadDocument: (applicationId, documentType, file) => {
     const formData = new FormData();

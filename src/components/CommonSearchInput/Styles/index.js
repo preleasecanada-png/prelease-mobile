@@ -1,16 +1,22 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { borderRadius, left, marginBottom, marginTop, overflow, width } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {
+  borderRadius,
+  left,
+  marginBottom,
+  marginTop,
+  overflow,
+  width,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
-  surface:{
+  surface: {
     // backgroundColor: Colors.white,
     height: '40rem',
     borderRadius: 50,
     overflow: 'hidden',
     marginBottom: 10,
-    marginTop: 10
-
+    marginTop: 10,
   },
   allInputStyle: {
     backgroundColor: Colors.white,
@@ -27,7 +33,7 @@ const styles = EStyleSheet.create({
     ...Fonts.style.normalText,
     fontSize: Fonts.size.medium,
     borderRadius: 50,
-    width: "100%",
+    width: '100%',
     // shadowOffset: {
     //   width: '1rem',
     //   height: '1rem'
@@ -44,8 +50,8 @@ const styles = EStyleSheet.create({
     left: '15.71rem',
     // width: '14rem',
     // height: '14rem',
-    tintColor: Colors.black
-  }
+    tintColor: Colors.black,
+  },
 });
 
 export default styles;

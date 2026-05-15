@@ -1,15 +1,24 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { alignItems, alignSelf, backgroundColor, borderRadius, flex, flexDirection, height, justifyContent, width } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {
+  alignItems,
+  alignSelf,
+  backgroundColor,
+  borderRadius,
+  flex,
+  flexDirection,
+  height,
+  justifyContent,
+  width,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
   container: {
     paddingBottom: '15rem',
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
-  commanHeadingTextStyle:{
+  commanHeadingTextStyle: {
     fontSize: Fonts.size.h3,
-
   },
   notificationLinks: {
     flex: 1,
@@ -26,7 +35,7 @@ const styles = EStyleSheet.create({
     width: '100%',
     alignSelf: 'center',
     shadowColor: Colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 2,
@@ -35,13 +44,14 @@ const styles = EStyleSheet.create({
   notificationLinkIcon: {
     width: '15rem',
     height: '15rem',
-    marginTop: '3rem'
+    marginTop: '3rem',
   },
-  commanDateTextStyle:{
-    alignSelf: 'flex-start', color: Colors.black, 
+  commanDateTextStyle: {
+    alignSelf: 'flex-start',
+    color: Colors.black,
     fontSize: Fonts.size.medium,
     marginLeft: '10rem',
-   ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
   notificationLinksHeadingPeregraph: {
     flex: 1,
@@ -60,31 +70,31 @@ const styles = EStyleSheet.create({
     // width: '90%',
     // width: '100%',
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
   },
   notificationLinksHeadingText: {
     lineHeight: '20rem',
     color: Colors.black,
     fontSize: Fonts.size.regular,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   notificationLinksTimeText: {
     // marginLeft: 'auto',
     lineHeight: '18rem',
-    color: Colors.primary,  
+    color: Colors.primary,
     fontSize: Fonts.size.xTiny,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   notificationLinksPeregraphText: {
     lineHeight: '21rem',
     color: Colors.darkerGray,
     // width: '100% - 68rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
   notReadMsg: {
-    color: Colors.lightRed
-  }
+    color: Colors.lightRed,
+  },
 });
 
 export default styles;

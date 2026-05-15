@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import {useState} from 'react';
+import {View, Text, Image} from 'react-native';
 import CountryPicker from 'react-native-country-picker-modal';
-import { CountryCode, Country } from './Styles/type';
-import { Container, Content, Header } from '../../components';
+import {CountryCode, Country} from './Styles/type';
+import {Container, Content, Header} from '../../components';
 import CommanText from '../../components/SignUpLogIn/CommanText';
 import CommanHeading from '../../components/CommanHeading';
 import RadioButton from '../../components/RadioButton';
 import CommanBtn from '../../components/CommanBtn';
-import { chooseIdData } from '../../assets/data';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {chooseIdData} from '../../assets/data';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/SelectProofStyle';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 
-function SelectProofScreen({ navigation }) {
+function SelectProofScreen({navigation}) {
   const [countryCode, setCountryCode] = useState('IN');
-  const onSelect = (country) => {
+  const onSelect = country => {
     setCountryCode(country.cca2);
   };
   return (
@@ -49,7 +49,7 @@ function SelectProofScreen({ navigation }) {
               withFlagButton: false,
               withAlphaFilter: true,
               allowFontScaling: true,
-              onSelect
+              onSelect,
             }}
             containerButtonStyle={styles.countryPickerStyle}
             theme={styles.countryPickerThemeStyle}

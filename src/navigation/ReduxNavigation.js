@@ -8,7 +8,7 @@ export const navigate = (name, params) =>
   navigationRef.current &&
   navigationRef.current.navigate(name, params);
 
-export const dispatch = (params) =>
+export const dispatch = params =>
   isReadyRef.current &&
   navigationRef.current &&
   navigationRef.current.dispatch(params);
@@ -18,9 +18,9 @@ export const getRootState = () =>
   navigationRef.current &&
   navigationRef.current.getRootState();
 
-export const reset = (name) =>
+export const reset = name =>
   isReadyRef.current &&
   navigationRef.current &&
   navigationRef.current.reset({
-    routes: [{ name }]
+    routes: [{name}],
   });

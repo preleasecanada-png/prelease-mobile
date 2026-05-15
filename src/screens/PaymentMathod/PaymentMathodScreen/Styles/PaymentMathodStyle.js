@@ -1,36 +1,34 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../../theme';
-import { borderRadius } from 'styled-system';
+import {Colors, Fonts} from '../../../../theme';
+import {borderRadius} from 'styled-system';
 
 const styles = EStyleSheet.create({
-  flexRow:{
+  flexRow: {
     // flex: 1,
     flexDirection: 'row',
-    justifyContent:'space-between'
+    justifyContent: 'space-between',
   },
-  commanHeadingContainerStyle:{
-    marginBottom: 10
+  commanHeadingContainerStyle: {
+    marginBottom: 10,
     // borderBottomWidth: 1,
     // borderColor: "#CCCCCC"
-
   },
-  labelStyle:{
+  labelStyle: {
     color: Colors.black,
     fontSize: Fonts.size.tiny,
     marginBottom: '15rem',
     textAlign: 'left',
     lineHeight: '18rem',
     fontSize: Fonts.size.small,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
-  lineSeperator:{
+  lineSeperator: {
     borderBottomWidth: 1,
-    borderColor: "#CCCCCC"
-
+    borderColor: '#CCCCCC',
   },
-  headingText:{
+  headingText: {
     color: Colors.white,
-    fontSize: Fonts.size.h3
+    fontSize: Fonts.size.h3,
   },
   // container: {
   //   paddingVertical: '15rem',
@@ -40,7 +38,7 @@ const styles = EStyleSheet.create({
   container: {
     paddingTop: '23rem',
     paddingHorizontal: '20rem',
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   addPaymentBtn: {
     marginTop: '14rem',
@@ -54,32 +52,32 @@ const styles = EStyleSheet.create({
     marginBottom: '5rem',
     textAlign: 'left',
     lineHeight: '18rem',
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
-  inputStyle:{
+  inputStyle: {
     marginBottom: '15rem',
     paddingHorizontal: '10rem',
     backgroundColor: Colors.white,
     color: Colors.black,
     fontSize: '16rem',
   },
-  buttonsContainer:{
-    paddingHorizontal: 0, paddingVertical: 20,
+  buttonsContainer: {
+    paddingHorizontal: 0,
+    paddingVertical: 20,
     flexDirection: 'row',
-    justifyContent:'space-between'
+    justifyContent: 'space-between',
   },
-  btnStyle:{
+  btnStyle: {
     borderRadius: 50,
-    width: 100
+    width: 100,
   },
-  cancelButtonTextStyle:{
+  cancelButtonTextStyle: {
     color: Colors.black,
     textDecorationLine: 'underline',
-    textDecorationStyle:'solid',
+    textDecorationStyle: 'solid',
     textDecorationColor: Colors.black,
     fontSize: Fonts.size.regular,
-
-  }
+  },
 });
 
 export default styles;

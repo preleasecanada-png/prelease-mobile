@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import {View, Text} from 'react-native';
 // import { Calendar } from 'react-native-calendars';
 import CommanBtn from '../CommanBtn';
 import CommanHeading from '../CommanHeading';
 import Date from '../BookPage/Date';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/Index';
 
 function DatePicker() {

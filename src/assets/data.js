@@ -1,4 +1,4 @@
-import { Colors, Icons, Images } from '../theme';
+import {Colors, Icons, Images} from '../theme';
 
 // home screen dara start
 const categoryListData = [
@@ -18,7 +18,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: true
+    isWish: true,
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: true
+    isWish: true,
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
+    isWish: false,
   },
   {
     id: 4,
@@ -72,7 +72,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
+    isWish: false,
   },
   {
     id: 5,
@@ -90,7 +90,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
+    isWish: false,
   },
   {
     id: 6,
@@ -108,7 +108,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
+    isWish: false,
   },
   {
     id: 7,
@@ -126,7 +126,7 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
+    isWish: false,
   },
   {
     id: 8,
@@ -144,8 +144,8 @@ const categoryListData = [
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
     sqftImg: Images.SqftIcon,
-    isWish: false
-  }
+    isWish: false,
+  },
 ];
 // home screen dara end
 
@@ -154,199 +154,198 @@ const facilitiesList = [
   {
     id: 1,
     image: Images.BedRoomIcon,
-    text: 'Bedroom'
+    text: 'Bedroom',
   },
   {
     id: 2,
     image: Images.BathRoomIcon,
-    text: 'Bathroom'
+    text: 'Bathroom',
   },
   {
     id: 3,
     image: Images.KitchenIcon,
-    text: 'Kitchen'
+    text: 'Kitchen',
   },
   {
     id: 4,
     image: Images.livingRoomIcon,
-    text: 'living room'
+    text: 'living room',
   },
   {
     id: 5,
     image: Images.GarageIcon,
-    text: 'Garage'
+    text: 'Garage',
   },
   {
     id: 6,
     image: Images.KidsRoomIcon,
-    text: 'Kids room'
+    text: 'Kids room',
   },
 ];
 const amenitiesList = [
-
   {
     id: 7,
     image: Images.WifiIcon,
-    text: 'Wifi'
+    text: 'Wifi',
   },
   {
     id: 8,
     image: Images.PoolIcon,
-    text: 'Pool'
+    text: 'Pool',
   },
   {
     id: 9,
     image: Images.PetsIcon,
-    text: 'Pets'
+    text: 'Pets',
   },
   {
     id: 10,
     image: Images.PetsIcon,
-    text: 'Pets'
+    text: 'Pets',
   },
   {
     id: 11,
     image: Images.SmokingIcon,
-    text: 'Smoking'
+    text: 'Smoking',
   },
   {
     id: 12,
     image: Images.CouplesIcon,
-    text: 'Couples'
+    text: 'Couples',
   },
   {
     id: 13,
     image: Images.PetsIcon,
-    text: 'Family'
+    text: 'Family',
   },
   {
     id: 14,
     image: Images.PetsIcon,
-    text: 'Girls'
-  }
-]
+    text: 'Girls',
+  },
+];
 
 const facilitiesCounterList = [
   {
     id: 1,
     minasImage: Images.MinasIcon,
     pluseImage: Images.PluseIcon,
-    text: 'Bedrooms'
+    text: 'Bedrooms',
   },
   {
     id: 2,
     minasImage: Images.MinasIcon,
     pluseImage: Images.PluseIcon,
-    text: 'Bathrooms'
-  }
+    text: 'Bathrooms',
+  },
 ];
 
 const propertyTypeData = [
   {
     id: 1,
-    label: 'Row House'
+    label: 'Row House',
   },
   {
     id: 2,
-    label: 'Flat'
+    label: 'Flat',
   },
   {
     id: 3,
-    label: 'Appartment'
+    label: 'Appartment',
   },
   {
     id: 4,
-    label: 'Villa'
-  }
+    label: 'Villa',
+  },
 ];
 
 const noOfRooms = [
   {
     id: 1,
-    label: "Any",
+    label: 'Any',
   },
   {
     id: 2,
-    label: "1",
+    label: '1',
   },
   {
     id: 3,
-    label: "2",
+    label: '2',
   },
   {
     id: 4,
-    label: "3",
+    label: '3',
   },
   {
     id: 5,
-    label: "4",
+    label: '4',
   },
   {
     id: 6,
-    label: "5",
+    label: '5',
   },
   {
     id: 7,
-    label: "6",
+    label: '6',
   },
   {
     id: 8,
-    label: "7",
-  }
-]
+    label: '7',
+  },
+];
 
 const bookPropertySubImgData = [
   {
     id: 1,
-    image: Images.PopularDetailSubImg1
+    image: Images.PopularDetailSubImg1,
   },
   {
     id: 2,
-    image: Images.PopularDetailSubImg2
+    image: Images.PopularDetailSubImg2,
   },
   {
     id: 3,
-    image: Images.PopularDetailSubImg3
+    image: Images.PopularDetailSubImg3,
   },
   {
     id: 4,
-    image: Images.PopularDetailSubImg4
+    image: Images.PopularDetailSubImg4,
   },
   {
     id: 5,
-    image: Images.PopularDetailSubImg5
+    image: Images.PopularDetailSubImg5,
   },
   {
     id: 6,
-    image: Images.PopularDetailSubImg6
+    image: Images.PopularDetailSubImg6,
   },
   {
     id: 7,
-    image: Images.PopularDetailSubImg7
-  }
+    image: Images.PopularDetailSubImg7,
+  },
 ];
 
 const ratingCategoryListData = [
   {
     id: 1,
     name: 'Interesting',
-    width: '100%'
+    width: '100%',
   },
   {
     id: 2,
     name: 'Guide',
-    width: '100%'
+    width: '100%',
   },
   {
     id: 3,
     name: 'Service',
-    width: '90%'
+    width: '90%',
   },
   {
     id: 4,
     name: 'Price',
-    width: '80%'
-  }
+    width: '80%',
+  },
 ];
 
 const reviewListData = [
@@ -358,7 +357,7 @@ const reviewListData = [
     time: '03:24 pm',
     reviewNumber: '10',
     paregraph:
-      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.'
+      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.',
   },
   {
     id: 2,
@@ -368,7 +367,7 @@ const reviewListData = [
     time: '03:24 pm',
     reviewNumber: '10',
     paregraph:
-      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.'
+      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.',
   },
   {
     id: 3,
@@ -378,8 +377,8 @@ const reviewListData = [
     time: '03:24 pm',
     reviewNumber: '10',
     paregraph:
-      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.'
-  }
+      'This is a great way to experience the Grand Canyon from Phoenix. I could never have done this trip on my own. This is a great way to experience the Grand Canyon from Phoenix.',
+  },
 ];
 
 const popularDestionationData = [
@@ -400,7 +399,7 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
+    shareBtnIcon: Images.ShareFillIcon,
   },
   {
     id: 2,
@@ -419,7 +418,7 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
+    shareBtnIcon: Images.ShareFillIcon,
   },
   {
     id: 3,
@@ -438,7 +437,7 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
+    shareBtnIcon: Images.ShareFillIcon,
   },
   {
     id: 4,
@@ -457,7 +456,7 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
+    shareBtnIcon: Images.ShareFillIcon,
   },
   {
     id: 5,
@@ -476,7 +475,7 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
+    shareBtnIcon: Images.ShareFillIcon,
   },
   {
     id: 6,
@@ -495,8 +494,8 @@ const popularDestionationData = [
     sqftText: '2830 sqft',
     likeBtnIcon: Images.Wishlist,
     chatBtnIcon: Images.ChatIcon,
-    shareBtnIcon: Images.ShareFillIcon
-  }
+    shareBtnIcon: Images.ShareFillIcon,
+  },
 ];
 
 // book screen data end
@@ -514,25 +513,25 @@ const profileList = [
     id: 2,
     image: Icons.globe,
     text: 'Language',
-    pageName: 'PaymentMathod'
+    pageName: 'PaymentMathod',
   },
   {
     id: 3,
     image: Icons.privacy,
     text: 'Privacy Policy',
-    pageName: 'ChangePassword'
+    pageName: 'ChangePassword',
   },
   {
     id: 4,
     image: Icons.faq,
     text: 'FAQ’s',
-    pageName: 'faq'
+    pageName: 'faq',
   },
   {
     id: 5,
     image: Icons.setting,
     text: 'Settings',
-    pageName: 'Settings'
+    pageName: 'Settings',
   },
   // {
   //   id: 7,
@@ -552,18 +551,18 @@ const profileInputList = [
   {
     id: 1,
     labelText: 'Enter your name',
-    inputType: 'default'
+    inputType: 'default',
   },
   {
     id: 2,
     labelText: 'Something about you',
-    inputType: 'default'
+    inputType: 'default',
   },
   {
     id: 3,
     labelText: 'Gender',
-    inputType: 'default'
-  }
+    inputType: 'default',
+  },
 ];
 
 const contactInfomationInputList = [
@@ -571,7 +570,8 @@ const contactInfomationInputList = [
     id: 1,
     labelText: 'E-mail Address',
     inputType: 'email-address',
-    helpingText: 'This phone number for buyer contact, reminder and other notifications.'
+    helpingText:
+      'This phone number for buyer contact, reminder and other notifications.',
   },
   // {
   //   id: 2,
@@ -579,147 +579,147 @@ const contactInfomationInputList = [
   //   inputType: 'phone',
   //   helpingText: 'This email will be useful to keep in touch. We won’t share your private email address with other prelease users. '
   // },
-]
+];
 
 const chooseIdData = [
   {
     id: 1,
-    label: 'Driver’s license'
+    label: 'Driver’s license',
   },
   {
     id: 2,
-    label: 'Passport'
+    label: 'Passport',
   },
   {
     id: 3,
-    label: 'Identity card'
-  }
+    label: 'Identity card',
+  },
 ];
 
 const languageSelectList = [
   {
     id: 1,
-    label: 'Afrikaans'
+    label: 'Afrikaans',
   },
   {
     id: 2,
-    label: 'Bengali'
+    label: 'Bengali',
   },
   {
     id: 3,
-    label: 'Chinese'
+    label: 'Chinese',
   },
   {
     id: 4,
-    label: 'Dutch'
+    label: 'Dutch',
   },
   {
     id: 5,
-    label: 'English'
+    label: 'English',
   },
   {
     id: 6,
-    label: 'French'
+    label: 'French',
   },
   {
     id: 7,
-    label: 'Gujarati'
+    label: 'Gujarati',
   },
   {
     id: 8,
-    label: 'Hindi'
+    label: 'Hindi',
   },
   {
     id: 9,
-    label: 'Indonesian'
+    label: 'Indonesian',
   },
   {
     id: 10,
-    label: 'Japanese'
+    label: 'Japanese',
   },
   {
     id: 11,
-    label: 'Kannada'
+    label: 'Kannada',
   },
   {
     id: 12,
-    label: 'Latin'
+    label: 'Latin',
   },
   {
     id: 13,
-    label: 'Malayalam'
+    label: 'Malayalam',
   },
   {
     id: 14,
-    label: 'Nepali'
+    label: 'Nepali',
   },
   {
     id: 15,
-    label: 'Odia'
+    label: 'Odia',
   },
   {
     id: 16,
-    label: 'Punjabi'
+    label: 'Punjabi',
   },
   {
     id: 17,
-    label: 'Romain'
+    label: 'Romain',
   },
   {
     id: 18,
-    label: 'Spanish'
+    label: 'Spanish',
   },
   {
     id: 19,
-    label: 'Tamil'
+    label: 'Tamil',
   },
   {
     id: 20,
-    label: 'Urdu'
+    label: 'Urdu',
   },
   {
     id: 21,
-    label: 'Vietnamese'
+    label: 'Vietnamese',
   },
   {
     id: 22,
-    label: 'Welsh'
+    label: 'Welsh',
   },
   {
     id: 23,
-    label: 'Xhosa'
+    label: 'Xhosa',
   },
   {
     id: 24,
-    label: 'Yiddish'
+    label: 'Yiddish',
   },
   {
     id: 25,
-    label: 'Zulu'
-  }
+    label: 'Zulu',
+  },
 ];
 
 const ratingStarImgData = [
   {
     id: 1,
-    image: Images.StarActive
+    image: Images.StarActive,
   },
   {
     id: 2,
-    image: Images.StarActive
+    image: Images.StarActive,
   },
   {
     id: 3,
-    image: Images.StarActive
+    image: Images.StarActive,
   },
   {
     id: 4,
-    image: Images.StarActive
+    image: Images.StarActive,
   },
   {
     id: 5,
-    image: Images.StarActive
-  }
+    image: Images.StarActive,
+  },
 ];
 const creditCardData = [
   {
@@ -731,7 +731,7 @@ const creditCardData = [
     isSelected: true,
     icon: Icons.paypal,
   },
-  
+
   {
     id: 1,
     cardNumber: '**** **** **** 4242',
@@ -741,7 +741,7 @@ const creditCardData = [
     isSelected: false,
     icon: Icons.mastercard,
   },
-  
+
   {
     id: 1,
     cardNumber: '**** **** **** 4242',
@@ -751,184 +751,178 @@ const creditCardData = [
     isSelected: false,
     icon: Icons.visa,
   },
-  
-
-
-
-]
-
+];
 
 const paymentOptionData = [
   {
     id: 1,
     name: 'Cards ( Credit/Debit )',
     paymentImage: Images.PaymentCardIcon,
-    rightArrow: Images.ViewAllArrow
+    rightArrow: Images.ViewAllArrow,
   },
   {
     id: 2,
     name: 'EMI',
     subName: 'Credit Card, Debit Card',
     paymentImage: Images.EmiIcon,
-    rightArrow: Images.ViewAllArrow
+    rightArrow: Images.ViewAllArrow,
   },
   {
     id: 3,
     name: 'Net Banking',
     paymentImage: Images.BankIcon,
-    rightArrow: Images.ViewAllArrow
+    rightArrow: Images.ViewAllArrow,
   },
   {
     id: 4,
     name: 'Paytm',
     paymentImage: Images.PaytmIcon,
-    rightArrow: Images.ViewAllArrow
+    rightArrow: Images.ViewAllArrow,
   },
   {
     id: 5,
     name: 'Google Pay',
     paymentImage: Images.GPayIcon,
-    rightArrow: Images.ViewAllArrow
+    rightArrow: Images.ViewAllArrow,
   },
   {
     id: 6,
     name: 'UPI',
     paymentImage: Images.UPIIcon,
-    rightArrow: Images.ViewAllArrow
-  }
+    rightArrow: Images.ViewAllArrow,
+  },
 ];
 
 const countrySelectList = [
   {
     id: 1,
-    label: 'Australia'
+    label: 'Australia',
   },
   {
     id: 2,
-    label: 'Brazil'
+    label: 'Brazil',
   },
   {
     id: 3,
-    label: 'Canada'
+    label: 'Canada',
   },
   {
     id: 4,
-    label: 'Denmark'
+    label: 'Denmark',
   },
   {
     id: 5,
-    label: 'Ecuador'
+    label: 'Ecuador',
   },
   {
     id: 6,
-    label: 'France'
+    label: 'France',
   },
   {
     id: 7,
-    label: 'Germany'
+    label: 'Germany',
   },
   {
     id: 8,
-    label: 'Hong Kong'
+    label: 'Hong Kong',
   },
   {
     id: 9,
-    label: 'India'
+    label: 'India',
   },
   {
     id: 10,
-    label: 'Japan'
+    label: 'Japan',
   },
   {
     id: 11,
-    label: 'Malaysia'
+    label: 'Malaysia',
   },
   {
     id: 12,
-    label: 'Netherland'
+    label: 'Netherland',
   },
   {
     id: 13,
-    label: 'Philippines'
+    label: 'Philippines',
   },
   {
     id: 14,
-    label: 'Spain'
+    label: 'Spain',
   },
   {
     id: 15,
-    label: 'Thailand'
+    label: 'Thailand',
   },
   {
     id: 16,
-    label: 'United Kingdom'
+    label: 'United Kingdom',
   },
   {
     id: 17,
-    label: 'Vietnam'
-  }
+    label: 'Vietnam',
+  },
 ];
 
 const helpCenterArticleList = [
   {
     id: 1,
-    name:
-      'Does the extenuating circumstances policy apply to my reservation during the COVID- 19 pandemic ?',
-    image: Images.ViewAllArrow
+    name: 'Does the extenuating circumstances policy apply to my reservation during the COVID- 19 pandemic ?',
+    image: Images.ViewAllArrow,
   },
   {
     id: 2,
     name: 'How do i cancel my reservation for a place to say?',
-    image: Images.ViewAllArrow
+    image: Images.ViewAllArrow,
   },
   {
     id: 3,
     name: 'Verifying your identity',
-    image: Images.ViewAllArrow
+    image: Images.ViewAllArrow,
   },
   {
     id: 4,
     name: 'What to do if the place you’re staying in isn’t clean at check in',
-    image: Images.ViewAllArrow
-  }
+    image: Images.ViewAllArrow,
+  },
 ];
 
 const helpCenterTopicList = [
   {
     id: 1,
     name: 'Searching and booking',
-    image: Images.SearchIcon
+    image: Images.SearchIcon,
   },
   {
     id: 2,
     name: 'Your reservations',
-    image: Images.HouseIcon
+    image: Images.HouseIcon,
   },
   {
     id: 3,
     name: 'Payments, pricing, and refunds',
-    image: Images.VerifyIcon
+    image: Images.VerifyIcon,
   },
   {
     id: 4,
     name: 'Your account',
-    image: Images.userRoundIcon
+    image: Images.userRoundIcon,
   },
   {
     id: 5,
     name: 'Safety',
-    image: Images.SafetyPluseIcon
+    image: Images.SafetyPluseIcon,
   },
   {
     id: 6,
     name: 'About Ready Rental',
-    image: Images.ReadyRentalLineLogo
+    image: Images.ReadyRentalLineLogo,
   },
   {
     id: 7,
     name: 'Terms and policies',
-    image: Images.infoIcon
-  }
+    image: Images.infoIcon,
+  },
 ];
 
 const rentalPropertyListData = [
@@ -947,7 +941,7 @@ const rentalPropertyListData = [
     ratingStarImg: Images.StarActive,
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
-    sqftImg: Images.SqftIcon
+    sqftImg: Images.SqftIcon,
   },
   {
     id: 2,
@@ -964,7 +958,7 @@ const rentalPropertyListData = [
     ratingStarImg: Images.StarActive,
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
-    sqftImg: Images.SqftIcon
+    sqftImg: Images.SqftIcon,
   },
   {
     id: 3,
@@ -981,7 +975,7 @@ const rentalPropertyListData = [
     ratingStarImg: Images.StarActive,
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
-    sqftImg: Images.SqftIcon
+    sqftImg: Images.SqftIcon,
   },
   {
     id: 4,
@@ -998,8 +992,8 @@ const rentalPropertyListData = [
     ratingStarImg: Images.StarActive,
     badImg: Images.BedRoomIcon,
     bathsImg: Images.BathRoomIcon,
-    sqftImg: Images.SqftIcon
-  }
+    sqftImg: Images.SqftIcon,
+  },
 ];
 
 const myRentalPropertyListData = [
@@ -1012,7 +1006,7 @@ const myRentalPropertyListData = [
     categoryListImg: Images.SliderHomeHouseImageOne,
     likeImg: Images.Wishlist,
     activeIikeImg: Images.AddedWishlist,
-    ratingStarImg: Images.StarActive
+    ratingStarImg: Images.StarActive,
   },
   {
     id: 2,
@@ -1023,7 +1017,7 @@ const myRentalPropertyListData = [
     categoryListImg: Images.CategoryPropartyImg5,
     likeImg: Images.Wishlist,
     activeIikeImg: Images.AddedWishlist,
-    ratingStarImg: Images.StarActive
+    ratingStarImg: Images.StarActive,
   },
   {
     id: 3,
@@ -1034,7 +1028,7 @@ const myRentalPropertyListData = [
     categoryListImg: Images.CategoryPropartyImg6,
     likeImg: Images.Wishlist,
     activeIikeImg: Images.AddedWishlist,
-    ratingStarImg: Images.StarActive
+    ratingStarImg: Images.StarActive,
   },
   {
     id: 4,
@@ -1045,8 +1039,8 @@ const myRentalPropertyListData = [
     categoryListImg: Images.CategoryPropartyImg7,
     likeImg: Images.Wishlist,
     activeIikeImg: Images.AddedWishlist,
-    ratingStarImg: Images.StarActive
-  }
+    ratingStarImg: Images.StarActive,
+  },
 ];
 
 // profile screen data end
@@ -1060,7 +1054,7 @@ const notificationList = [
     time: '1 min ago',
     peregraph: 'Your app password is successfully changed by you.',
     image: Images.LockIcon,
-    notRead: Colors.lightRed
+    notRead: Colors.lightRed,
   },
   {
     id: 2,
@@ -1068,7 +1062,7 @@ const notificationList = [
     time: '5 hour ago',
     peregraph: '“Om Sai Row House” is in add your favorites list by you.',
     image: Images.HeartLineIcon,
-    notRead: Colors.lighterGray
+    notRead: Colors.lighterGray,
   },
   {
     id: 3,
@@ -1076,7 +1070,7 @@ const notificationList = [
     time: '1 day ago',
     peregraph: '“Om Sai Row House” owner messaged you.',
     image: Images.SendGrayLineIcon,
-    notRead: Colors.lighterGray
+    notRead: Colors.lighterGray,
   },
   {
     id: 4,
@@ -1084,7 +1078,7 @@ const notificationList = [
     time: '2 day ago',
     peregraph: 'New offer on “Aura Row House” first rent on 50% off.',
     image: Images.ReadyRentalLineLogo,
-    notRead: Colors.lighterGray
+    notRead: Colors.lighterGray,
   },
   {
     id: 5,
@@ -1092,8 +1086,8 @@ const notificationList = [
     time: '2 day ago',
     peregraph: 'Ready Rental app is available in latest version 2.11.30',
     image: Images.UpArrowRound,
-    notRead: Colors.lighterGray
-  }
+    notRead: Colors.lighterGray,
+  },
 ];
 
 // notification screen data end
@@ -1107,7 +1101,7 @@ const chatUserIdData = [
     userName: 'Peterson',
     text: 'Your place look perfect for our family members',
     userLastSeen: 'Last seen yesterday',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: false,
     saved: false,
@@ -1120,7 +1114,7 @@ const chatUserIdData = [
     avatar: true,
     userName: 'Martin',
     userLastSeen: 'Online',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: true,
     saved: false,
@@ -1132,7 +1126,7 @@ const chatUserIdData = [
     text: 'Your place look perfect for our family',
     userName: 'Justin',
     userLastSeen: 'Last seen 3 hours ago',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: true,
     saved: false,
@@ -1144,7 +1138,7 @@ const chatUserIdData = [
     text: 'Prelease: We’re all set for now, looking',
     userName: 'Nelson',
     userLastSeen: 'Online',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: true,
     saved: false,
@@ -1155,10 +1149,9 @@ const chatUserIdData = [
     userImage: Images.chatUser1,
     text: 'Prelease: We’re all set for now, looking',
 
-    
     userName: 'Oberoi Villa',
     userLastSeen: 'Online',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: true,
     saved: true,
@@ -1170,12 +1163,12 @@ const chatUserIdData = [
     text: 'Prelease: We’re all set for now, looking',
     userName: 'Skyview Flats',
     userLastSeen: 'Last seen 30 minutes ago',
-    date: "Aug 01, 2024",
+    date: 'Aug 01, 2024',
     time: '03: 51 PM',
     read: true,
     saved: true,
     online: false,
-  }
+  },
 ];
 
 // chat screen data end
@@ -1183,65 +1176,63 @@ const chatUserIdData = [
 // suggestions list data start
 
 const categoryListData2 = [
-
   {
     id: 2,
     title: 'Best Western Plus Montreal Downtown - Hotel Europa  ',
     text: 'San Diego, California, USA',
     ratingText: '4.8',
-    noOfGuest: "8",
-    noOfGuestPrice: "$39 per guest",
-    date: "Aug 10 - 23",
+    noOfGuest: '8',
+    noOfGuestPrice: '$39 per guest',
+    date: 'Aug 10 - 23',
     image: Images.SliderHouseImageTwo,
     locationImg: Images.LocationImage,
-    ratingStarImg: Images.StarActive
+    ratingStarImg: Images.StarActive,
   },
   {
     id: 3,
     title: 'One King West Hotel and Residence',
     text: 'Hosted by Jubilee',
-    date: "Aug 10 - 23",
+    date: 'Aug 10 - 23',
     ratingText: '4.8',
-    noOfGuest: "$39 per guest",
+    noOfGuest: '$39 per guest',
     image: Images.SliderHouseImageThree,
     locationImg: Images.LocationImage,
-    ratingStarImg: Images.StarActive
+    ratingStarImg: Images.StarActive,
   },
   {
     id: 4,
     title: 'Real Bluesty',
     text: 'San Diego, California, USA',
-    date: "Aug 10 - 23",
+    date: 'Aug 10 - 23',
     ratingText: '4.8',
-    noOfGuest: "$39 per guest",
+    noOfGuest: '$39 per guest',
     image: Images.SliderHouseImageTwo,
     locationImg: Images.LocationImage,
-    ratingStarImg: Images.StarActive
-  }
+    ratingStarImg: Images.StarActive,
+  },
 ];
-
 
 const suggestionsListData = [
   {
     id: 1,
     searchImg: Images.SearchIcon,
-    text: 'Vip road ( vesu ), Surat'
+    text: 'Vip road ( vesu ), Surat',
   },
   {
     id: 2,
     searchImg: Images.SearchIcon,
-    text: 'Ashok nagar'
+    text: 'Ashok nagar',
   },
   {
     id: 3,
     searchImg: Images.SearchIcon,
-    text: 'Om sai row house'
+    text: 'Om sai row house',
   },
   {
     id: 4,
     searchImg: Images.SearchIcon,
-    text: 'Aura row house'
-  }
+    text: 'Aura row house',
+  },
 ];
 
 // suggestions list data end
@@ -1285,6 +1276,6 @@ export {
   chatUserIdData,
   // chat screen data end
   // suggestions list data start
-  suggestionsListData
+  suggestionsListData,
   // suggestions list data end
 };

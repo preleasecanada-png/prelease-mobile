@@ -1,38 +1,46 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { alignItems, backgroundColor, marginBottom, marginRight, position, width, zIndex } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {
+  alignItems,
+  backgroundColor,
+  marginBottom,
+  marginRight,
+  position,
+  width,
+  zIndex,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
   priceMonthHeadingStyle: {
     marginTop: '33rem',
-    marginBottom: 0
+    marginBottom: 0,
   },
   lableContainer: {
     alignItems: 'center',
     padding: 0,
     backgroundColor: Colors.transparent,
-    borderRadius: 0
+    borderRadius: 0,
   },
   lableText: {
     color: Colors.darkGray,
     fontSize: Fonts.size.regular,
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.buttonText
-    }
+      ...Fonts.style.buttonText,
+    },
   },
   railContainer: {
     flex: 1,
     height: '3rem',
     borderRadius: '2rem',
-    backgroundColor: Colors.lightRed
+    backgroundColor: Colors.lightRed,
   },
   railSelectedContainer: {
     height: '3rem',
     backgroundColor: Colors.primary,
-    borderRadius: '2rem'
+    borderRadius: '2rem',
   },
   thumbContainer: {
     width: '30rem',
@@ -45,24 +53,24 @@ const styles = EStyleSheet.create({
     backgroundColor: Colors.primary,
     shadowOffset: {
       width: 0,
-      height: '6rem'
+      height: '6rem',
     },
     shadowOpacity: 0.18,
     shadowRadius: 8,
     elevation: 20,
-    shadowColor: Colors.primary
+    shadowColor: Colors.primary,
   },
   arrowImage: {
     width: '7rem',
-    height: '12rem'
+    height: '12rem',
   },
   arrowBottomIconStyle: {
     width: '12rem',
-    height: '7rem'
+    height: '7rem',
   },
   arrowRightIconStyle: {
     height: '12rem',
-    width: '7rem'
+    width: '7rem',
   },
   rangeSlider: {
     // marginTop: '23rem'
@@ -80,10 +88,10 @@ const styles = EStyleSheet.create({
     fontSize: Fonts.size.small,
     textAlign: 'center',
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
   },
   inputLabelTextStyle: {
@@ -91,11 +99,11 @@ const styles = EStyleSheet.create({
     fontSize: Fonts.size.tiny,
     marginBottom: 8,
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
-    }
+      ...Fonts.style.textInputText,
+    },
   },
   dollarIconStyle: {
     marginRight: 10,
@@ -105,8 +113,8 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     zIndex: 99,
     top: 15,
-    left: 20
-  }
+    left: 20,
+  },
 });
 
 export default styles;

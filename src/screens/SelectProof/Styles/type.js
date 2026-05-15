@@ -248,7 +248,7 @@ export const CountryCodeList = [
   'ZW',
   'KI',
   'HK',
-  'AX'
+  'AX',
 ];
 
 export const RegionList = [
@@ -257,7 +257,7 @@ export const RegionList = [
   'Antarctic',
   'Asia',
   'Europe',
-  'Oceania'
+  'Oceania',
 ];
 
 export const SubregionList = [
@@ -283,7 +283,7 @@ export const SubregionList = [
   'Melanesia',
   'Micronesia',
   'Central Asia',
-  'Central Europe'
+  'Central Europe',
 ];
 
 export const TranslationLanguageCodeList = [
@@ -301,9 +301,9 @@ export const TranslationLanguageCodeList = [
   'svk',
   'fin',
   'zho',
-  'isr'
+  'isr',
 ];
 // type guards
 export function isCountryCode(str) {
-  return CountryCodeList.some((code) => code === str);
+  return CountryCodeList.some(code => code === str);
 }

@@ -1,24 +1,24 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     paddingBottom: '15rem',
-    paddingHorizontal: '20rem'
+    paddingHorizontal: '20rem',
   },
   addIdBtn: {
-    width: '165rem'
+    width: '165rem',
   },
   howWorkText: {
     color: Colors.primary,
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
-    textDecorationColor: Colors.primary
+    textDecorationColor: Colors.primary,
   },
   howWorkLinkText: {
     width: '100rem',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   countryPickerStyle: {
     color: Colors.black,
@@ -27,23 +27,23 @@ const styles = EStyleSheet.create({
     borderBottomWidth: '2rem',
     borderColor: Colors.gray,
     paddingRight: '25rem',
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   countryBottomArrow: {
     position: 'absolute',
     right: '17rem',
     top: '9.34rem',
     width: '12rem',
-    height: '8rem'
+    height: '8rem',
   },
   countryPickerLabelText: {
     textAlign: 'left',
     color: Colors.darkGray,
     marginBottom: '8rem',
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   radioBoxStyle: {
-    paddingHorizontal: 0
+    paddingHorizontal: 0,
   },
   selectProofBottomText: {
     marginVertical: '37rem',
@@ -51,19 +51,19 @@ const styles = EStyleSheet.create({
     color: Colors.darkGray,
     lineHeight: '21rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   continueBtn: {
     width: '165rem',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   radioTextStyle: {
-    marginLeft: '-4rem'
+    marginLeft: '-4rem',
   },
   countryPickerThemeStyle: {
     fontSize: Fonts.size.regular,
-    ...Fonts.style.normalText
-  }
+    ...Fonts.style.normalText,
+  },
 });
 
 export default styles;

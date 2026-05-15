@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
-import { View, Image } from 'react-native';
+import {useCallback, useState} from 'react';
+import {View, Image} from 'react-native';
 import Label from './Label';
 import Rail from './Rail';
 import RailSelected from './RailSelected';
 import Thumb from './Thumb';
 import Slider from 'rn-range-slider';
 import CommanHeading from '../CommanHeading';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/Index';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 import TextInputScreen from '../SignUpLogIn/TextInput';
 import CommanText from '../SignUpLogIn/CommanText';
-import { fontSize, fontWeight } from 'styled-system';
+import {fontSize, fontWeight} from 'styled-system';
 
 function RangeSlider() {
   const renderThumb = useCallback(() => <Thumb />, []);
   const renderRail = useCallback(() => <Rail />, []);
   const renderRailSelected = useCallback(() => <RailSelected />, []);
-  const renderLabel = useCallback((value) => <Label text={value} />, []);
+  const renderLabel = useCallback(value => <Label text={value} />, []);
   const [sliderOpenClose, setSliderOpenClose] = useState(true);
   // create state object for slider
   const [sliderValue, setSliderValue] = useState({
@@ -34,7 +34,7 @@ function RangeSlider() {
     });
   }, []);
 
-  console.log("inputLabelTextStyle", sliderValue.max)
+  console.log('inputLabelTextStyle', sliderValue.max);
 
   return (
     <>
@@ -67,13 +67,13 @@ function RangeSlider() {
           renderRailSelected={renderRailSelected}
           renderLabel={renderLabel}
           onValueChanged={handleValueChange}
-        // lowThumb={renderThumbLeft}
+          // lowThumb={renderThumbLeft}
         />
       )}
       <View style={styles.flexRow}>
-        <View style={{ width: '30%' }}>
+        <View style={{width: '30%'}}>
           <CommanText
-            commanText={"Minimum"}
+            commanText={'Minimum'}
             commanTextstyle={styles.inputLabelTextStyle}
           />
           <View style={styles.flexRow}>
@@ -83,14 +83,14 @@ function RangeSlider() {
             /> */}
             <TextInputScreen
               defaultInput
-              value={"$  "+sliderValue.min?.toString()}
+              value={'$  ' + sliderValue.min?.toString()}
               style={styles.inputTextStyle}
             />
           </View>
         </View>
-        <View style={{ width: '30%' }}>
+        <View style={{width: '30%'}}>
           <CommanText
-            commanText={"Minimum"}
+            commanText={'Minimum'}
             commanTextstyle={styles.inputLabelTextStyle}
           />
           <View style={styles.flexRow}>
@@ -100,7 +100,7 @@ function RangeSlider() {
             /> */}
             <TextInputScreen
               defaultInput
-              value={"$  "+sliderValue.max?.toString()}
+              value={'$  ' + sliderValue.max?.toString()}
               style={styles.inputTextStyle}
             />
           </View>

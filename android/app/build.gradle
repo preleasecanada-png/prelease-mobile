@@ -80,8 +80,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 project.ext.react = [
     enableHermes: false,
-    bundleInRelease: false,
-    bundleForVariant: { variant -> false }
+    bundleInRelease: true,
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -232,9 +231,9 @@ android {
                 keyPassword System.getenv("CM_KEY_PASSWORD")
             } else {
                 storeFile file('prelease-release.keystore')
-                storePassword 'PreleaseCA2025!'
-                keyAlias 'prelease'
-                keyPassword 'PreleaseCA2025!'
+                storePassword System.getenv("KEYSTORE_PASSWORD") ?: 'changeme'
+                keyAlias System.getenv("KEY_ALIAS") ?: 'prelease'
+                keyPassword System.getenv("KEY_PASSWORD") ?: 'changeme'
             }
         }
     }

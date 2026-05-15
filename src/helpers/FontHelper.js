@@ -2,58 +2,38 @@
  * Helper class for font
  */
 import _ from 'lodash';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 // use post script names for font families
 const Urbanist = {
   100: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Light'
-        : 'Urbanist-Light'
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Light' : 'Urbanist-Light',
   },
   200: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Light'
-        : 'Urbanist-Light'
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Light' : 'Urbanist-Light',
   },
   300: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Light'
-        : 'Urbanist-Light'
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Light' : 'Urbanist-Light',
   },
   400: {
     fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Regular'
-        : 'Urbanist-Regular'
+      Platform.OS === 'android' ? 'Urbanist-Regular' : 'Urbanist-Regular',
   },
   500: {
-    fontFamily: 'Urbanist-Medium'
+    fontFamily: 'Urbanist-Medium',
   },
   600: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Bold'
-        : 'Urbanist-Bold'
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Bold' : 'Urbanist-Bold',
   },
   700: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Bold'
-        : 'Urbanist-Bold'
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Bold' : 'Urbanist-Bold',
   },
   800: {
-    fontFamily:
-      Platform.OS === 'android'
-        ? 'Urbanist-Bold'
-        : 'Urbanist-Bold'
-  }
+    fontFamily: Platform.OS === 'android' ? 'Urbanist-Bold' : 'Urbanist-Bold',
+  },
 };
 
 const FONTS = {
-  Urbanist
+  Urbanist,
 };
 
 /**
@@ -67,7 +47,7 @@ class FontHelper {
 
     return {
       ..._.omit(fontParams, [fontFamily, fontFamily, fontStyle]),
-      ...FONTS[fontFamily][fontWeight + fontStyle]
+      ...FONTS[fontFamily][fontWeight + fontStyle],
     };
   }
 }

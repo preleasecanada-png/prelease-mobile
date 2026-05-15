@@ -1,5 +1,5 @@
 import FontHelper from '../helpers/FontHelper';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 import Colors from '../theme/Colors';
 
 const size = {
@@ -16,52 +16,50 @@ const size = {
   small: '13rem',
   tiny: '12rem',
   xTiny: '10rem',
-
-  
 };
 
 const style = {
   placeHolderText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: '300'
+      fontWeight: '300',
     }),
     fontSize: size.regular,
-    color: Colors.lightGray
+    color: Colors.lightGray,
   },
   textInputText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: '500'
-    })
+      fontWeight: '500',
+    }),
   },
   buttonText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: '700'
-    })
+      fontWeight: '700',
+    }),
   },
   lightText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: '300'
-    })
+      fontWeight: '300',
+    }),
   },
   normalText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: '400'
-    })
+      fontWeight: '400',
+    }),
   },
   boldText: {
     ...FontHelper.font({
       fontFamily: 'Urbanist',
-      fontWeight: Platform.OS === 'ios' ? '700' : '600'
-    })
-  }
+      fontWeight: Platform.OS === 'ios' ? '700' : '600',
+    }),
+  },
 };
 
 export default {
   size,
-  style
+  style,
 };

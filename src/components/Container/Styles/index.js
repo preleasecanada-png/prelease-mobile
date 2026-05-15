@@ -1,6 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { StatusBar } from 'react-native';
-import { Colors } from '../../../theme';
+import {StatusBar} from 'react-native';
+import {Colors} from '../../../theme';
 
 const styles = EStyleSheet.create({
   safeViewcontainer: {
@@ -13,11 +13,11 @@ const styles = EStyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   statusBarMarginTop: {
-    marginTop: StatusBar.currentHeight
-  }
+    marginTop: StatusBar.currentHeight,
+  },
 });
 
 export default styles;

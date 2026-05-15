@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Text } from 'react-native';
-import { Container, Header, Content } from '../../components';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {Text} from 'react-native';
+import {Container, Header, Content} from '../../components';
+import {navigate} from '../../navigation/ReduxNavigation';
 import CommanHeading from '../../components/CommanHeading';
 import styles from './Styles/TermsofServiceStyle';
 
-function TermsofServiceScreen({ navigation }) {
+function TermsofServiceScreen({navigation}) {
   return (
     <>
       <Container>

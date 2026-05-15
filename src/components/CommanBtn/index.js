@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import styles from './Styles/Index';
-import { View } from 'react-native';
+import {View} from 'react-native';
 
 function CommanBtnScreen({
   btnText,
   commanBtnStyle,
   commanBtnTextStyle,
   onBtnPress = () => null,
-  icon
-
+  icon,
 }) {
   return (
     <TouchableOpacity
@@ -19,13 +18,9 @@ function CommanBtnScreen({
           onBtnPress();
         }
       }}>
-      <Text style={[styles.commanBtnText, commanBtnTextStyle]}>
-        {btnText}
-      </Text>
+      <Text style={[styles.commanBtnText, commanBtnTextStyle]}>{btnText}</Text>
 
-      {icon && <View style={[styles.commanBtnIcon]}>
-        {icon}
-      </View>}
+      {icon && <View style={[styles.commanBtnIcon]}>{icon}</View>}
     </TouchableOpacity>
   );
 }

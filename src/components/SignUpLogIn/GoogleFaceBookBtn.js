@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Text, Image, TouchableOpacity } from 'react-native';
+import {Text, Image, TouchableOpacity} from 'react-native';
 import styles from './Styles/index';
 
 function GoogleFaceBookBtn(props) {
   return (
     <>
-      <TouchableOpacity style={styles.googleFaceBookBtn} onPress={props.onPress}>
+      <TouchableOpacity
+        style={styles.googleFaceBookBtn}
+        onPress={props.onPress}>
         <Image
           source={props.btnImage}
           resizeMode="contain"

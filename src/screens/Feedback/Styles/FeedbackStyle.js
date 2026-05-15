@@ -1,27 +1,27 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   container: {
     paddingBottom: '15rem',
-    paddingHorizontal: '20rem'
+    paddingHorizontal: '20rem',
   },
   feedbackPeregraphText: {
     lineHeight: '20.16rem',
     color: Colors.darkGray,
     marginBottom: '23rem',
     fontSize: Fonts.size.regular,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   feedbackPeregraphHeadingText: {
     color: Colors.black,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   feedbackPeregraphTextLink: {
-    color: Colors.primary
+    color: Colors.primary,
   },
   likeDoHeading: {
-    marginTop: '10rem'
+    marginTop: '10rem',
   },
   likeDoLinks: {
     flexDirection: 'row',
@@ -29,7 +29,7 @@ const styles = EStyleSheet.create({
     borderBottomWidth: '2rem',
     borderColor: Colors.gray,
     paddingBottom: '15rem',
-    marginBottom: '23rem'
+    marginBottom: '23rem',
   },
   likeDoLinkText: {
     lineHeight: '20.16rem',
@@ -37,13 +37,13 @@ const styles = EStyleSheet.create({
     width: '100% - 56rem',
     color: Colors.black,
     fontSize: Fonts.size.regular,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   topicImg: {
     width: '15rem',
     height: '15rem',
-    marginRight: '18rem'
-  }
+    marginRight: '18rem',
+  },
 });
 
 export default styles;

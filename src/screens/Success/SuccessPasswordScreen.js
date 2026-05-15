@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Text, Image, View } from 'react-native';
-import { Container, Content } from '../../components';
+import {Text, Image, View} from 'react-native';
+import {Container, Content} from '../../components';
 import CommanBtnScreen from '../../components/CommanBtn/index';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 import styles from './Styles/SuccessStyle';
 
-function SuccessPasswordScreen({ navigation }) {
+function SuccessPasswordScreen({navigation}) {
   return (
     <Container>
       <Content contentContainerStyle={styles.container}>

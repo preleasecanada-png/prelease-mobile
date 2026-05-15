@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Text, View } from 'react-native';
+import {useState} from 'react';
+import {Text, View} from 'react-native';
 import CommanBtn from '../CommanBtn';
 import styles from './Styles/Index';
 
-function BookNowBtnComponent({ onConfirmPayClick, bookNowBtnContentStyle }) {
+function BookNowBtnComponent({onConfirmPayClick, bookNowBtnContentStyle}) {
   const [bookBtnSet, setBookBtnSet] = useState(true);
   return (
     <>

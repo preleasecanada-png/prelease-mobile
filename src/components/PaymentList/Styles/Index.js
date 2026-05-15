@@ -1,11 +1,10 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { borderRadius, height, marginLeft } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {borderRadius, height, marginLeft} from 'styled-system';
 
 const styles = EStyleSheet.create({
-  activeStyle:{
+  activeStyle: {
     borderColor: Colors.green,
-
   },
   paymentOptionListBtn: {
     flexDirection: 'row',
@@ -37,29 +36,29 @@ const styles = EStyleSheet.create({
     marginTop: '8rem',
     fontSize: Fonts.size.tiny,
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
-    }
+      ...Fonts.style.textInputText,
+    },
   },
   paymentOptionRightArrowImg: {
     width: '9.78rem',
     height: '16rem',
     marginLeft: 'auto',
-    marginRight: '5rem'
+    marginRight: '5rem',
   },
-  addNewPaymentButtonTextStyle:{
+  addNewPaymentButtonTextStyle: {
     color: Colors.primary,
     fontSize: Fonts.size.medium,
     fontWeight: 'bold',
-   ...Fonts.style.boldText,
-   marginLeft: 10
+    ...Fonts.style.boldText,
+    marginLeft: 10,
   },
-  center:{
+  center: {
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default styles;

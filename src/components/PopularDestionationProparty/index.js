@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   Share,
-  FlatList
+  FlatList,
 } from 'react-native';
 import styles from './Styles/index';
 
@@ -14,13 +14,13 @@ function PopularDestionationProparty(props) {
     try {
       const result = await Share.share({
         message:
-          'React Native | A framework for building native apps using React'
+          'React Native | A framework for building native apps using React',
       });
     } catch (error) {
       // alert(error.message);
     }
   };
-  const renderItem = ({ item }) => (
+  const renderItem = ({item}) => (
     <TouchableOpacity
       style={styles.popularDestionationContent}
       onPress={() => {
@@ -135,7 +135,7 @@ function PopularDestionationProparty(props) {
           bounces={false}
           data={props.data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
         />
       </View>
     </>

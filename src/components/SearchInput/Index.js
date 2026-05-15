@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { Image, View, TextInput, Pressable, TouchableWithoutFeedback } from 'react-native';
-import { Images, Colors, Icons } from '../../theme';
+import {
+  Image,
+  View,
+  TextInput,
+  Pressable,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import {Images, Colors, Icons} from '../../theme';
 import styles from './Styles/index';
 import LinearGradient from 'react-native-linear-gradient';
-import { Card, Surface } from 'react-native-paper';
-import { Text } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { FeatherIcon } from '../../theme/icons';
+import {Card, Surface} from 'react-native-paper';
+import {Text} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {FeatherIcon} from '../../theme/icons';
 
 function SearchInputScreen({
   inputStyle,
@@ -15,25 +21,20 @@ function SearchInputScreen({
   type,
   searchInputStyle,
   onChangeText,
-  whereTo = "Where To?",
-  leftIcon = "search",
-  onLeftButtonPress
+  whereTo = 'Where To?',
+  leftIcon = 'search',
+  onLeftButtonPress,
 }) {
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const onFilterBtnPress = () => {
-
-    navigation.navigate("Filter")
-  }
+    navigation.navigate('Filter');
+  };
   const onSearchBtnPress = () => {
-
-    navigation.navigate("Search")
-  }
+    navigation.navigate('Search');
+  };
 
   return (
-    <TouchableWithoutFeedback
-      onPress={onLeftButtonPress ?? onSearchBtnPress}
-    >
+    <TouchableWithoutFeedback onPress={onLeftButtonPress ?? onSearchBtnPress}>
       <Surface style={styles.surface} elevation={4}>
         {/* <Image
         source={Images.SearchIcon}
@@ -41,9 +42,7 @@ function SearchInputScreen({
         resizeMode="contain"
       /> */}
 
-        <View
-          style={styles.leftButton}
-        >
+        <View style={styles.leftButton}>
           <FeatherIcon
             name={leftIcon}
             size={20}
@@ -51,37 +50,28 @@ function SearchInputScreen({
           />
         </View>
 
-
-        <View style={[styles.allInputStyle, { justifyContent: "center", flex: 1 }]}>
+        <View
+          style={[styles.allInputStyle, {justifyContent: 'center', flex: 1}]}>
           <Text
             numberOfLines={1}
-            style={[styles.allInputStyle, styles.topLabel]}
-          >
+            style={[styles.allInputStyle, styles.topLabel]}>
             {whereTo}
           </Text>
-          <Text
-
-            style={[styles.allInputStyle, inputStyle]}
-          >
-            {placeholder}
-          </Text>
+          <Text style={[styles.allInputStyle, inputStyle]}>{placeholder}</Text>
         </View>
         {/* <TextInput
         style={[styles.allInputStyle, inputStyle]}
         placeholder={placeholder}
         keyboardType={type}
         placeholderTextColor={Colors.darkGray}
-        
+
         onChangeText={(text) => {
           if (onChangeText) {
             onChangeText(text);
           }
         }}
       /> */}
-        <TouchableOpacity
-          style={styles.rightButton}
-          onPress={onFilterBtnPress}
-        >
+        <TouchableOpacity style={styles.rightButton} onPress={onFilterBtnPress}>
           <Image
             source={Icons.filter}
             style={styles.searchIcon}

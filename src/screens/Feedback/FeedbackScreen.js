@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Image, Text, TouchableOpacity } from 'react-native';
-import { Container, Header, Content } from '../../components';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {Image, Text, TouchableOpacity} from 'react-native';
+import {Container, Header, Content} from '../../components';
+import {navigate} from '../../navigation/ReduxNavigation';
 import CommanHeading from '../../components/CommanHeading';
 import styles from './Styles/FeedbackStyle';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 
-function FeedbackScreen({ navigation }) {
+function FeedbackScreen({navigation}) {
   return (
     <>
       <Container>

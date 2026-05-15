@@ -1,6 +1,12 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { alignItems, letterSpacing, marginBottom, marginTop, width } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {
+  alignItems,
+  letterSpacing,
+  marginBottom,
+  marginTop,
+  width,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
   propertyDetaileImageContent: {
@@ -8,36 +14,32 @@ const styles = EStyleSheet.create({
     height: '230rem',
     borderRadius: '12rem',
     overflow: 'hidden',
-    marginBottom: '23rem'
+    marginBottom: '23rem',
   },
   headingStyle: {
-    marginBottom: 6
+    marginBottom: 6,
   },
   propertyDetaileImage: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   flexRow: {
     flexDirection: 'row',
     alignItems: 'center',
-
   },
   hostedBy: {
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.tiny,
-    marginBottom: '10rem'
-
+    marginBottom: '10rem',
   },
   locationIcon: {
     width: 18,
     height: 18,
-
   },
   locationText: {
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.tiny,
-    marginLeft: '10rem'
-
+    marginLeft: '10rem',
   },
   propertyDetaileImageBackground: {
     position: 'absolute',
@@ -48,29 +50,29 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end',
     paddingVertical: '15rem',
     paddingLeft: '20rem',
-    paddingRight: '15rem'
+    paddingRight: '15rem',
   },
   propertyDetaileDescriptionContent: {
     flexDirection: 'row',
-    marginBottom: '8rem'
+    marginBottom: '8rem',
   },
   commanHeadingContainerStyle: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   propertyDetaileHeadingBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 'auto',
-    marginRight: '-7.5rem'
+    marginRight: '-7.5rem',
   },
   propertyDetaileHeadingIconBtn: {
     width: '15rem',
     height: '15rem',
-    marginHorizontal: '7.5rem'
+    marginHorizontal: '7.5rem',
   },
   propertyDetaileHeadingIcon: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   propertyDetaileDescriptionPeregraph: {
     lineHeight: '18rem',
@@ -89,35 +91,35 @@ const styles = EStyleSheet.create({
   propertyDetaileLocationImg: {
     width: '14rem',
     height: '16.9rem',
-    marginRight: '6rem'
+    marginRight: '6rem',
   },
   propertyDetaileLocationText: {
     lineHeight: '21rem',
     color: Colors.locationDarkGray,
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
   propertyDetaileRatingStarRow: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   propertyDetaileRatingStarText: {
     lineHeight: '38rem',
     color: Colors.black,
     marginRight: '13rem',
     fontSize: Fonts.size.larg,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   propertyDetaileRatingStars: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: '-2rem'
+    marginHorizontal: '-2rem',
   },
   propertyDetaileRatingStarImg: {
     width: '14rem',
     height: '14rem',
-    marginHorizontal: '2rem'
-  }
+    marginHorizontal: '2rem',
+  },
 });
 
 export default styles;

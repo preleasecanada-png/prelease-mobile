@@ -1,69 +1,71 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { alignItems, flex, justifyContent, letterSpacing, lineHeight, marginBottom, marginLeft, marginTop } from 'styled-system';
-import { isIphoneX } from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
+import {
+  alignItems,
+  flex,
+  justifyContent,
+  letterSpacing,
+  lineHeight,
+  marginBottom,
+  marginLeft,
+  marginTop,
+} from 'styled-system';
+import {isIphoneX} from '../../../libs/Utils';
 
 const styles = EStyleSheet.create({
-
   container: {
     paddingBottom: '15rem',
     // paddingHorizontal: '20rem',
     backgroundColor: Colors.white,
   },
-  content:{
+  content: {
     paddingHorizontal: '20rem',
     // paddingVertical: '20rem',
-
   },
-  checkboxContainer:{
-
-  },
+  checkboxContainer: {},
   bookPropertyBtn: {
     maxWidth: '165rem',
     width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
   },
   propertyHeadingStyle: {
-    marginBottom: 0
+    marginBottom: 0,
   },
-  bookingOptionsContainer:{
-
-    marginBottom: 20
+  bookingOptionsContainer: {
+    marginBottom: 20,
   },
-  propertyHeadingTextStyle:{
+  propertyHeadingTextStyle: {
     fontSize: Fonts.size.regular,
-
   },
-  subTextStyle:{
+  subTextStyle: {
     textAlign: 'left',
     color: Colors.darkGray,
-
   },
   backdropStyle: {
     position: 'relative',
     backgroundColor: Colors.transparent,
     height: 'auto',
-    width: '100%'
+    width: '100%',
   },
   calenderArrows: {
     width: '20rem',
-    height: '20rem'
+    height: '20rem',
   },
   containerStyle: {
     backgroundColor: Colors.transparent,
     paddingBottom: 0,
-    marginBottom: '-15rem'
+    marginBottom: '-15rem',
   },
   dayHeaderStyle: {
-    backgroundColor: Colors.transparent
+    backgroundColor: Colors.transparent,
   },
   dayStyle: {
     width: '30rem',
     height: '30rem',
     borderRadius: '30rem',
     borderWidth: '3rem',
-    borderColor: Colors.transparent
+    borderColor: Colors.transparent,
   },
   selectedStyle: {
     borderColor: Colors.white,
@@ -74,33 +76,33 @@ const styles = EStyleSheet.create({
     backgroundColor: Colors.primary,
     shadowOffset: {
       width: 0,
-      height: '6rem'
+      height: '6rem',
     },
     shadowOpacity: 0.18,
     shadowRadius: 8,
     elevation: 20,
-    shadowColor: Colors.primary
+    shadowColor: Colors.primary,
   },
   dayTextStyle: {
     color: Colors.black,
     lineHeight: '21rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   selectedTextStyle: {
     color: Colors.white,
     lineHeight: '21rem',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   headerTextStyle: {
     letterSpacing: '-0.02rem',
     color: Colors.black,
     fontSize: Fonts.size.h4,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   pickerOpenText: {
-    height: 0
+    height: 0,
   },
   dayHeaderTextStyle: {
     color: Colors.black,
@@ -108,39 +110,39 @@ const styles = EStyleSheet.create({
     opacity: 1,
     fontSize: Fonts.size.medium,
     '@media ios': {
-      ...Fonts.style.textInputText
+      ...Fonts.style.textInputText,
     },
     '@media android': {
-      ...Fonts.style.buttonText
-    }
+      ...Fonts.style.buttonText,
+    },
   },
-  checkBoxItem:{
+  checkBoxItem: {
     flex: 1,
     // marginLeft: '10rem',
     paddingVertical: '7rem',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  checkboxText:{
+  checkboxText: {
     marginLeft: '10rem',
     fontSize: Fonts.size.tiny,
     color: Colors.black,
     '@media ios': {
-     ...Fonts.style.normalText
+      ...Fonts.style.normalText,
     },
     '@media android': {
-     ...Fonts.style.buttonText
-    }
+      ...Fonts.style.buttonText,
+    },
   },
-    
+
   learnMoreBtn: {
     width: '80rem',
     '@media ios': {
-      flex: isIphoneX() ? 0.1 : 0.2
+      flex: isIphoneX() ? 0.1 : 0.2,
     },
     '@media android': {
-      flex: 0.2
-    }
+      flex: 0.2,
+    },
   },
   learnMoreBtnText: {
     textAlign: 'left',
@@ -150,55 +152,53 @@ const styles = EStyleSheet.create({
     textDecorationStyle: 'solid',
     textDecorationColor: Colors.primary,
     fontSize: Fonts.size.small,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
-  LineSeperatorStyle:{
+  LineSeperatorStyle: {
     backgroundColor: Colors.darkGray2,
     height: 1,
-    marginVertical: 10
-
+    marginVertical: 10,
   },
-  subHeading:{
+  subHeading: {
     fontSize: Fonts.size.small,
     ...Fonts.style.boldText,
     color: Colors.black,
     letterSpacing: 0.25,
   },
-  subHeadingContainerStyle:{
+  subHeadingContainerStyle: {
     marginBottom: 0,
     paddingBottom: 0,
-
   },
-  subTitleTextStyle:{
+  subTitleTextStyle: {
     ...Fonts.style.textInputText,
     textAlign: 'left',
     fontSize: Fonts.size.xTiny,
     color: Colors.grayText,
     letterSpacing: 0.25,
-    marginBottom: 10
+    marginBottom: 10,
   },
-  flexRow:{
+  flexRow: {
     flexDirection: 'row',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
-  buttonsContainer:{
-    paddingHorizontal: 20, paddingVertical: 7,
+  buttonsContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 7,
     flexDirection: 'row',
-    justifyContent:'space-between'
+    justifyContent: 'space-between',
   },
-  btnStyle:{
+  btnStyle: {
     borderRadius: 50,
     // width: 100
   },
-  cancelButtonTextStyle:{
+  cancelButtonTextStyle: {
     color: Colors.black,
     textDecorationLine: 'underline',
-    textDecorationStyle:'solid',
+    textDecorationStyle: 'solid',
     textDecorationColor: Colors.black,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.boldText
-
+    ...Fonts.style.boldText,
   },
 });
 

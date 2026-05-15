@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { View, Alert, TextInput as RNTextInput, StyleSheet } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {View, Alert, TextInput as RNTextInput, StyleSheet} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import CommanBtnScreen from '../../components/CommanBtn/index';
 import CommanText from '../../components/SignUpLogIn/CommanText';
 import cStyles from './Styles/ChangePasswordStyle';
 import api from '../../services/api';
 
-function ChangePasswordScreen({ navigation }) {
+function ChangePasswordScreen({navigation}) {
   const [currentPassword, setCurrentPassword] = React.useState('');
   const [newPassword, setNewPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -32,7 +32,10 @@ function ChangePasswordScreen({ navigation }) {
         password: newPassword,
         password_confirmation: confirmPassword,
       });
-      if (res?.message?.toLowerCase().includes('success') || res?.status === 200) {
+      if (
+        res?.message?.toLowerCase().includes('success') ||
+        res?.status === 200
+      ) {
         Alert.alert('Success', 'Password changed successfully!');
         navigation.goBack();
       } else if (res?.errors) {
@@ -71,7 +74,10 @@ function ChangePasswordScreen({ navigation }) {
             commanText="Enter your current password and choose a new one."
             commanTextstyle={cStyles.changePasswordPageText}
           />
-          <CommanText commanText="Current Password" commanTextstyle={cStyles.inputLabelText} />
+          <CommanText
+            commanText="Current Password"
+            commanTextstyle={cStyles.inputLabelText}
+          />
           <RNTextInput
             style={inputStyle}
             value={currentPassword}
@@ -79,7 +85,10 @@ function ChangePasswordScreen({ navigation }) {
             placeholder="Current Password"
             secureTextEntry
           />
-          <CommanText commanText="New Password" commanTextstyle={cStyles.inputLabelText} />
+          <CommanText
+            commanText="New Password"
+            commanTextstyle={cStyles.inputLabelText}
+          />
           <RNTextInput
             style={inputStyle}
             value={newPassword}
@@ -87,7 +96,10 @@ function ChangePasswordScreen({ navigation }) {
             placeholder="New Password"
             secureTextEntry
           />
-          <CommanText commanText="Confirm New Password" commanTextstyle={cStyles.inputLabelText} />
+          <CommanText
+            commanText="Confirm New Password"
+            commanTextstyle={cStyles.inputLabelText}
+          />
           <RNTextInput
             style={inputStyle}
             value={confirmPassword}
@@ -96,8 +108,11 @@ function ChangePasswordScreen({ navigation }) {
             secureTextEntry
           />
           <CommanBtnScreen
-            btnText={loading ? "Updating..." : "Change Password"}
-            commanBtnStyle={[cStyles.changePasswordBtn, loading && { opacity: 0.7 }]}
+            btnText={loading ? 'Updating...' : 'Change Password'}
+            commanBtnStyle={[
+              cStyles.changePasswordBtn,
+              loading && {opacity: 0.7},
+            ]}
             onBtnPress={handleChangePassword}
             disabled={loading}
           />

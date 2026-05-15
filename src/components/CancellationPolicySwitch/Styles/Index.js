@@ -1,33 +1,33 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
 const styles = EStyleSheet.create({
   cancellationPolicyHeading: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   cancellationPolicyHeadingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: '33rem',
-    paddingBottom: '23rem'
+    paddingBottom: '23rem',
   },
   cancellationPolicySwitchBtn: {
     marginLeft: 'auto',
     height: '10rem',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   cancellationPolicySwitchLine: {
     width: '15rem',
     height: '2rem',
     backgroundColor: Colors.darkGray,
-    borderRadius: '2rem'
+    borderRadius: '2rem',
   },
   cancellationPolicySwitchLineActive: {
     width: '15rem',
     height: '2rem',
     backgroundColor: Colors.primary,
-    borderRadius: '2rem'
+    borderRadius: '2rem',
   },
   cancellationPolicySwitchRound: {
     borderWidth: 1.5,
@@ -38,7 +38,7 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   cancellationPolicySwitchRoundActive: {
     borderWidth: 1.5,
@@ -49,29 +49,29 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   cancellationPolicyTextContent: {
     paddingBottom: '15rem',
     borderBottomWidth: 2,
     borderColor: Colors.gray,
-    marginBottom: '37rem'
+    marginBottom: '37rem',
   },
   cancellationPolicyText: {
     color: Colors.darkGray,
     lineHeight: '18rem',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   cancellationPolicyMoreBtn: {
-    width: '90rem'
+    width: '90rem',
   },
   cancellationPolicyMoreText: {
     color: Colors.primary,
     lineHeight: '18rem',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.buttonText
-  }
+    ...Fonts.style.buttonText,
+  },
 });
 
 export default styles;

@@ -1,6 +1,6 @@
-import { Dimensions, Platform } from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 
-const { height, width } = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
 
 /**
  * Check device
@@ -18,17 +18,17 @@ export const isIphoneX = () => {
  * Http query builder
  * @param d     Http paramter
  */
-export const buildURLQuery = (d) =>
+export const buildURLQuery = d =>
   Object.keys(d)
-    .filter((k) => d[k] !== null)
-    .map((k) => [k, d[k]].map(encodeURIComponent).join('='))
+    .filter(k => d[k] !== null)
+    .map(k => [k, d[k]].map(encodeURIComponent).join('='))
     .join('&');
 
 /**
  * Curreny formatter
  * @param value   currency value
  */
-export const numberFormat = (value) => {
+export const numberFormat = value => {
   // new Intl.NumberFormat('en-PH', {
   //   style: 'currency',
   //   currency: 'PHP',
@@ -41,11 +41,11 @@ export const numberFormat = (value) => {
 
   const currencyOptions = new Intl.NumberFormat('en-PH', {
     style: 'currency',
-    currency: 'PHP'
+    currency: 'PHP',
   }).resolvedOptions();
 
   return value.toLocaleString('en-PH', {
     ...currencyOptions,
-    style: 'decimal'
+    style: 'decimal',
   });
 };

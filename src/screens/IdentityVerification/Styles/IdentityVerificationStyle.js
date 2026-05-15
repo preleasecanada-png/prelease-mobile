@@ -1,22 +1,22 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { isIphoneX } from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
+import {isIphoneX} from '../../../libs/Utils';
 
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: '40rem',
     '@media ios': {
-      paddingBottom: isIphoneX() ? 0 : '15rem'
+      paddingBottom: isIphoneX() ? 0 : '15rem',
     },
     '@media android': {
-      paddingBottom: 0
-    }
+      paddingBottom: 0,
+    },
   },
   successContent: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1.2
+    flex: 1.2,
   },
   successPeregraph: {
     lineHeight: '21rem',
@@ -25,31 +25,31 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     marginBottom: '37rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   successBtn: {
-    width: '100%'
+    width: '100%',
   },
   addIdBtn: {
-    width: '165rem'
+    width: '165rem',
   },
   howWorkText: {
     color: Colors.primary,
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
     textDecorationColor: Colors.primary,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   howWorkLinkText: {
     width: '100rem',
     alignSelf: 'center',
     '@media ios': {
-      flex: isIphoneX() ? 0.1 : 0.2
+      flex: isIphoneX() ? 0.1 : 0.2,
     },
     '@media android': {
-      flex: 0.2
-    }
-  }
+      flex: 0.2,
+    },
+  },
 });
 
 export default styles;

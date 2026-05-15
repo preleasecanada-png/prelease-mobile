@@ -1,10 +1,9 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { border, borderWidth, flex, marginLeft, padding } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {border, borderWidth, flex, marginLeft, padding} from 'styled-system';
 
 const styles = EStyleSheet.create({
-  facilitiCounterContainer:{
-
+  facilitiCounterContainer: {
     flex: 1,
   },
   facilitiCounterRow: {
@@ -12,9 +11,9 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.darkGray,
-    paddingVertical: '10rem'
+    paddingVertical: '10rem',
   },
-  textContainer:{
+  textContainer: {
     marginRight: 'auto',
   },
   facilitiCounterHeading: {
@@ -22,41 +21,40 @@ const styles = EStyleSheet.create({
     lineHeight: '24rem',
     // marginRight: 'auto',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
-  facilitiCounterDesc:{
+  facilitiCounterDesc: {
     color: Colors.gratLightText,
     lineHeight: '24rem',
     // marginRight: 'auto',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.normalText
-    
+    ...Fonts.style.normalText,
   },
   facilitiCounterBtnsTextRow: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   facilitiCounterText: {
     paddingHorizontal: '8rem',
     color: Colors.gratLightText,
     lineHeight: '24rem',
     fontSize: Fonts.size.regular,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   facilitiCounterPluseMinsaIcon: {
     width: '14rem',
-    height: '14rem'
+    height: '14rem',
   },
-  facilitiCounterPresable:{
+  facilitiCounterPresable: {
     borderWidth: '1rem',
     borderColor: Colors.primary,
     borderRadius: 50,
     padding: 5,
     marginLeft: 'auto',
   },
-  incrementStyle:{
-    backgroundColor: Colors.primaryLight
-  }
+  incrementStyle: {
+    backgroundColor: Colors.primaryLight,
+  },
 });
 
 export default styles;

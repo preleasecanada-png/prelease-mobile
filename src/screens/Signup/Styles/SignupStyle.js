@@ -1,8 +1,16 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { isIphoneX } from '../../../libs/Utils';
-import { Colors, Fonts } from '../../../theme';
-import { backgroundColor, borderColor, borderRadius, borderWidth, letterSpacing, marginBottom, textAlign } from 'styled-system';
-import { color } from 'react-native-reanimated';
+import {isIphoneX} from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
+import {
+  backgroundColor,
+  borderColor,
+  borderRadius,
+  borderWidth,
+  letterSpacing,
+  marginBottom,
+  textAlign,
+} from 'styled-system';
+import {color} from 'react-native-reanimated';
 
 const styles = EStyleSheet.create({
   logo: {
@@ -18,12 +26,12 @@ const styles = EStyleSheet.create({
     paddingBottom: '15rem',
     '@media ios': {
       flex: isIphoneX() ? 1 : 0,
-      paddingTop: isIphoneX() ? '75rem' : '81rem'
+      paddingTop: isIphoneX() ? '75rem' : '81rem',
     },
     '@media android': {
-      paddingTop: '20rem'
+      paddingTop: '20rem',
     },
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   heading: {
     // marginBottom: '18rem',
@@ -32,25 +40,25 @@ const styles = EStyleSheet.create({
     color: Colors.black,
     lineHeight: '28rem',
     fontSize: Fonts.size.h3,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   signupLoginInputGroup: {
     paddingHorizontal: '10rem',
-    paddingVertical: '25rem'
+    paddingVertical: '25rem',
   },
   lastInputStyle: {
-    marginBottom: '15rem'
+    marginBottom: '15rem',
   },
   passwordInputStyle: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   signUpLogInBtn: {
     marginBottom: '17rem',
-    borderRadius: 50
+    borderRadius: 50,
   },
   googleFaceBookBtnRow: {
     flexDirection: 'column',
-    marginBottom: '15rem'
+    marginBottom: '15rem',
   },
   bottomAccountText: {
     lineHeight: '18rem',
@@ -58,17 +66,17 @@ const styles = EStyleSheet.create({
     marginTop: 'auto',
     alignSelf: 'center',
     ...Fonts.style.textInputText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
-  
-  bottomGuestText:{
+
+  bottomGuestText: {
     lineHeight: '18rem',
     color: Colors.darkGray2,
     marginTop: 'auto',
     alignSelf: 'center',
     ...Fonts.style.textInputText,
     fontSize: Fonts.size.medium,
-    marginBottom: '22rem'
+    marginBottom: '22rem',
   },
   loginSignupBtnText: {
     lineHeight: '18rem',
@@ -76,34 +84,34 @@ const styles = EStyleSheet.create({
     marginTop: 'auto',
     alignSelf: 'center',
     ...Fonts.style.textInputText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
-  inputStyle:{
+  inputStyle: {
     borderWidth: 1,
     borderColor: Colors.black,
     backgroundColor: Colors.white,
     marginBottom: 5,
   },
-  labelStyle:{
+  labelStyle: {
     color: Colors.black,
     fontSize: Fonts.size.tiny,
     marginBottom: '5rem',
     textAlign: 'left',
     lineHeight: '18rem',
     fontSize: Fonts.size.small,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
-  otherTextStyle:{
+  otherTextStyle: {
     color: Colors.darkerGray,
     fontSize: Fonts.size.small,
     textAlign: 'center',
     lineHeight: '18rem',
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
-  googleFaceBookBtnStyle:{
+  googleFaceBookBtnStyle: {
     width: '100%',
   },
-  
+
   forgotPasswordLink: {
     marginBottom: '22rem',
     marginLeft: 'auto',
@@ -111,14 +119,14 @@ const styles = EStyleSheet.create({
     fontSize: Fonts.size.small,
     textAlign: 'center',
     lineHeight: '18rem',
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   forgotPasswordText: {
     textAlign: 'right',
     fontSize: Fonts.size.tiny,
     lineHeight: '15rem',
     color: Colors.darkGray,
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
   forgotPasswordPageText: {
     color: Colors.grayText,

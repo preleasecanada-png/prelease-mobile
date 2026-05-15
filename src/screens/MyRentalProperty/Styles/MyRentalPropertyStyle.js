@@ -1,36 +1,36 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { borderRadius, marginBottom, marginTop } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {borderRadius, marginBottom, marginTop} from 'styled-system';
 
 const styles = EStyleSheet.create({
   container: {
     paddingTop: '23rem',
     paddingHorizontal: '20rem',
-    backgroundColor: Colors.white
+    backgroundColor: Colors.white,
   },
   bookHistoryContainer: {
     paddingBottom: '100rem',
-    paddingTop: 0
+    paddingTop: 0,
   },
   bookActiveContainer: {
-    paddingTop: 0
+    paddingTop: 0,
   },
   categoryPropartyImgStyle: {
     width: '95rem',
-    height: '95rem'
+    height: '95rem',
   },
   categoryRightContentStyle: {
-    width: '100% - 177rem'
+    width: '100% - 177rem',
   },
   indicatorStyle: {
     height: '1rem',
     backgroundColor: Colors.primary,
-    borderRadius: '1rem'
+    borderRadius: '1rem',
   },
   tabBarStyle: {
     backgroundColor: Colors.transparent,
     marginHorizontal: '20rem',
-    elevation: 0
+    elevation: 0,
   },
   labelStyle: {
     color: Colors.darkGray,
@@ -38,21 +38,21 @@ const styles = EStyleSheet.create({
     margin: 0,
     textAlign: 'center',
     ...Fonts.style.buttonText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
   tabStyle: {
-    padding: 0
+    padding: 0,
   },
   tabViewStyle: {
     flex: 1,
-    width: '100%'
+    width: '100%',
   },
   amountTransactionIdRow: {
     paddingBottom: '23rem',
     borderBottomWidth: '2rem',
     borderColor: Colors.gray,
     marginHorizontal: '-20rem',
-    paddingHorizontal: '20rem'
+    paddingHorizontal: '20rem',
   },
   amountText: {
     lineHeight: '21rem',
@@ -60,17 +60,17 @@ const styles = EStyleSheet.create({
     textAlign: 'center',
     marginBottom: '8rem',
     ...Fonts.style.normalText,
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium,
   },
   transactionIdText: {
     lineHeight: '18rem',
     color: Colors.darkGray,
     textAlign: 'center',
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
   paymentOptionList: {
-    paddingTop: '23rem'
+    paddingTop: '23rem',
   },
   paymentPrivacyPolicyText: {
     color: Colors.darkGray,
@@ -79,43 +79,42 @@ const styles = EStyleSheet.create({
     marginTop: '13rem',
     fontSize: Fonts.size.tiny,
     ...Fonts.style.textInputText,
-    marginBottom: '15rem'
+    marginBottom: '15rem',
   },
   paymentPrivacyPolicyLinkText: {
     color: Colors.primary,
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   paymentCardTypeImgs: {
     marginTop: '19rem',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: '-17rem'
+    marginHorizontal: '-17rem',
   },
   paymentCardTypeImg: {
-    marginHorizontal: '17rem'
+    marginHorizontal: '17rem',
   },
   paymentCardVisaImg: {
     width: '42.08rem',
-    height: '13.65rem'
+    height: '13.65rem',
   },
   paymentCardMasterImg: {
     width: '25.45rem',
-    height: '20rem'
+    height: '20rem',
   },
   paymentCardRentalImg: {
     width: '25.89rem',
-    height: '25rem'
+    height: '25rem',
   },
-  commanHeadingContainerStyle:{
-    marginBottom: 0
-
+  commanHeadingContainerStyle: {
+    marginBottom: 0,
   },
-  nextBtnStyle:{
+  nextBtnStyle: {
     borderRadius: 50,
     marginBottom: 20,
-  }
+  },
 });
 
 export default styles;

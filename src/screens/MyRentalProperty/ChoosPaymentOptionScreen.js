@@ -1,21 +1,21 @@
 import * as React from 'react';
-import { Text, View, Image } from 'react-native';
-import { Container, Content, Header } from '../../components';
-import { creditCardData, paymentOptionData } from '../../assets/data';
+import {Text, View, Image} from 'react-native';
+import {Container, Content, Header} from '../../components';
+import {creditCardData, paymentOptionData} from '../../assets/data';
 import PaymentList from '../../components/PaymentList';
 import CommanHeading from '../../components/CommanHeading';
-import { navigate } from '../../navigation/ReduxNavigation';
-import { Colors, Images } from '../../theme';
+import {navigate} from '../../navigation/ReduxNavigation';
+import {Colors, Images} from '../../theme';
 import styles from './Styles/MyRentalPropertyStyle';
 import HeaderMain from '../../components/HeaderMain';
 import LineSeperator from '../../components/LineSeperator';
 import CancellationPolicy from '../../components/CancellationPolicy';
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather';
 import GroundRules from '../../components/GroundRules';
 import CommanBtnScreen from '../../components/CommanBtn';
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 
-const ChoosPaymentOptionScreen = ({ navigation, route }) => {
+const ChoosPaymentOptionScreen = ({navigation, route}) => {
   return (
     <Container>
       <HeaderMain
@@ -23,7 +23,7 @@ const ChoosPaymentOptionScreen = ({ navigation, route }) => {
         leftIcon="chevron-thin-left"
         leftIconPress={() => navigation.goBack()}
         rightIcon={<Icon name={'bell'} size={25} color={Colors.black} />}
-        rightIconPress={() => { }}
+        rightIconPress={() => {}}
         centerImageColor={Colors.lightWhite}
         containerStyle={{
           paddingHorizontal: 20,
@@ -46,7 +46,7 @@ const ChoosPaymentOptionScreen = ({ navigation, route }) => {
           />
           <PaymentList data={creditCardData} paymentOptionSubText={1} />
 
-          {/* 
+          {/*
           <View style={styles.paymentCardTypeImgs}>
             <Image
               source={Images.VisaIcon}
@@ -72,7 +72,6 @@ const ChoosPaymentOptionScreen = ({ navigation, route }) => {
             </Text>
           </Text>  */}
 
-
           <LineSeperator
             style={{
               backgroundColor: Colors.gray,
@@ -92,10 +91,11 @@ const ChoosPaymentOptionScreen = ({ navigation, route }) => {
           <CommanBtnScreen
             btnText="Next"
             commanBtnStyle={styles.nextBtnStyle}
-            onBtnPress={() => navigation.navigate('PaymentMathod', {
-              ...route?.params
-            })}
-
+            onBtnPress={() =>
+              navigation.navigate('PaymentMathod', {
+                ...route?.params,
+              })
+            }
           />
         </View>
       </Content>

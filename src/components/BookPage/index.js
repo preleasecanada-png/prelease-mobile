@@ -8,20 +8,25 @@ import FacilitiesRules from '../FacilitiesRules';
 import CounterList from '../CounterList';
 import CancellationPolicy from '../CancellationPolicy';
 import CommanHeading from '../CommanHeading';
-import { amenitiesList, facilitiesList, noOfRooms, propertyTypeData } from '../../assets/data';
-import { Content } from '..';
+import {
+  amenitiesList,
+  facilitiesList,
+  noOfRooms,
+  propertyTypeData,
+} from '../../assets/data';
+import {Content} from '..';
 
 import styles from './Styles/index';
-import { navigate } from '../../navigation/ReduxNavigation';
-import { FlatList, View } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Text } from 'react-native';
+import {navigate} from '../../navigation/ReduxNavigation';
+import {FlatList, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import {Text} from 'react-native';
 import RadioButtonGroup from '../RadioButtonGroup';
 import CommanText from '../SignUpLogIn/CommanText';
 import LineSeperator from '../LineSeperator';
-import { paddingRight } from 'styled-system';
-import { Checkbox, Switch, sw } from 'react-native-paper';
-import { Colors } from '../../theme';
+import {paddingRight} from 'styled-system';
+import {Checkbox, Switch, sw} from 'react-native-paper';
+import {Colors} from '../../theme';
 import Icon from 'react-native-vector-icons/Fontisto';
 // import { View, Text } from 'react-native';import { Switch } from 'react-native-paper';
 
@@ -30,9 +35,14 @@ const MyComponent = () => {
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
-  return <Switch color={Colors.primary} value={isSwitchOn} onValueChange={onToggleSwitch} />;
+  return (
+    <Switch
+      color={Colors.primary}
+      value={isSwitchOn}
+      onValueChange={onToggleSwitch}
+    />
+  );
 };
-
 
 // const CommonToggleButton = () => {
 //   const [status, setStatus] = React.useState('checked');
@@ -54,9 +64,8 @@ const MyComponent = () => {
 //   );
 // };
 
-
-const CheckboxItem = ({ item }) => {
-  console.log('Checkbox', item)
+const CheckboxItem = ({item}) => {
+  console.log('Checkbox', item);
   const [checked, setChecked] = React.useState(false);
   return (
     <TouchableOpacity style={styles.checkBoxItem}>
@@ -66,47 +75,42 @@ const CheckboxItem = ({ item }) => {
           setChecked(!checked);
         }}
         color={Colors.primary}
-
       />
       <Text style={styles.checkboxText}>{item.text}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-const CheckBoxGroup = ({ data = [], }) => {
+const CheckBoxGroup = ({data = []}) => {
   // create show more state and button
   const [showMore, setShowMore] = React.useState(false);
   const showMoreButton = () => {
     setShowMore(!showMore);
-  }
+  };
 
   return (
     <View style={styles.checkboxContainer}>
       <FlatList
-        data={
-          data.slice(0, !showMore ? 6 : data.length)
-
-        }
-        keyExtractor={(item) => item.id}
+        data={data.slice(0, !showMore ? 6 : data.length)}
+        keyExtractor={item => item.id}
         numColumns={2}
-        renderItem={({ item }) => <CheckboxItem item={item} />}
+        renderItem={({item}) => <CheckboxItem item={item} />}
       />
 
       <TouchableOpacity onPress={showMoreButton} style={styles.learnMoreBtn}>
-        <Text style={styles.learnMoreBtnText}>{showMore ? 'Show Less' : 'Show more'}</Text>
+        <Text style={styles.learnMoreBtnText}>
+          {showMore ? 'Show Less' : 'Show more'}
+        </Text>
       </TouchableOpacity>
     </View>
-  )
-}
-
+  );
+};
 
 function BookPage() {
   return (
     <>
       <Content hasHeader contentContainerStyle={styles.container}>
-
-
-        <View style={[styles.content, { paddingRight: 0 }]}>
+        <View style={[styles.content, {paddingRight: 0}]}>
           <CommanHeading
             headingText
             heading="Type of Place"
@@ -119,9 +123,7 @@ function BookPage() {
             commanTextstyle={styles.subTextStyle}
           />
           <RadioButtonGroup data={propertyTypeData} />
-
         </View>
-
 
         <LineSeperator style={styles.LineSeperatorStyle} />
 
@@ -142,7 +144,7 @@ function BookPage() {
           <RangeSlider />
         </View>
         <LineSeperator style={styles.LineSeperatorStyle} />
-        <View style={[styles.content, { paddingRight: 0 }]}>
+        <View style={[styles.content, {paddingRight: 0}]}>
           <CommanHeading
             headingText
             heading="Rooms and Beds"
@@ -156,8 +158,6 @@ function BookPage() {
           />
           <RadioButtonGroup data={noOfRooms} />
 
-
-
           <CommanText
             commanText={'Beds'}
             commanTextstyle={styles.subTextStyle}
@@ -169,11 +169,9 @@ function BookPage() {
             commanTextstyle={styles.subTextStyle}
           />
           <RadioButtonGroup data={noOfRooms} />
-
         </View>
 
         <LineSeperator style={styles.LineSeperatorStyle} />
-
 
         {/* <DatePicker /> */}
         <View style={[styles.content]}>
@@ -221,7 +219,9 @@ function BookPage() {
                 commanHeadingContainerStyle={styles.subHeadingContainerStyle}
               />
               <CommanText
-                commanText={'Listings you can book without waiting for Host approval'}
+                commanText={
+                  'Listings you can book without waiting for Host approval'
+                }
                 commanTextstyle={styles.subTitleTextStyle}
               />
             </View>
@@ -263,19 +263,19 @@ function BookPage() {
         <View style={styles.buttonsContainer}>
           <CommanBtn
             btnText="Clear All"
-            commanBtnStyle={[styles.btnStyle, { backgroundColor: Colors.transparent, }]}
+            commanBtnStyle={[
+              styles.btnStyle,
+              {backgroundColor: Colors.transparent},
+            ]}
             commanBtnTextStyle={styles.cancelButtonTextStyle}
-
-            onBtnPress={() => navigation.navigate('AddPaymentMathod')}
+            onBtnPress={() => navigate('AddPaymentMathod')}
           />
           <CommanBtn
             btnText="Show 00 Places"
             commanBtnStyle={styles.btnStyle}
-            onBtnPress={() => navigation.navigate('AddPaymentMathod')}
+            onBtnPress={() => navigate('AddPaymentMathod')}
           />
         </View>
-
-
       </Content>
     </>
   );

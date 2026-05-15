@@ -1,11 +1,18 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { alignItems, backgroundColor, borderRadius, fontSize, justifyContent, letterSpacing, width, zIndex } from 'styled-system';
-
+import {Colors, Fonts} from '../../../theme';
+import {
+  alignItems,
+  backgroundColor,
+  borderRadius,
+  fontSize,
+  justifyContent,
+  letterSpacing,
+  width,
+  zIndex,
+} from 'styled-system';
 
 const styles = EStyleSheet.create({
   topLabel: {
-
     ...Fonts.style.boldText,
     fontSize: Fonts.size.mediumNormal,
     color: Colors.black,
@@ -28,7 +35,7 @@ const styles = EStyleSheet.create({
     fontSize: 12,
     letterSpacing: '0.5rem',
     borderRadius: 50,
-    width: "100%",
+    width: '100%',
 
     // shadowOffset: {
     //   width: '1rem',
@@ -44,8 +51,8 @@ const styles = EStyleSheet.create({
     width: '100%',
     backgroundColor: Colors.white,
     borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     // padding: '12rem',
     // shadowColor: Colors.black,
     // shadowOffset: { width: 0, height: 10 },
@@ -66,25 +73,22 @@ const styles = EStyleSheet.create({
     height: '14rem',
     backgroundColor: Colors.white,
   },
-  rightButton:{
+  rightButton: {
     position: 'absolute',
     // top: '13rem',
     right: '17.71rem',
-
   },
-  leftButton:{
+  leftButton: {
     position: 'absolute',
     // top: '11rem',
     left: '15.71rem',
     zIndex: 999,
-
-
   },
   searchIconLeft: {
     // width: '16rem',
     // height: '16rem',
     tintColor: Colors.black,
-  }
+  },
 });
 
 export default styles;

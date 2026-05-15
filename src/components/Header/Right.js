@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, Image, TouchableOpacity } from 'react-native';
-import { Images } from '../../theme';
+import {Text, Image, TouchableOpacity} from 'react-native';
+import {Images} from '../../theme';
 import styles from './Styles';
 
 function HeaderRight({
@@ -9,7 +9,7 @@ function HeaderRight({
   filterBtn,
   onFilterBtnPress,
   clearText,
-  onclearTextPress
+  onclearTextPress,
 }) {
   return (
     <>

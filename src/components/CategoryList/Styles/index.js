@@ -1,6 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { borderWidth } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {borderWidth} from 'styled-system';
 
 const styles = EStyleSheet.create({
   categoryContainer: {
@@ -13,64 +13,64 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     marginBottom: '10rem',
     borderWidth: 1,
-    borderColor: Colors.opacityBlack_50
+    borderColor: Colors.opacityBlack_50,
   },
   categoryPropartyImgContent: {
     borderRadius: '10rem',
     shadowOffset: {
       width: '1rem',
-      height: '10rem'
+      height: '10rem',
     },
     shadowOpacity: 1,
     shadowRadius: 6,
     elevation: 10,
     shadowColor: Colors.shadowLighterBlack,
-    marginRight: '17rem'
+    marginRight: '17rem',
   },
   categoryPropartyImg: {
     width: '72rem',
     height: '72rem',
-    borderRadius: '10rem'
+    borderRadius: '10rem',
   },
   categoryRightContent: {
-    width: '100% - 158rem'
+    width: '100% - 158rem',
   },
   categoryHeadingLikeBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '5rem'
+    marginBottom: '5rem',
   },
   categoryHeading: {
     color: Colors.black,
     fontSize: Fonts.size.medium,
     ...Fonts.style.boldText,
-    width: '100% - 200rem'
+    width: '100% - 200rem',
   },
   categoryLikeBtn: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   categoryLikeImg: {
     width: '13rem',
-    height: '13rem'
+    height: '13rem',
   },
   sliderRatingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   categoryPriceText: {
     color: Colors.primary,
     fontSize: Fonts.size.tiny,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   categoryPriceRatingText: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '8rem'
+    marginBottom: '8rem',
   },
   categoryRatingStarImg: {
     width: '11.27rem',
-    height: '11.27rem'
+    height: '11.27rem',
   },
   sliderRatingStarText: {
     color: Colors.darkGray,
@@ -78,52 +78,51 @@ const styles = EStyleSheet.create({
     marginLeft: '2.87rem',
     fontSize: Fonts.size.tiny,
     '@media ios': {
-      ...Fonts.style.normalText
+      ...Fonts.style.normalText,
     },
     '@media android': {
-      ...Fonts.style.textInputText
-    }
+      ...Fonts.style.textInputText,
+    },
   },
   categoryBottomRoomDetail: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   categoryBottomRoomDetailImgText: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   categoryRoomDetailImg: {
     width: '11rem',
     height: '11rem',
-    marginRight: '5rem'
+    marginRight: '5rem',
   },
   categoryCollectionPriceRatingTex: {
-    marginBottom: 0
+    marginBottom: 0,
   },
   categoryLocationImgText: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '8rem'
+    marginBottom: '8rem',
   },
   categoryLocationImg: {
     width: '11rem',
     height: '11rem',
-    marginRight: '5.94rem'
+    marginRight: '5.94rem',
   },
   categoryLocationText: {
     lineHeight: '18rem',
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.xTiny,
-    ...Fonts.style.textInputText
+    ...Fonts.style.textInputText,
   },
-  dateTextStyle:{
+  dateTextStyle: {
     lineHeight: '18rem',
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.small,
-    ...Fonts.style.textInputText
-
-  }
+    ...Fonts.style.textInputText,
+  },
 });
 
 export default styles;

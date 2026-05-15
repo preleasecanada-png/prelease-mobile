@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { TouchableOpacity, Text, View, Image } from 'react-native';
-import { Images } from '../../theme';
+import {TouchableOpacity, Text, View, Image} from 'react-native';
+import {Images} from '../../theme';
 import styles from './Styles/Index';
 
 function CommanHeadingScreen({
@@ -14,25 +14,28 @@ function CommanHeadingScreen({
   headingCollapseBtn,
   arrowIcon,
   arrowIconStyle,
-  commanHeadingTextStyle
+  commanHeadingTextStyle,
 }) {
   return (
     <>
       {headingText && (
         <View
           style={[styles.commanHeadingContainer, commanHeadingContainerStyle]}>
-          <Text style={[styles.commanHeadingText, commanHeadingTextStyle]}>{heading}</Text>
+          <Text style={[styles.commanHeadingText, commanHeadingTextStyle]}>
+            {heading}
+          </Text>
 
           <View style={styles.viewallBtn}>
             <Text style={[styles.morBtnText, morBtnStyle]}>{moreBtn}</Text>
           </View>
         </View>
-
       )}
       {headingBtn && (
         <View
           style={[styles.commanHeadingContainer, commanHeadingContainerStyle]}>
-          <Text style={[styles.commanHeadingText, commanHeadingTextStyle]}>{heading}</Text>
+          <Text style={[styles.commanHeadingText, commanHeadingTextStyle]}>
+            {heading}
+          </Text>
           <TouchableOpacity
             style={styles.viewallBtn}
             onPress={() => {

@@ -1,28 +1,30 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { Container, Content, Header } from '../../../components';
-import { paymentOptionData } from '../../../assets/data';
+import {View} from 'react-native';
+import {Container, Content, Header} from '../../../components';
+import {paymentOptionData} from '../../../assets/data';
 import CommanHeading from '../../../components/CommanHeading';
 import CommanBtn from '../../../components/CommanBtn';
 import PaymentList from '../../../components/PaymentList';
-import { navigate } from '../../../navigation/ReduxNavigation';
+import {navigate} from '../../../navigation/ReduxNavigation';
 import styles from './Styles/PaymentMathodStyle';
 import HeaderMain from '../../../components/HeaderMain';
-import { Colors } from '../../../theme';
-import { FeatherIcon } from '../../../theme/icons';
+import {Colors} from '../../../theme';
+import {FeatherIcon} from '../../../theme/icons';
 import TextInputScreen from '../../../components/SignUpLogIn/TextInput';
-import { TouchableOpacity } from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import CommanText from '../../../components/SignUpLogIn/CommanText';
 
-function PaymentMathodScreen({ navigation, route }) {
+function PaymentMathodScreen({navigation, route}) {
   const renderButtons = () => {
     return (
       <View style={styles.buttonsContainer}>
         <CommanBtn
           btnText="Cancel"
-          commanBtnStyle={[styles.btnStyle, { backgroundColor: Colors.transparent, width: 90 }]}
+          commanBtnStyle={[
+            styles.btnStyle,
+            {backgroundColor: Colors.transparent, width: 90},
+          ]}
           commanBtnTextStyle={styles.cancelButtonTextStyle}
-
           onBtnPress={() => navigation.goBack()}
         />
         {/* <TouchableOpacity style={[styles.btnStyle, styles.flexRow, styles.btnStyle2]}>
@@ -35,8 +37,8 @@ function PaymentMathodScreen({ navigation, route }) {
           onBtnPress={() => navigation.navigate('BookNow', {...route.params})}
         />
       </View>
-    )
-  }
+    );
+  };
   return (
     <Container>
       <HeaderMain
@@ -44,7 +46,7 @@ function PaymentMathodScreen({ navigation, route }) {
         leftIcon="chevron-thin-left"
         leftIconPress={() => navigation.goBack()}
         rightIcon={<FeatherIcon name={'bell'} size={25} color={Colors.black} />}
-        rightIconPress={() => { }}
+        rightIconPress={() => {}}
         centerImageColor={Colors.lightWhite}
         containerStyle={{
           paddingHorizontal: 20,
@@ -58,15 +60,13 @@ function PaymentMathodScreen({ navigation, route }) {
           commanHeadingContainerStyle={styles.commanHeadingContainerStyle}
           navigation={navigate}
         />
-        <View style={{justifyContent: "center"}}>
+        <View style={{justifyContent: 'center'}}>
           {/* <PaymentList data={paymentOptionData.slice(2, 6)} /> */}
           <CommanText
             commanText="Enter your account number "
             commanTextstyle={styles.labelStyle}
           />
-          <TextInputScreen
-            defaultInput
-          />
+          <TextInputScreen defaultInput />
           {renderButtons()}
         </View>
       </Content>

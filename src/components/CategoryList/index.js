@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Text, Image, View, TouchableOpacity, FlatList } from 'react-native';
-import { Colors, Icons, Images } from '../../theme';
+import {useState} from 'react';
+import {Text, Image, View, TouchableOpacity, FlatList} from 'react-native';
+import {Colors, Icons, Images} from '../../theme';
 import styles from './Styles/index';
 
-
-
 export const CategoryItem = ({
-  item, index,
+  item,
+  index,
   categoryNormalList,
   categoryCollectionList,
   categoryNormalListText,
@@ -17,7 +16,7 @@ export const CategoryItem = ({
   onCategoryClick,
   handleWish,
   wishList,
-  categoryWishListText
+  categoryWishListText,
 
 }) => (
   <TouchableOpacity
@@ -45,7 +44,10 @@ export const CategoryItem = ({
           <Image
             source={item.isWish ? item.activeIikeImg : item.likeImg}
             resizeMode="contain"
-            style={[styles.categoryLikeImg, item.isWish && { tintColor: Colors.primary }]}
+            style={[
+              styles.categoryLikeImg,
+              item.isWish && {tintColor: Colors.primary},
+            ]}
           />
         </TouchableOpacity>
       </View>
@@ -64,7 +66,7 @@ export const CategoryItem = ({
           <View
             style={[
               styles.categoryPriceRatingText,
-              styles.categoryCollectionPriceRatingTex
+              styles.categoryCollectionPriceRatingTex,
             ]}>
             <Text style={styles.categoryPriceText}>{item.priceText}</Text>
             <View style={styles.sliderRatingContainer}>
@@ -73,9 +75,7 @@ export const CategoryItem = ({
                 resizeMode="contain"
                 style={styles.categoryRatingStarImg}
               />
-              <Text style={styles.sliderRatingStarText}>
-                {item.ratingText}
-              </Text>
+              <Text style={styles.sliderRatingStarText}>{item.ratingText}</Text>
             </View>
           </View>
         </>
@@ -103,7 +103,7 @@ export const CategoryItem = ({
           <View
             style={[
               styles.categoryPriceRatingText,
-              styles.categoryCollectionPriceRatingTex
+              styles.categoryCollectionPriceRatingTex,
             ]}>
             <Text style={styles.categoryPriceText}>{item.priceText}</Text>
             <View style={styles.sliderRatingContainer}>
@@ -112,9 +112,7 @@ export const CategoryItem = ({
                 resizeMode="contain"
                 style={styles.categoryRatingStarImg}
               />
-              <Text style={styles.sliderRatingStarText}>
-                {item.ratingText}
-              </Text>
+              <Text style={styles.sliderRatingStarText}>{item.ratingText}</Text>
             </View>
           </View>
         </>
@@ -129,9 +127,7 @@ export const CategoryItem = ({
                 resizeMode="contain"
                 style={styles.categoryRatingStarImg}
               />
-              <Text style={styles.sliderRatingStarText}>
-                {item.ratingText}
-              </Text>
+              <Text style={styles.sliderRatingStarText}>{item.ratingText}</Text>
             </View>
           </View>
           <View style={styles.categoryBottomRoomDetail}>
@@ -166,8 +162,6 @@ export const CategoryItem = ({
   </TouchableOpacity>
 );
 
-
-
 function CategoryList({
   categoryNormalList,
   categoryCollectionList,
@@ -177,7 +171,7 @@ function CategoryList({
   categoryWishListText,
   categoryRightContentStyle,
   categoryList,
-  onCategoryClick
+  onCategoryClick,
 }) {
   const [wishList, setWishList] = useState(categoryList);
   const [likeItem, setLikeItem] = useState({});
@@ -198,21 +192,22 @@ function CategoryList({
           key={bestForYouKey}
           data={wishList}
           extraData={wishList}
-          renderItem={({ item, index }) => <CategoryItem
-          item={item} index={index}
-          categoryNormalList={categoryNormalList}
-          categoryCollectionList={categoryCollectionList}
-          categoryNormalListText={categoryNormalListText}
-          categoryCollectionListText={categoryCollectionListText}
-          categoryPropartyImgStyle={categoryPropartyImgStyle}
-          categoryWishListText={categoryWishListText}
-          categoryRightContentStyle={categoryRightContentStyle}
-          onCategoryClick={onCategoryClick}
-
-        />}
+          renderItem={({item, index}) => (
+            <CategoryItem
+              item={item}
+              index={index}
+              categoryNormalList={categoryNormalList}
+              categoryCollectionList={categoryCollectionList}
+              categoryNormalListText={categoryNormalListText}
+              categoryCollectionListText={categoryCollectionListText}
+              categoryPropartyImgStyle={categoryPropartyImgStyle}
+              categoryWishListText={categoryWishListText}
+              categoryRightContentStyle={categoryRightContentStyle}
+              onCategoryClick={onCategoryClick}
+            />
+          )}
           bounces={false}
-          keyExtractor={(item) => item.id}
-
+          keyExtractor={item => item.id}
         />
       )}
       {categoryCollectionList && (
@@ -221,26 +216,25 @@ function CategoryList({
             flex: 1,
           }}
           data={wishList}
-          renderItem={({ item, index }) => <CategoryItem
-            item={item} index={index}
-            categoryNormalList={categoryNormalList}
-            categoryCollectionList={categoryCollectionList}
-            categoryNormalListText={categoryNormalListText}
-            categoryCollectionListText={categoryCollectionListText}
-            categoryPropartyImgStyle={categoryPropartyImgStyle}
-            categoryWishListText={categoryWishListText}
-            categoryRightContentStyle={categoryRightContentStyle}
-            onCategoryClick={onCategoryClick}
-          
-
-
-          />}
+          renderItem={({item, index}) => (
+            <CategoryItem
+              item={item}
+              index={index}
+              categoryNormalList={categoryNormalList}
+              categoryCollectionList={categoryCollectionList}
+              categoryNormalListText={categoryNormalListText}
+              categoryCollectionListText={categoryCollectionListText}
+              categoryPropartyImgStyle={categoryPropartyImgStyle}
+              categoryWishListText={categoryWishListText}
+              categoryRightContentStyle={categoryRightContentStyle}
+              onCategoryClick={onCategoryClick}
+            />
+          )}
           bounces={false}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
           contentContainerStyle={{
             backgroundColor: Colors.lightGray,
           }}
-
         />
       )}
     </View>

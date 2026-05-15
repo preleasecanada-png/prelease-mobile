@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, {useState} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import WelcomeScreen from '../screens/Welcome/WelcomeScreen';
 
-import { Colors, Fonts, Icons, Images } from '../theme';
+import {Colors, Fonts, Icons, Images} from '../theme';
 
 import HomeSVG from '../assets/svg/HomeSvg';
 import WishlistSVG from '../assets/svg/WishlistSvg';
 import BookingSVG from '../assets/svg/BookingSvg';
 
-import { MainTabsParams } from './types';
+import {MainTabsParams} from './types';
 import OnBoarding from '../screens/OnBoarding';
-import { useSelector, useDispatch } from 'react-redux';
-import { Image, View, ActivityIndicator } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {Image, View, ActivityIndicator} from 'react-native';
 import HeadNavbar from '../components/Header/HeadNavbar';
 import SearchLocationScreen from '../screens/SearchLocation';
 import TripSlotSelection from '../screens/Search/TripSlotSelection';
@@ -26,12 +26,12 @@ import ChatScreen from '../screens/Chat/ChatScreen';
 import ChatDetailsScreen from '../screens/Chat/ChatDetailsScreen';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
-import { CommonActions, NavigationContainer } from '@react-navigation/native';
-import { isReadyRef, navigationRef } from './ReduxNavigation';
+import {CommonActions, NavigationContainer} from '@react-navigation/native';
+import {isReadyRef, navigationRef} from './ReduxNavigation';
 import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createStackNavigator();
-const tabs = (props) => {
+const tabs = props => {
   return {
     Home: {
       labelStyle: {
@@ -86,10 +86,15 @@ const tabs = (props) => {
       icon: {
         component: () => {
           return (
-            <Image source={Icons.chat}
-              style={{ width: 24, height: 24, tintColor: props.active ? Colors.white : Colors.darkGray }}
+            <Image
+              source={Icons.chat}
+              style={{
+                width: 24,
+                height: 24,
+                tintColor: props.active ? Colors.white : Colors.darkGray,
+              }}
             />
-          )
+          );
         },
         activeColor: Colors.white,
         inactiveColor: Colors.darkGray,
@@ -100,9 +105,9 @@ const tabs = (props) => {
       },
     },
   };
-}
+};
 const topToBottomAnimation = {
-  cardStyleInterpolator: ({ current, layouts }) => {
+  cardStyleInterpolator: ({current, layouts}) => {
     return {
       cardStyle: {
         transform: [
@@ -119,7 +124,7 @@ const topToBottomAnimation = {
 };
 
 const leftToRightAnimation = {
-  cardStyleInterpolator: ({ current, layouts }) => {
+  cardStyleInterpolator: ({current, layouts}) => {
     return {
       cardStyle: {
         transform: [
@@ -135,20 +140,18 @@ const leftToRightAnimation = {
   },
 };
 
-
-
 const AppNavigation = () => {
-  const { user, intro, isLoggedIn } = useSelector(state => state.app);
+  const {user, intro, isLoggedIn} = useSelector(state => state.app);
   const dispatch = useDispatch();
   const [restoring, setRestoring] = useState(true);
 
   React.useEffect(() => {
     const restoreAuth = async () => {
       try {
-        const { AuthService } = require('../services');
+        const {AuthService} = require('../services');
         const session = await AuthService.restoreSession();
         if (session) {
-          dispatch({ type: 'LOGIN_SUCCESS', payload: session });
+          dispatch({type: 'LOGIN_SUCCESS', payload: session});
         }
       } catch (e) {
         console.log('Session restore failed:', e);
@@ -163,18 +166,22 @@ const AppNavigation = () => {
     if (isLoggedIn || user) {
       return 'Dashboard';
     } else {
-      if (!intro)
+      if (!intro) {
         return 'Welcome';
+      }
       return 'Auth';
     }
-  }, [user, intro, isLoggedIn])
-
-
-
+  }, [user, intro, isLoggedIn]);
 
   if (restoring) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.white }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: Colors.white,
+        }}>
         <ActivityIndicator size="large" color={Colors.primary} />
       </View>
     );
@@ -190,36 +197,34 @@ const AppNavigation = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={getInitialRouteName()}
-      >
+        initialRouteName={getInitialRouteName()}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Dashboard" component={MainStack} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
-
+  );
 };
-
-
 
 const TripSlotNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-      }}
-    >
-      <Stack.Screen options={{
-        header: () => <HeadNavbar />,
-      }} name="TripSlotSelection" component={TripSlotSelection} />
+    <Stack.Navigator screenOptions={{}}>
       <Stack.Screen
         options={{
-
+          header: () => <HeadNavbar />,
+        }}
+        name="TripSlotSelection"
+        component={TripSlotSelection}
+      />
+      <Stack.Screen
+        options={{
           headerShown: false,
           header: () => null,
         }}
-        name="TripSlotCalendar" component={TripSlotCalendar} />
+        name="TripSlotCalendar"
+        component={TripSlotCalendar}
+      />
     </Stack.Navigator>
-  )
-}
+  );
+};
 export default AppNavigation;

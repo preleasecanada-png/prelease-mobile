@@ -31,16 +31,16 @@ const Colors = {
   boxShadowLighterBlack: 'rgba(0, 0, 0, 0.1)',
   lighterPink: '#f15f5f4d',
   locationDarkGray: '#374151',
-  darkGray2: "#909090",
-  grayText: "#696969",
+  darkGray2: '#909090',
+  grayText: '#696969',
   dividerOpacityWhite: 'rgba(255, 255, 255, 0.4)',
   opacityWhite: 'rgba(222, 222, 222, 0.9)',
   gratLightText: '#4D4D4D',
   blurGray: '#DEDEDE',
   lightWhite: '#F3F3F3',
   green: '#1C8C28',
-  lightBlackText: "rgb(39,39,39)",
-  lightBlackTextOpacity: "rgba(39,39,39, 0.8)",
+  lightBlackText: 'rgb(39,39,39)',
+  lightBlackTextOpacity: 'rgba(39,39,39, 0.8)',
 };
 
 export default Colors;

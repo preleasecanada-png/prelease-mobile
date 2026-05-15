@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Container, Content, Header } from '../../components';
+import {Container, Content, Header} from '../../components';
 import PropertyDetailComponent from '../../components/PropertyDetailComponent';
 import styles from './Styles/MyRentalPropertyStyle';
 
-const ActivePropertyScreen = ({ navigation }) => {
+const ActivePropertyScreen = ({navigation}) => {
   return (
     <Container>
       <Header

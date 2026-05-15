@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { Container, Header, Content } from '../../components';
-import { helpCenterArticleList, helpCenterTopicList } from '../../assets/data';
+import {View, Text} from 'react-native';
+import {Container, Header, Content} from '../../components';
+import {helpCenterArticleList, helpCenterTopicList} from '../../assets/data';
 import SearchInput from '../../components/SearchInput/Index';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import CommanBtnScreen from '../../components/CommanBtn';
 import CommanHeading from '../../components/CommanHeading';
 import HelpCenterList from '../../components/HelpCenterList';
 import styles from './Styles/HelpCenterStyle';
 import CommonSearchInput from '../../components/CommonSearchInput/Index';
 
-function HelpCenterScreen({ navigation }) {
+function HelpCenterScreen({navigation}) {
   return (
     <>
       <Container>

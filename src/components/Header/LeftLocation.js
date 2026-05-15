@@ -1,9 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, Image, Text } from 'react-native';
-import { Images } from '../../theme';
+import {TouchableOpacity, Image, Text} from 'react-native';
+import {Images} from '../../theme';
 import styles from './Styles';
 
-function LeftLocation({ onLocationPress }) {
+function LeftLocation({onLocationPress}) {
   return (
     <TouchableOpacity
       style={styles.leftLocationContent}

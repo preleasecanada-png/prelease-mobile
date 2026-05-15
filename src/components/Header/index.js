@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import {View, Image, Text} from 'react-native';
 import styles from './Styles';
 import HeaderLeft from './Left';
 import HeaderLeftLoaction from './LeftLocation';
@@ -7,9 +7,9 @@ import HeaderRight from './Right';
 import HeaderTitle from './Title';
 import TitleLogo from './TitleLogo';
 import UserLeft from './UserLeft';
-import { Images } from '../../theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Entypo'
+import {Images} from '../../theme';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Entypo';
 
 export default class Header extends React.PureComponent {
   static TITLE = HeaderTitle;
@@ -41,7 +41,7 @@ export default class Header extends React.PureComponent {
       onclearTextPress,
       filterBtn,
       onFilterBtnPress,
-      leftArrow='chevron-thin-left',
+      leftArrow = 'chevron-thin-left',
     } = this.props;
     return (
       <>
@@ -62,10 +62,7 @@ export default class Header extends React.PureComponent {
                   style={styles.leftArrow}
                   resizeMode="contain"
                 /> */}
-                <Icon name={leftArrow} size={30}
-                  style={styles.leftArrow}
-
-                />
+                <Icon name={leftArrow} size={30} style={styles.leftArrow} />
               </TouchableOpacity>
             </HeaderLeft>
           )}

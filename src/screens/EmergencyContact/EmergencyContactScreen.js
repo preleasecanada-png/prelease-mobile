@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import CommanHeading from '../../components/CommanHeading';
 import CommanBtn from '../../components/CommanBtn';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/EmergencyContactStyle';
 
-function EmergencyContactScreen({ navigation }) {
+function EmergencyContactScreen({navigation}) {
   return (
     <Container>
       <Header

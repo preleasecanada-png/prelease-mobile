@@ -3,7 +3,7 @@ import api from './api';
 const PaymentService = {
   list: (role = 'renter') => api.get(`/payments?role=${role}`),
 
-  get: (id) => api.get(`/payments/${id}`),
+  get: id => api.get(`/payments/${id}`),
 
   initiate: (leaseAgreementId, paymentMethod) =>
     api.post('/payments/initiate', {
@@ -16,7 +16,7 @@ const PaymentService = {
       transaction_id: transactionId,
     }),
 
-  breakdown: (leaseAgreementId) =>
+  breakdown: leaseAgreementId =>
     api.get(`/payments/breakdown/${leaseAgreementId}`),
 };
 

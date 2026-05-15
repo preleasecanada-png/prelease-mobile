@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Container, Content, Header } from '../../components';
-import { Image, View, FlatList, Text, TouchableOpacity } from 'react-native';
+import {Container, Content, Header} from '../../components';
+import {Image, View, FlatList, Text, TouchableOpacity} from 'react-native';
 import CommanBtn from '../../components/CommanBtn';
 import PropertyDetailComponent from '../../components/PropertyDetailComponent';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/PopularDetailsStyle';
 
-const ConfirmPayPropertyScreen = ({ navigation }) => {
+const ConfirmPayPropertyScreen = ({navigation}) => {
   return (
     <Container>
       <Header

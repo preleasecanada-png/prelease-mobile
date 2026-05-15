@@ -1,12 +1,12 @@
 import React from 'react';
-import { Dimensions, Keyboard } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {Dimensions, Keyboard} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styles from './Styles';
-import { TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { Colors } from '../../theme';
-import { WINDOW_HEIGHT } from '@gorhom/bottom-sheet';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Colors} from '../../theme';
+import {WINDOW_HEIGHT} from '@gorhom/bottom-sheet';
 
 class Content extends React.Component {
   keyboardWillShowSub;
@@ -22,23 +22,23 @@ class Content extends React.Component {
     this.scrollRef = React.createRef();
     this.state = {
       isVisible: true,
-    //   isScrollable: false,
-    //   contentHeight: 0,
-    //   scrollViewSize: {
-    //     width: 0,
-    //     height: 0,
-    //   }
+      //   isScrollable: false,
+      //   contentHeight: 0,
+      //   scrollViewSize: {
+      //     width: 0,
+      //     height: 0,
+      //   }
     };
   }
 
   componentDidMount = () => {
     this.keyboardWillShowSub = Keyboard.addListener(
       'keyboardDidShow',
-      this.keyboardWillShow
+      this.keyboardWillShow,
     );
     this.keyboardWillHideSub = Keyboard.addListener(
       'keyboardDidHide',
-      this.keyboardWillHide
+      this.keyboardWillHide,
     );
   };
 
@@ -48,15 +48,15 @@ class Content extends React.Component {
   };
 
   keyboardWillShow = () => {
-    this.setState({ isVisible: false });
+    this.setState({isVisible: false});
   };
 
   keyboardWillHide = () => {
-    this.setState({ isVisible: true });
+    this.setState({isVisible: true});
   };
 
   getStyle = () => {
-    const { style } = this.props;
+    const {style} = this.props;
     const tmpStyle = [styles.content];
     if (style) {
       tmpStyle.push(style);
@@ -65,13 +65,13 @@ class Content extends React.Component {
   };
 
   getContentContainerStyle = () => {
-    const { contentContainerStyle, hasHeader } = this.props;
+    const {contentContainerStyle, hasHeader} = this.props;
     const style = [styles.contentContainerStyle];
     if (contentContainerStyle) {
       style.push(contentContainerStyle);
     }
     if (hasHeader === false) {
-      style.push({ paddingTop: 0 });
+      style.push({paddingTop: 0});
     }
     return style;
   };
@@ -91,7 +91,6 @@ class Content extends React.Component {
   //   this.scrollRef.scrollToEnd({ animated: true });
   //   this.setState({ isScrollable: false, isBottom: true }); // Hide the arrow button after scrolling to the bottom
   // };
-
 
   // onScroll = (event) => {
   //   const { contentHeight } = this.state;
@@ -121,8 +120,6 @@ class Content extends React.Component {
   //   })
   // };
 
-
-
   render = () => {
     const {
       children,
@@ -131,7 +128,7 @@ class Content extends React.Component {
       disableKBDismissScroll,
       keyboardShouldPersistTaps,
       scrollEnabled,
-      isBottomSheet
+      isBottomSheet,
     } = this.props;
 
     const style = this.getStyle();
@@ -147,12 +144,9 @@ class Content extends React.Component {
         bounces={false}
         automaticallyAdjustContentInsets={false}
         onScroll={this.onScroll}
-
-        resetScrollToCoords={
-          disableKBDismissScroll ? undefined : { x: 0, y: 0 }
-        }
+        resetScrollToCoords={disableKBDismissScroll ? undefined : {x: 0, y: 0}}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps || 'handled'}
-        ref={(c) => {
+        ref={c => {
           this.scrollviewRef = c;
           this.rootRef = c;
           this.scrollRef = c;
@@ -171,7 +165,6 @@ class Content extends React.Component {
           <TouchableOpacity onPress={this.scrollToBottom} style={{ position: "absolute", zIndex: 99, right: 10, bottom: this.state?.contentHeight - WINDOW_HEIGHT + 10 }}>
             <Icon name="chevron-down-circle-outline" color={Colors.black} size={24} />
           </TouchableOpacity>} */}
-
       </ScrollComponent>
     );
   };

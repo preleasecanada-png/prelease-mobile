@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {View, TouchableOpacity, Text, Image} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import CommanHeading from '../../components/CommanHeading';
 import CommanText from '../../components/SignUpLogIn/CommanText';
 import styles from './Styles';
-import { Images } from '../../theme';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {Images} from '../../theme';
+import {navigate} from '../../navigation/ReduxNavigation';
 
-function SafetyCenterScreen({ navigation }) {
+function SafetyCenterScreen({navigation}) {
   return (
     <Container>
       <Header

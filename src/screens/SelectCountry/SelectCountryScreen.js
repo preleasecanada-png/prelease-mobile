@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { Container, Content, Header } from '../../components';
-import { countrySelectList } from '../../assets/data';
+import {View} from 'react-native';
+import {Container, Content, Header} from '../../components';
+import {countrySelectList} from '../../assets/data';
 import RadioButton from '../../components/RadioButton';
 import SearchInput from '../../components/SearchInput/Index';
 import styles from './Styles/SelectCountryStyle';
 import CommonSearchInput from '../../components/CommonSearchInput/Index';
 
-function SelectCountryScreen({ navigation }) {
+function SelectCountryScreen({navigation}) {
   return (
     <Container>
       <Header

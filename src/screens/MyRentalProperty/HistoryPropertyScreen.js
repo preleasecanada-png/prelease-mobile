@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Container, Content, Header } from '../../components';
+import {Container, Content, Header} from '../../components';
 import BookNowBtnComponent from '../../components/BookNowBtnComponent';
 import PropertyDetailComponent from '../../components/PropertyDetailComponent';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/MyRentalPropertyStyle';
 
-const HistoryPropertyScreen = ({ navigation }) => {
+const HistoryPropertyScreen = ({navigation}) => {
   return (
     <Container>
       <Header

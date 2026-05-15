@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { View, Text } from 'react-native';
-import { Container, Content } from '../../components';
+import {useState} from 'react';
+import {View, Text} from 'react-native';
+import {Container, Content} from '../../components';
 import LogoHeading from '../../components/SignUpLogIn/LogoHeading';
 import CommanBtnScreen from '../../components/CommanBtn/index';
 import CommanText from '../../components/SignUpLogIn/CommanText';
@@ -9,21 +9,18 @@ import OtpInputs from 'react-native-otp-inputs';
 import AnimatedEllipsis from 'react-native-animated-ellipsis';
 import styles from './Styles/OtpStyle';
 import AuthLayout from '../../layouts/AuthLayout';
-import { Image } from 'react-native';
-import { Images } from '../../theme';
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '@gorhom/bottom-sheet';
-let interval = 0
+import {Image} from 'react-native';
+import {Images} from '../../theme';
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from '@gorhom/bottom-sheet';
+let interval = 0;
 
-
-function OtpSignUpNumberScreen({ navigation }) {
-
+function OtpSignUpNumberScreen({navigation}) {
   let optConfirm = '123456';
   const [otpInputFill, setOtpInputFill] = useState(true);
 
   const [timer, setTimer] = useState(59);
 
   const ResendOtpTimer = React.memo(() => {
-
     const startTimer = () => {
       interval = setInterval(() => {
         if (timer > 0) {
@@ -46,28 +43,29 @@ function OtpSignUpNumberScreen({ navigation }) {
           00:{timer < 10 ? `0${timer}` : timer}
         </Text>
       </View>
-    )
-  })
+    );
+  });
 
   const renderHeaderImage = React.useCallback(() => {
     return (
-
-      <View style={[{ alignItems: "center", paddingVertical: WINDOW_HEIGHT * 0.02 }]}>
-        <Image source={Images.Otp} resizeMode="center" style={{ width: WINDOW_WIDTH * 0.46, height: WINDOW_HEIGHT * 0.25 }} />
+      <View
+        style={[{alignItems: 'center', paddingVertical: WINDOW_HEIGHT * 0.02}]}>
+        <Image
+          source={Images.Otp}
+          resizeMode="center"
+          style={{width: WINDOW_WIDTH * 0.46, height: WINDOW_HEIGHT * 0.25}}
+        />
       </View>
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <AuthLayout
       heading="Verify"
       backButton
-      renderHeaderImage={renderHeaderImage}
-    >
-
-
-      <View style={{ marginBottom: 10, alignItems: 'center' }}>
-        <Text style={styles.heading}>{"Enter OTP"}</Text>
+      renderHeaderImage={renderHeaderImage}>
+      <View style={{marginBottom: 10, alignItems: 'center'}}>
+        <Text style={styles.heading}>{'Enter OTP'}</Text>
       </View>
       <CommanText
         commanText="An 4 digit OTP has been sent to"
@@ -80,7 +78,7 @@ function OtpSignUpNumberScreen({ navigation }) {
       />
       {otpInputFill ? (
         <OtpInputs
-          handleChange={(code) => {
+          handleChange={code => {
             if (optConfirm === code) {
               setOtpInputFill(false);
               setTimeout(() => {
@@ -117,12 +115,13 @@ function OtpSignUpNumberScreen({ navigation }) {
 
       {timer > 0 && <ResendOtpTimer />}
 
-      {timer == 0 && <Text style={styles.bottomAccountText}>
-        Didn’t get a code? {''}
-        <Text style={styles.loginSignupBtnText}>Resend</Text>
-      </Text>}
+      {timer == 0 && (
+        <Text style={styles.bottomAccountText}>
+          Didn’t get a code? {''}
+          <Text style={styles.loginSignupBtnText}>Resend</Text>
+        </Text>
+      )}
     </AuthLayout>
-
   );
 }
 

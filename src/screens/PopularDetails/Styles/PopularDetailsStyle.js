@@ -1,11 +1,20 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
-import { isIphoneX } from '../../../libs/Utils';
-import { Colors, Fonts } from '../../../theme';
+import {Dimensions} from 'react-native';
+import {isIphoneX} from '../../../libs/Utils';
+import {Colors, Fonts} from '../../../theme';
 
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { backgroundColor, borderRadius, borderWidth, flex, marginLeft, marginTop, overflow, padding } from 'styled-system';
-import { color } from 'react-native-reanimated';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {
+  backgroundColor,
+  borderRadius,
+  borderWidth,
+  flex,
+  marginLeft,
+  marginTop,
+  overflow,
+  padding,
+} from 'styled-system';
+import {color} from 'react-native-reanimated';
 const windowWidth = Dimensions.get('window').width;
 
 const statusBarHeight = getStatusBarHeight();
@@ -15,12 +24,10 @@ const styles = EStyleSheet.create({
     paddingBottom: '90rem',
     backgroundColor: Colors.white,
   },
-  
 
   flexRow: {
     flexDirection: 'row',
     alignItems: 'center',
-
   },
   popularDetailsHeader: {
     backgroundColor: Colors.transparent,
@@ -29,65 +36,64 @@ const styles = EStyleSheet.create({
   },
   popularDetailsMainImg: {
     width: '100%',
-    height: '375rem'
+    height: '375rem',
   },
   propertyDetaileImgContentStyle: {
     width: '100%',
     height: '375rem',
     borderRadius: 0,
-    marginBottom: '20rem'
+    marginBottom: '20rem',
   },
   propertyDetaileContentStyle: {
-    paddingHorizontal: '15rem'
+    paddingHorizontal: '15rem',
   },
   propertyDetaileContainer: {
     paddingHorizontal: '15rem',
-    marginTop: '13rem'
+    marginTop: '13rem',
   },
   facilitiesHeadingStyle: {
     // marginTop: '13rem'
   },
   propertyDetaileImgsRow: {
     marginLeft: '-4.5rem',
-    paddingLeft: '20rem'
+    paddingLeft: '20rem',
   },
   propertyDetaileImgs: {
     width: '99rem',
     height: '91rem',
     borderRadius: '10.1rem',
-    marginHorizontal: '4.5rem'
+    marginHorizontal: '4.5rem',
   },
   photoHeadingStyle: {
-    marginTop: '25.5rem'
+    marginTop: '25.5rem',
   },
   propertyDetailePhotoRow: {
-    marginBottom: '33rem'
+    marginBottom: '33rem',
   },
   propertyDetaileLocationTextRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '15rem'
+    marginBottom: '15rem',
   },
   propertyDetaileLocationImg: {
     width: '14rem',
     height: '16.9rem',
-    marginRight: '6rem'
+    marginRight: '6rem',
   },
   propertyDetaileLocationText: {
     lineHeight: '21rem',
     color: Colors.black,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   propertyDetaileMap: {
     marginBottom: '33rem',
   },
   propertyDetaileMapImg: {
     width: '100%',
-    height: '218rem'
+    height: '218rem',
   },
   ratingContainer: {
-
     backgroundColor: Colors.primary,
     borderRadius: 50,
     paddingHorizontal: '3rem',
@@ -96,49 +102,49 @@ const styles = EStyleSheet.create({
   propertyDetaileRatingStarRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '13rem'
+    marginBottom: '13rem',
   },
   propertyDetaileRatingStarText: {
     lineHeight: '38rem',
     color: Colors.black,
     marginRight: '13rem',
     fontSize: Fonts.size.larg,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   propertyDetaileRatingStars: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: '-2rem'
+    marginHorizontal: '-2rem',
   },
   propertyDetaileRatingStarImg: {
     width: '14rem',
     height: '14rem',
-    marginHorizontal: '2rem'
+    marginHorizontal: '2rem',
   },
   ratingCategoryListRow: {
     marginBottom: '10rem',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   ratingCategoryListHeading: {
     marginRight: '23rem',
     lineHeight: '21rem',
     color: Colors.darkGray,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   ratingCategoryBgLine: {
     width: '100% - 131rem',
     height: '6rem',
     backgroundColor: Colors.lightRed,
     borderRadius: '6rem',
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   ratingCategoryFillLine: {
     width: '100%',
     height: '6rem',
     backgroundColor: Colors.primary,
-    borderRadius: '6rem'
+    borderRadius: '6rem',
   },
   reviewsHeadingStyle: {
     // marginTop: '13rem'
@@ -146,13 +152,13 @@ const styles = EStyleSheet.create({
   surface: {
     width: '100%',
     backgroundColor: Colors.white,
-    
+
     borderWidth: 0.5,
     borderColor: Colors.gray,
     borderRadius: 10,
     marginTop: 10,
     shadowColor: Colors.black,
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.15,
     shadowRadius: 2.0,
     borderRadius: 10,
@@ -162,42 +168,39 @@ const styles = EStyleSheet.create({
   reviewContent: {
     borderRadius: 10,
     // marginBottom: '23rem',
-    padding: 8
-
+    padding: 8,
   },
 
   reviewUserImgText: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '7rem'
+    marginBottom: '7rem',
   },
   reviewsUserImage: {
     width: '40rem',
     height: '40rem',
-    borderRadius: '50rem'
+    borderRadius: '50rem',
   },
   reviewUserRightText: {
     paddingLeft: '12rem',
     // backgroundColor: Colors.primary,
-    flex: 1
+    flex: 1,
   },
   reviewUserNameText: {
     marginBottom: '3rem',
     lineHeight: '21rem',
     color: Colors.black,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.boldText
+    ...Fonts.style.boldText,
   },
   reviewUserDateText: {
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.tiny,
-
   },
   reviewUserTimeText: {
     marginLeft: 10,
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.tiny,
-
   },
   reviewRatingStarTextRow: {
     flexDirection: 'row',
@@ -209,22 +212,22 @@ const styles = EStyleSheet.create({
     color: Colors.black,
     marginRight: '11rem',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   reviewRatingStarRow: {
-    marginHorizontal: '-2rem'
+    marginHorizontal: '-2rem',
   },
   reviewRatingStarParegraph: {
     lineHeight: '21rem',
     color: Colors.opacityBlackText,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   readMoreLessText: {
     lineHeight: '21rem',
     color: Colors.darkGray,
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   bookNowBtnContentStyle: {
     paddingBottom: isIphoneX() ? '30rem' : '20rem',
@@ -246,7 +249,7 @@ const styles = EStyleSheet.create({
     left: 0,
     '@media ios': {
       paddingBottom: '30rem',
-      bottom: 0
+      bottom: 0,
     },
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -261,8 +264,8 @@ const styles = EStyleSheet.create({
     shadowRadius: 10,
     shadowOffset: {
       width: 0,
-      height: 2
-    }
+      height: 2,
+    },
   },
   bookNowBtn: {
     width: '150rem',
@@ -271,7 +274,6 @@ const styles = EStyleSheet.create({
   },
   bookNowBtnText: {
     textTransform: 'uppercase',
-
   },
   bookNowBtnPriceTexts: {
     // marginLeft: 'auto'
@@ -290,27 +292,24 @@ const styles = EStyleSheet.create({
     lineHeight: '21rem',
     textAlign: 'right',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   confirmPayBtn: {
     width: '196rem',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
   },
   bookHistoryContainer: {
-    paddingHorizontal: '20rem'
+    paddingHorizontal: '20rem',
   },
   morBtnStyle: {
     color: Colors.black,
     lineHeight: '21rem',
     textAlign: 'right',
     fontSize: Fonts.size.small,
-    ...Fonts.style.normalText
-
-
+    ...Fonts.style.normalText,
   },
-  seeMoreButttonStyle:{
-    
+  seeMoreButttonStyle: {
     backgroundColor: Colors.white,
     borderColor: Colors.boxShadowLighterBlack,
     borderWidth: 0.5,
@@ -318,13 +317,12 @@ const styles = EStyleSheet.create({
     marginVertical: 10,
     marginHorizontal: '15rem',
     // overflow: 'hidden',
-    paddingVertical: 10
-
+    paddingVertical: 10,
   },
-  seeMoreButttonTextStyle:{
+  seeMoreButttonTextStyle: {
     color: Colors.opacityBlackText,
   },
-  feedbackButttonTextStyle:{
+  feedbackButttonTextStyle: {
     color: Colors.primary,
   },
 });

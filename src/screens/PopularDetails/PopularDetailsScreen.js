@@ -1,32 +1,40 @@
 import * as React from 'react';
-import { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { Image, View, FlatList, Text, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
-import { Container, Header, Content } from '../../components';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {useState, useEffect, useCallback} from 'react';
+import {useSelector} from 'react-redux';
+import {
+  Image,
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  Alert,
+} from 'react-native';
+import {Container, Header, Content} from '../../components';
+import {navigate} from '../../navigation/ReduxNavigation';
 import BookPropertyImgText from '../../components/BookPropertyImgText';
 import FacilitiesRules from '../../components/FacilitiesRules';
 import CommanHeading from '../../components/CommanHeading';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 import {
   facilitiesList,
   bookPropertySubImgData,
   ratingStarImgData,
   ratingCategoryListData,
-  amenitiesList
+  amenitiesList,
 } from '../../assets/data';
 import styles from './Styles/PopularDetailsStyle';
-import { Colors, Icons, Images } from '../../theme';
+import {Colors, Icons, Images} from '../../theme';
 import CommanBtn from '../../components/CommanBtn';
 import CommanHeadingScreen from '../../components/CommanHeading';
 import Raiting from '../../components/Rating';
-import { fontWeight, paddingTop } from 'styled-system';
+import {fontWeight, paddingTop} from 'styled-system';
 import HeaderMain from '../../components/HeaderMain';
-import { Surface } from 'react-native-paper';
-import { ReviewService, PropertyService } from '../../services';
+import {Surface} from 'react-native-paper';
+import {ReviewService, PropertyService} from '../../services';
 import Icon from 'react-native-vector-icons/Feather';
 
-function PopularDetailsScreen({ navigation, route }) {
+function PopularDetailsScreen({navigation, route}) {
   const {item} = route?.params;
   const [textShown, settextShown] = useState(-1);
   const [reviews, setReviews] = useState([]);
@@ -37,28 +45,41 @@ function PopularDetailsScreen({ navigation, route }) {
 
   const lat = item?.latitude ? parseFloat(item.latitude) : 43.6532;
   const lng = item?.longitude ? parseFloat(item.longitude) : -79.3832;
-  const price = item?.price ? `$${Number(item.price).toLocaleString()} / month` : '$0 / month';
+  const price = item?.price
+    ? `$${Number(item.price).toLocaleString()} / month`
+    : '$0 / month';
 
   useEffect(() => {
     fetchReviews();
-    if (token) checkWishlistStatus();
-  }, []);  
+    if (token) {
+      checkWishlistStatus();
+    }
+  }, []);
 
   const checkWishlistStatus = async () => {
     try {
       const res = await PropertyService.wishLists();
       const list = res?.data?.data || res?.data || [];
-      const found = list.some(w => (w.property?.id || w.property_id) === item?.id);
+      const found = list.some(
+        w => (w.property?.id || w.property_id) === item?.id,
+      );
       setIsWishlisted(found);
-    } catch (e) { /* silent */ }
+    } catch (e) {
+      /* silent */
+    }
   };
 
   const toggleWishlist = async () => {
     if (!token) {
-      Alert.alert('Sign in required', 'Please log in to save properties to your wishlist.');
+      Alert.alert(
+        'Sign in required',
+        'Please log in to save properties to your wishlist.',
+      );
       return;
     }
-    if (wishlistLoading) return;
+    if (wishlistLoading) {
+      return;
+    }
     setWishlistLoading(true);
     try {
       if (isWishlisted) {
@@ -81,28 +102,30 @@ function PopularDetailsScreen({ navigation, route }) {
         const list = res?.data?.data || res?.data || [];
         setReviews(list);
       }
-    } catch (e) { console.error(e); }
+    } catch (e) {
+      console.error(e);
+    }
     setLoadingReviews(false);
   };
-  const toggleNumberOfLines = (index) => {
+  const toggleNumberOfLines = index => {
     settextShown(textShown === index ? -1 : index);
   };
 
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({item, index}) => (
     <Image
       key={item.id}
       source={item.image}
       resizeMode="cover"
       style={
         index === 0
-          ? [styles.propertyDetaileImgs, { marginLeft: 20 }]
+          ? [styles.propertyDetaileImgs, {marginLeft: 20}]
           : index === bookPropertySubImgData.length - 1
-            ? [styles.propertyDetaileImgs, { marginRight: 20 }]
-            : [styles.propertyDetaileImgs]
+          ? [styles.propertyDetaileImgs, {marginRight: 20}]
+          : [styles.propertyDetaileImgs]
       }
     />
   );
-  const renderStarItem = ({ item }) => (
+  const renderStarItem = ({item}) => (
     <Image
       key={item.id}
       source={item.image}
@@ -110,19 +133,27 @@ function PopularDetailsScreen({ navigation, route }) {
       style={styles.propertyDetaileRatingStarImg}
     />
   );
-  const renderRatingListItem = ({ item }) => (
+  const renderRatingListItem = ({item}) => (
     <View style={styles.ratingCategoryListRow}>
       <Text style={styles.ratingCategoryListHeading}>{item.name}</Text>
       <View style={styles.ratingCategoryBgLine}>
-        <View style={[styles.ratingCategoryFillLine, { width: item.width }]} />
+        <View style={[styles.ratingCategoryFillLine, {width: item.width}]} />
       </View>
     </View>
   );
-  const renderReviewsListItem = ({ item: rev, index }) => (
+  const renderReviewsListItem = ({item: rev, index}) => (
     <View style={styles.surface}>
       <View style={styles.reviewContent}>
         <View style={styles.reviewUserImgText}>
-          <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center' }}>
+          <View
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              backgroundColor: '#eee',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <Icon name="user" size={18} color="#999" />
           </View>
           <View style={styles.reviewUserRightText}>
@@ -131,7 +162,11 @@ function PopularDetailsScreen({ navigation, route }) {
             </Text>
             <View style={styles.reviewRatingStarTextRow}>
               <View style={styles.flexRow}>
-                <Text style={styles.reviewUserDateText}>{rev.created_at ? new Date(rev.created_at).toLocaleDateString() : ''}</Text>
+                <Text style={styles.reviewUserDateText}>
+                  {rev.created_at
+                    ? new Date(rev.created_at).toLocaleDateString()
+                    : ''}
+                </Text>
               </View>
               <View style={styles.ratingContainer}>
                 <Raiting
@@ -172,27 +207,22 @@ function PopularDetailsScreen({ navigation, route }) {
             onBackPress={() => navigation.goBack()}
           /> */}
 
-
         <HeaderMain
           centerImage={false}
           leftIcon="chevron-thin-left"
           leftIconPress={() => navigation.goBack()}
           rightIcon={isWishlisted ? 'heart' : 'heart-outlined'}
           rightIconPress={toggleWishlist}
-          
           isBlur={true}
           containerStyle={{
             paddingHorizontal: 20,
-            paddingTop: 10
+            paddingTop: 10,
           }}
         />
 
-
         <BookPropertyImgText
-        item={item}
-          propertyDetaileImgContentStyle={
-            styles.propertyDetaileImgContentStyle
-          }
+          item={item}
+          propertyDetaileImgContentStyle={styles.propertyDetaileImgContentStyle}
           propertyDetaileImgStyle={styles.propertyDetaileImgStyle}
           propertyDetaileContentStyle={styles.propertyDetaileContentStyle}
           sendMsgPress={() => navigation.navigate('chatDetails')}
@@ -203,7 +233,8 @@ function PopularDetailsScreen({ navigation, route }) {
             <FacilitiesRules
               facilitiesListData={item.amenities.slice(0, 9).map((a, i) => ({
                 id: i,
-                name: typeof a === 'string' ? a : a?.name || a?.amenity_name || '',
+                name:
+                  typeof a === 'string' ? a : a?.name || a?.amenity_name || '',
               }))}
               FacilitiesRulesHeading="Amenities"
               facilitiesHeadingStyle={styles.facilitiesHeadingStyle}
@@ -234,10 +265,8 @@ function PopularDetailsScreen({ navigation, route }) {
             /> */}
           <CommanHeadingScreen
             headingText
-            heading={"Location"}
-            commanHeadingContainerStyle={[
-              styles.headingStyle,
-            ]}
+            heading={'Location'}
+            commanHeadingContainerStyle={[styles.headingStyle]}
           />
           {/* <View style={styles.propertyDetaileLocationTextRow}>
               <Image
@@ -256,12 +285,12 @@ function PopularDetailsScreen({ navigation, route }) {
                 latitude: lat,
                 longitude: lng,
                 latitudeDelta: 0.01,
-                longitudeDelta: 0.01
+                longitudeDelta: 0.01,
               }}>
               <Marker
                 coordinate={{
                   latitude: lat,
-                  longitude: lng
+                  longitude: lng,
                 }}
                 title={item?.title || 'Property'}
                 description={item?.address || ''}
@@ -300,16 +329,28 @@ function PopularDetailsScreen({ navigation, route }) {
             morBtnStyle={styles.morBtnStyle}
           />
           {loadingReviews ? (
-            <ActivityIndicator size="small" color={Colors.primary} style={{ marginVertical: 10 }} />
+            <ActivityIndicator
+              size="small"
+              color={Colors.primary}
+              style={{marginVertical: 10}}
+            />
           ) : reviews.length > 0 ? (
             <FlatList
               bounces={false}
               data={reviews}
               renderItem={renderReviewsListItem}
-              keyExtractor={(r) => String(r.id)}
+              keyExtractor={r => String(r.id)}
             />
           ) : (
-            <Text style={{ color: '#999', fontSize: 13, paddingHorizontal: 16, marginBottom: 10 }}>No reviews yet</Text>
+            <Text
+              style={{
+                color: '#999',
+                fontSize: 13,
+                paddingHorizontal: 16,
+                marginBottom: 10,
+              }}>
+              No reviews yet
+            </Text>
           )}
         </View>
 
@@ -318,19 +359,20 @@ function PopularDetailsScreen({ navigation, route }) {
             btnText="Apply to Rent"
             commanBtnStyle={styles.seeMoreButttonStyle}
             commanBtnTextStyle={styles.seeMoreButttonTextStyle}
-            onBtnPress={() => navigation.navigate('ApplyToRent', { property: item })}
+            onBtnPress={() =>
+              navigation.navigate('ApplyToRent', {property: item})
+            }
           />
           <CommanBtn
             btnText="Message Host"
             commanBtnStyle={styles.seeMoreButttonStyle}
             commanBtnTextStyle={styles.feedbackButttonTextStyle}
-            onBtnPress={() => navigation.navigate('chatDetails', { hostId: item?.user_id })}
+            onBtnPress={() =>
+              navigation.navigate('chatDetails', {hostId: item?.user_id})
+            }
           />
         </View>
       </Content>
-
-
-
 
       <View style={styles.bookNowBtnContent}>
         <View style={styles.bookNowBtnPriceTexts}>
@@ -341,7 +383,7 @@ function PopularDetailsScreen({ navigation, route }) {
           commanBtnStyle={styles.bookNowBtn}
           commanBtnTextStyle={styles.bookNowBtnText}
           onBtnPress={() => {
-            navigation.navigate('ApplyToRent', { property: item })
+            navigation.navigate('ApplyToRent', {property: item});
           }}
         />
       </View>

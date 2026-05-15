@@ -1,26 +1,26 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
+import {Colors, Fonts} from '../../../theme';
 
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 
 const statusBarHeight = getStatusBarHeight();
 
 const styles = EStyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   preview: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
   },
   capture: {
     borderRadius: '5rem',
     padding: '15rem',
     paddingHorizontal: '20rem',
     alignSelf: 'center',
-    margin: '20rem'
+    margin: '20rem',
   },
   clickPhotoBtnContent: {
     width: '70rem',
@@ -29,13 +29,13 @@ const styles = EStyleSheet.create({
     marginRight: 'auto',
     shadowOffset: {
       width: 0,
-      height: '10rem'
+      height: '10rem',
     },
     shadowOpacity: 1,
     shadowRadius: 20,
     elevation: 20,
     shadowColor: Colors.blurPink,
-    zIndex: 999999
+    zIndex: 999999,
   },
   clickPhotoBtn: {
     backgroundColor: Colors.white,
@@ -44,20 +44,20 @@ const styles = EStyleSheet.create({
     borderWidth: '15rem',
     borderColor: Colors.primary,
     borderRadius: '35rem',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   photoScanRingIcon: {
     width: '79%',
     height: '250rem',
     position: 'absolute',
     left: '10.5%',
-    top: '30rem'
+    top: '30rem',
   },
   frontIdContainer: {
     flex: 1,
     width: '100%',
     backgroundColor: Colors.white,
-    paddingTop: '37rem'
+    paddingTop: '37rem',
   },
   frontIdHeading: {
     marginBottom: '23rem',
@@ -66,7 +66,7 @@ const styles = EStyleSheet.create({
     letterSpacing: '-0.02rem',
     textAlign: 'center',
     fontSize: Fonts.size.h4,
-    ...Fonts.style.buttonText
+    ...Fonts.style.buttonText,
   },
   frontIdPeregraph: {
     marginBottom: '37rem',
@@ -77,34 +77,34 @@ const styles = EStyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     fontSize: Fonts.size.medium,
-    ...Fonts.style.normalText
+    ...Fonts.style.normalText,
   },
   flashOnOfBtnContent: {
     position: 'absolute',
     right: '20rem',
     top: statusBarHeight + 15,
-    zIndex: 999999
+    zIndex: 999999,
   },
   flashOnOfBtn: {
     width: '40rem',
     height: '40rem',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   flashOnOffImg: {
     width: '11rem',
-    height: '15rem'
+    height: '15rem',
   },
   waitingText: {
     flex: 1,
     backgroundColor: 'lightgreen',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   cameraContent: {
     height: '100%',
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 export default styles;

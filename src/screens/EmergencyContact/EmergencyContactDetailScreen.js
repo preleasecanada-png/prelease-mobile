@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
-import { Container, Content, Header } from '../../components';
+import {Text, View, FlatList, TouchableOpacity, Image} from 'react-native';
+import {Container, Content, Header} from '../../components';
 import CommanBtn from '../../components/CommanBtn';
-import { profileInputList } from '../../assets/data';
+import {profileInputList} from '../../assets/data';
 import TextInput from '../../components/SignUpLogIn/TextInput';
 import CommanText from '../../components/SignUpLogIn/CommanText';
-import { navigate } from '../../navigation/ReduxNavigation';
+import {navigate} from '../../navigation/ReduxNavigation';
 import styles from './Styles/EmergencyContactStyle';
-import { Images } from '../../theme';
+import {Images} from '../../theme';
 
-function EmergencyContactDetailScreen({ navigation }) {
-  const renderItem = ({ item }) => (
+function EmergencyContactDetailScreen({navigation}) {
+  const renderItem = ({item}) => (
     <View>
       <CommanText
         commanText={item.labelText}

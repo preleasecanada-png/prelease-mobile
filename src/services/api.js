@@ -1,16 +1,25 @@
-const BASE_URL = 'https://xa2g46fwr6.execute-api.us-east-1.amazonaws.com/api';
-export const IMAGE_BASE_URL = 'https://prelease-storage-production.s3.us-east-1.amazonaws.com';
+const BASE_URL =
+  process.env.API_BASE_URL || 'https://api.preleasecanada.ca/api';
+export const IMAGE_BASE_URL =
+  process.env.IMAGE_BASE_URL ||
+  'https://prelease-storage-production.s3.us-east-1.amazonaws.com';
 
-export const imageUrl = (path) => {
-  if (!path) return null;
-  if (path.startsWith('http')) return path;
+export const imageUrl = path => {
+  if (!path) {
+    return null;
+  }
+  if (path.startsWith('http')) {
+    return path;
+  }
   return `${IMAGE_BASE_URL}/${path}`;
 };
 
-export const propertyImageUrl = (property) => {
+export const propertyImageUrl = property => {
   // Backend now returns full S3 URLs via image_url accessor
   const directUrl = property?.property_images?.[0]?.image_url;
-  if (directUrl) return directUrl;
+  if (directUrl) {
+    return directUrl;
+  }
   // Fallback to old method for backward compatibility
   const path = property?.property_images?.[0]?.original;
   return imageUrl(path);
@@ -18,7 +27,7 @@ export const propertyImageUrl = (property) => {
 
 let _token = null;
 
-export const setAuthToken = (token) => {
+export const setAuthToken = token => {
   _token = token;
 };
 
@@ -36,7 +45,7 @@ const request = async (endpoint, options = {}) => {
   };
 
   if (_token) {
-    headers['Authorization'] = `Bearer ${_token}`;
+    headers.Authorization = `Bearer ${_token}`;
   }
 
   if (!(options.body instanceof FormData)) {
@@ -57,10 +66,10 @@ const request = async (endpoint, options = {}) => {
 };
 
 export const api = {
-  get: (endpoint) => request(endpoint, { method: 'GET' }),
+  get: endpoint => request(endpoint, {method: 'GET'}),
 
   post: (endpoint, body) => {
-    const opts = { method: 'POST' };
+    const opts = {method: 'POST'};
     if (body instanceof FormData) {
       opts.body = body;
     } else {
@@ -75,7 +84,7 @@ export const api = {
       body: JSON.stringify(body),
     }),
 
-  delete: (endpoint) => request(endpoint, { method: 'DELETE' }),
+  delete: endpoint => request(endpoint, {method: 'DELETE'}),
 };
 
 export default api;

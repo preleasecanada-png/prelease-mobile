@@ -1,11 +1,18 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Colors, Fonts } from '../../../theme';
-import { backgroundColor, display, flex, marginTop, overflow, paddingBottom } from 'styled-system';
-import { padding } from 'styled-system';
-import { borderRadius } from 'styled-system';
-import { borderWidth } from 'styled-system';
-import { borderColor } from 'styled-system';
-import { height } from 'styled-system';
+import {Colors, Fonts} from '../../../theme';
+import {
+  backgroundColor,
+  display,
+  flex,
+  marginTop,
+  overflow,
+  paddingBottom,
+} from 'styled-system';
+import {padding} from 'styled-system';
+import {borderRadius} from 'styled-system';
+import {borderWidth} from 'styled-system';
+import {borderColor} from 'styled-system';
+import {height} from 'styled-system';
 
 const styles = EStyleSheet.create({
   container: {
@@ -28,17 +35,16 @@ const styles = EStyleSheet.create({
     borderRadius: '10rem',
     backgroundColor: Colors.white,
     borderWidth: '1rem',
-    borderColor: Colors.lightGray
+    borderColor: Colors.lightGray,
   },
   notificationIcon: {
     width: '13.59rem',
-    height: '16rem'
+    height: '16rem',
   },
   searchInputStyle: {
-  
     flex: 1,
     backgroundColor: Colors.white,
-    borderRadius: 50
+    borderRadius: 50,
   },
   penddingNotification: {
     position: 'absolute',
@@ -51,7 +57,6 @@ const styles = EStyleSheet.create({
     width: '10rem',
     borderRadius: '7.5rem',
     overflow: 'hidden',
-
   },
   indicatorStyle: {
     width: '6rem',
@@ -60,13 +65,13 @@ const styles = EStyleSheet.create({
     borderRadius: '6rem',
     left: '12%',
     bottom: '5rem',
-    display: "none",
+    display: 'none',
   },
   tabBarStyle: {
     backgroundColor: Colors.white,
     marginHorizontal: '20rem',
     elevation: 0,
-    shadowOpacity: 0
+    shadowOpacity: 0,
   },
   labelStyle: {
     color: Colors.darkGray,
@@ -79,8 +84,7 @@ const styles = EStyleSheet.create({
     paddingVertical: 8,
     borderRadius: 50,
     borderWidth: 0.5,
-    borderColor: Colors.gray
-
+    borderColor: Colors.gray,
   },
   tabStyle: {
     padding: 0,
@@ -117,8 +121,8 @@ const styles = EStyleSheet.create({
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row', 
-    justifyContent: "space-evenly",
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     // paddingVertical: 8,
     borderRadius: 30,
     borderWidth: 0.5,
@@ -130,7 +134,11 @@ const styles = EStyleSheet.create({
     // borderTopLeftRadius: BORDERRADIUS,
     // borderBottomLeftRadius: BORDERRADIUS,
   },
-  tabItemText: { fontSize: Fonts.size.medium, color: Colors.darkGray, ...Fonts.style.normalText },
+  tabItemText: {
+    fontSize: Fonts.size.medium,
+    color: Colors.darkGray,
+    ...Fonts.style.normalText,
+  },
 });
 
 export default styles;
