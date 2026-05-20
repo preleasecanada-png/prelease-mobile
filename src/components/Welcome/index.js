@@ -22,7 +22,7 @@ function Welcome(props) {
         resizeMode="cover"
         source={props.image}
         style={{flex: 1}}>
-
+        <View
           style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
           <View
             style={{
