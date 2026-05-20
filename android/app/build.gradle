@@ -81,6 +81,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 project.ext.react = [
     enableHermes: false,
     bundleInRelease: true,
+    resourcesDirRelease: "$buildDir/generated/res/react/release",
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"

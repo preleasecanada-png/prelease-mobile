@@ -476,6 +476,16 @@ workflows:
           export CM_KEYSTORE_PATH="$CM_BUILD_DIR/keystore/release.keystore"
           echo "CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH" >> $CM_ENV
           ls -la "$CM_KEYSTORE_PATH"
+      - name: Clean duplicate drawable resources
+        script: |
+          set -e
+          # Remove pre-bundled drawables that conflict with Metro-generated ones
+          find android/app/src/main/res/drawable-mdpi -type f \( -name "*.png" -o -name "*.jpg" \) -delete 2>/dev/null || true
+          find android/app/src/main/res/drawable-hdpi -type f \( -name "*.png" -o -name "*.jpg" \) -delete 2>/dev/null || true
+          find android/app/src/main/res/drawable-xhdpi -type f \( -name "*.png" -o -name "*.jpg" \) -delete 2>/dev/null || true
+          find android/app/src/main/res/drawable-xxhdpi -type f \( -name "*.png" -o -name "*.jpg" \) -delete 2>/dev/null || true
+          find android/app/src/main/res/drawable-xxxhdpi -type f \( -name "*.png" -o -name "*.jpg" \) -delete 2>/dev/null || true
+          echo "Cleaned duplicate drawable resources"
       - name: Build AAB (release, signed)
         script: |
           set -e
