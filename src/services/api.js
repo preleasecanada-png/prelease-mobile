@@ -58,9 +58,23 @@ const request = async (endpoint, options = {}) => {
       headers,
     });
     const data = await response.json();
+    if (response.status === 401) {
+      clearAuthToken();
+      const err = new Error('Unauthorized');
+      err.status = 401;
+      throw err;
+    }
+    if (!response.ok) {
+      const err = new Error(data?.message || data?.error || `HTTP ${response.status}`);
+      err.status = response.status;
+      err.data = data;
+      throw err;
+    }
     return data;
   } catch (error) {
-    console.error(`API Error [${endpoint}]:`, error);
+    if (!error.status) {
+      console.error(`API Error [${endpoint}]:`, error);
+    }
     throw error;
   }
 };

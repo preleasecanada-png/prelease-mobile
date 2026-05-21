@@ -13,12 +13,10 @@ const ChatService = {
   markRead: userId => api.post('/chats/mark-read', {user_id: userId}),
   getUsers: () => api.get('/users'),
   getUserDetail: userId => api.get(`/user-detail/${userId}`),
-  getUnreadCount: () => api.get('chats/unread-count'),
-  markAsRead: userId => api.post('chats/mark-read', {user_id: userId}),
-  markAsUnread: userId => api.post('chats/mark-unread', {user_id: userId}),
-  pinConversation: userId => api.post('chats/pin', {user_id: userId}),
+  markAsUnread: userId => api.post('/chats/mark-unread', {user_id: userId}),
+  pinConversation: userId => api.post('/chats/pin', {user_id: userId}),
   deleteConversation: userId =>
-    api.delete('chats/conversation', {data: {user_id: userId}}),
+    api.post('/chats/conversation/delete', {user_id: userId}),
 };
 
 export default ChatService;

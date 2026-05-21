@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomDrawerContent from '../components/CustomDrawer/CustomDrawerContent'
 import WishlistScreen from '../screens/Wishlist/WishlistScreen'
+import ChatAISCreen from '../screens/ChatAISCreen'
 import ChatDetailsScreen from '../screens/Chat/ChatDetailsScreen'
 import ChatScreen from '../screens/Chat/ChatScreen'
 import CurrentLocationScreen from '../screens/CurrentLocation/CurrentLocationScreen'
@@ -53,7 +54,7 @@ const DrawerNavigation = () => {
             header: () => null,
           }}
           />
-          <Drawer.Screen name="ChatAISCreen" component={ChatDetailsScreen} />
+          <Drawer.Screen name="ChatAISCreen" component={ChatAISCreen} options={{ headerShown: false, header: () => null }} />
           <Drawer.Screen name="Message" component={ChatScreen} options={{
             headerShown: false,
             header: () => null,
