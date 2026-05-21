@@ -152,7 +152,7 @@ function CustomDrawerContent({ closeDrawer, state, descriptors }) {
 
                         <LineSeperator />
 
-                        <ListItem title={'Settings'} icon={Icons.setting_outlined} activeIcon={Icons.setting} active={active} route={"Profile"} onPress={() => navigateTo("Profile")} />
+                        <ListItem title={'Settings'} icon={Icons.setting_outlined} activeIcon={Icons.setting} active={active} route={"Settings"} onPress={() => navigateTo("Settings")} />
 
                         {isLoggedIn ? (
                             <VectorListItem title="Logout" iconName="log-out" route="logout" onPress={handleLogout} />
