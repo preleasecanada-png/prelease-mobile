@@ -476,6 +476,11 @@ workflows:
           export CM_KEYSTORE_PATH="$CM_BUILD_DIR/keystore/release.keystore"
           echo "CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH" >> $CM_ENV
           ls -la "$CM_KEYSTORE_PATH"
+      - name: Install Android SDK platform 34
+        script: |
+          set -e
+          yes | sdkmanager "platforms;android-34" || true
+          sdkmanager --list | grep "platforms;android-34" || true
       - name: Clean duplicate drawable resources
         script: |
           set -e
