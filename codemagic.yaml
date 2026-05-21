@@ -481,6 +481,21 @@ workflows:
           set -e
           yes | sdkmanager "platforms;android-34" || true
           sdkmanager --list | grep "platforms;android-34" || true
+      - name: Patch react-native-screens for SDK 34 Canvas nullability
+        script: |
+          set -e
+          SCREEN_STACK="node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt"
+          if [ -f "$SCREEN_STACK" ]; then
+            # dispatchDraw canvas param became nullable in SDK 34
+            sed -i '' 's/override fun dispatchDraw(canvas: Canvas)/override fun dispatchDraw(canvas: Canvas?)/' "$SCREEN_STACK"
+            # drawChild canvas and child params became nullable in SDK 34
+            sed -i '' 's/override fun drawChild(canvas: Canvas, child: View,/override fun drawChild(canvas: Canvas?, child: View?,/' "$SCREEN_STACK"
+            # Fix non-null assertion for DrawingOp fields passed to super.drawChild
+            sed -i '' 's/super.drawChild(op.canvas, op.child, op.drawingTime)/super.drawChild(op.canvas!!, op.child!!, op.drawingTime)/' "$SCREEN_STACK"
+            echo "Patched ScreenStack.kt for SDK 34 Canvas nullability"
+          else
+            echo "WARNING: ScreenStack.kt not found, skipping patch"
+          fi
       - name: Clean duplicate drawable resources
         script: |
           set -e
